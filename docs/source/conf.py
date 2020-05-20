@@ -21,7 +21,6 @@ extensions = [
     'sphinx.ext.autosummary',
     'sphinx.ext.doctest',
     'sphinx.ext.napoleon',
-    'sphinxcontrib.video',
 ]
 
 
