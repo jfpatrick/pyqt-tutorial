@@ -39,7 +39,7 @@ exclude_patterns = []
 # a list of builtin themes.
 #
 html_theme = "acc_py"
-html_logo = '../../images/pyqt-logo-inverted.png'
+html_logo = '../../images/pyqt-logo-inverted-smaller.png'
 html_favicon = '../../images/pyqt-logo.png'
 
 
