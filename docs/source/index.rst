@@ -1,5 +1,5 @@
 PyQt5 Mega Tutorial for BE-BI
------------
+-----------------------------
 
 This will be the tutorial.
 
