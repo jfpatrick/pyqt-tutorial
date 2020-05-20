@@ -3,7 +3,7 @@ import datetime
 import pyqt_mega_tutorial_for_be_bi
 
 
-project = "pyqt_mega_tutorial_for_be_bi"
+project = "PyQt5 Mega Tutorial for BE-BI"
 author = "Sara Zanzottera (BE-BI-SW)"
 version = pyqt_mega_tutorial_for_be_bi.__version__
 
@@ -38,7 +38,7 @@ exclude_patterns = []
 # The theme to use for HTML and HTML Help pages.  See the documentation for
 # a list of builtin themes.
 #
-html_theme = "acc_py"
+html_theme = "alabaster"
 html_logo = '../../images/pyqt-logo-inverted-smaller.png'
 html_favicon = '../../images/pyqt-logo.png'
 
