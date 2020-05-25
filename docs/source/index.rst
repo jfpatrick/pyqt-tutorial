@@ -16,8 +16,7 @@ Example video 2:
 ^^^^^^^^^^^^^^^^
 .. raw:: html
 
-   <img src="_static/pyqt-logo.png" />
-   <video controls src="_static/sample-video.mp4" type='video/mp4'></video>
+   <video controls src="_static/sample-video.mp4" type='video/mp4' width="700px"></video>
 
 
 Contribute

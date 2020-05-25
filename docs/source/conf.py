@@ -47,6 +47,8 @@ html_favicon = '../../images/pyqt-logo.png'
 # Static files directories
 html_static_path = ["../../images", "../../videos"]
 
+# Permalinks
+html_add_permalinks = True
 
 # Add any paths that contain custom static files (such as style sheets) here,
 # relative to this directory. They are copied after the builtin static files,
