@@ -1,28 +1,31 @@
 PyQt5 Mega Tutorial
 -------------------
 
-This will be the tutorial.
+Welcome to the PyQt5 Mega Tutorial for BE/BI!
 
-Example video:
-^^^^^^^^^^^^^^
-.. raw:: html
+We will cover the current infrastructure for PyQt development at CERN, with special focus on the tools
+provided by BE/CO.
 
-    <div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; max-width: 100%; height: auto;">
-        <iframe width="640" height="360" src="https://www.youtube.com/embed/LT-oNf3A7IU" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-    </div>
-    
+Where do I start?
+^^^^^^^^^^^^^^^^^
+We provide a two-tier tutorial:
 
-Example video 2:
-^^^^^^^^^^^^^^^^
-.. raw:: html
+ - The Fast Tutorial, for people that already has some PyQt5 knowledge and wants to know more about the new tools.
 
-   <video controls src="_static/sample-video.mp4" type='video/mp4' width="700px"></video>
+ - The Complete Tutorial, for people coming from Java or C++, or even Python programmers that
+   simply have no prior knowledge of PyQt5. Note that the tutorial assumes some basic Python knowledge, and
+   in general will not dive too much into pure Python details. If you have doubts along the way, Google is your friend.
 
+Both tutorials are equipped with videos, runnable code and descriptions. They mostly cover the same content, i.e. the
+videos cover the same materials as their host page, and they both refer to the same code.
 
 Contribute
 ----------
 
-Please report issues and make PR on the `GitLab repository <https://gitlab.cern.ch/szanzott/pyqt-mega-tutorial-for-be-bi>`_.
+Any form of contribution is welcome!
+
+Please report issues and make PR on the
+`GitLab repository <https://gitlab.cern.ch/szanzott/pyqt-mega-tutorial-for-be-bi>`_.
 
 Contents
 --------
