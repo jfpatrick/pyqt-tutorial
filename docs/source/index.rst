@@ -16,7 +16,7 @@ Example video 2:
 ^^^^^^^^^^^^^^^^
 .. raw:: html
 
-   <video controls src="videos/sample-video.mp4"></video> 
+   <video controls src="../../videos/sample-video.mp4"></video> 
 
 
 Contribute
