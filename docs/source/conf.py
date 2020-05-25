@@ -39,8 +39,13 @@ exclude_patterns = []
 # a list of builtin themes.
 #
 html_theme = "acc_py"
+html_title = "The BE/BI PyQt5 Mega Tutorial"
+html_short_title = "PyQt5 Tutorial"
 html_logo = '../../images/pyqt-logo-inverted-smaller.png'
 html_favicon = '../../images/pyqt-logo.png'
+
+# Static files directories
+html_static_path = ["../../images", "../../videos"]
 
 
 # Add any paths that contain custom static files (such as style sheets) here,
