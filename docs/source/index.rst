@@ -35,6 +35,6 @@ Contents
     :maxdepth: 3
 
     self
-    /fast/index.rst
-    /complete/index.rst
+    fast/index
+    complete/index
 
