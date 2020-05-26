@@ -1,3 +1,4 @@
+-------------------
 PyQt5 Mega Tutorial
 -------------------
 
@@ -7,7 +8,7 @@ We will cover the current infrastructure for PyQt development at CERN, with spec
 provided by BE/CO.
 
 Where do I start?
-^^^^^^^^^^^^^^^^^
+-----------------
 We provide a two-tier tutorial:
 
  - The **Fast Tutorial**, for people that already has some PyQt5 knowledge and wants to know more about the available

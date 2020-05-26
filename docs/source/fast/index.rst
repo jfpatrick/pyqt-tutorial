@@ -1,5 +1,6 @@
+-----------------------
 The PyQt5 Fast Tutorial
---------------------------------
+-----------------------
 
 Welcome to the PyQt5 Fast Tutorial for BE/BI!
 
@@ -7,7 +8,7 @@ We will cover the current infrastructure for PyQt development at CERN, with spec
 provided by BE/CO.
 
 Is this tutorial for me?
-^^^^^^^^^^^^^^^^^^^^^^^^
+------------------------
 
 This tutorial targets Python developers who need a quick introduction to CERN's ecosystem.
 Therefore it assumes you are quite familiar with Python and have some basic knowledge of PyQt5 too.
@@ -27,6 +28,5 @@ Contents
 
 .. toctree::
 
-    self
     1-accpy
 

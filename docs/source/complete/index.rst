@@ -1,3 +1,4 @@
+---------------------------
 The Complete PyQt5 Tutorial
 ---------------------------
 
@@ -7,7 +8,7 @@ We will cover the current infrastructure for PyQt development at CERN, with spec
 provided by BE/CO.
 
 Is this tutorial for me?
-^^^^^^^^^^^^^^^^^^^^^^^^
+------------------------
 
 This tutorial targets Python developers who need an in-depth introduction to CERN's ecosystem.
 Therefore it assumes you are quite familiar with Python, but does not require you to know any PyQt
