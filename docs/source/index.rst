@@ -29,11 +29,12 @@ Any form of contribution is welcome!
 Please report issues and make PR on the
 `GitLab repository <https://gitlab.cern.ch/szanzott/pyqt-mega-tutorial-for-be-bi>`_.
 
-
+Contents
+--------
 .. toctree::
-    :maxdepth: 1
-    :caption: Contents:
+    :maxdepth: 3
 
-    fast/*
-    complete/*
+    self
+    fast/*.rst
+    complete/*.rst
 
