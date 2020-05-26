@@ -35,4 +35,5 @@ Contents
     2-tools
     3-libraries
     4-bipy-gui-manager
+    5-project-structure
 
