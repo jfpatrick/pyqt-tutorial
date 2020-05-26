@@ -32,9 +32,8 @@ Please report issues and make PR on the
 Contents
 --------
 .. toctree::
-    :maxdepth: 3
+    :maxdepth: 1
 
-    self
     fast/index
     complete/index
 
