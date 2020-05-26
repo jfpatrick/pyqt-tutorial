@@ -33,9 +33,8 @@ Contents
 --------
 .. toctree::
     :maxdepth: 3
-    :glob:
 
     self
-    /fast/*.rst
-    /complete/*.rst
+    /fast/index.rst
+    /complete/index.rst
 
