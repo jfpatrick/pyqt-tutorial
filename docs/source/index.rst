@@ -10,8 +10,8 @@ Where do I start?
 ^^^^^^^^^^^^^^^^^
 We provide a two-tier tutorial:
 
- - The **Fast Tutorial**, for people that already has some PyQt5 knowledge and wants to know more about the new tools.
-   As said, it does not cover most of the details of PyQt5 itself: if you get lost, consider switching to the option
+ - The **Fast Tutorial**, for people that already has some PyQt5 knowledge and wants to know more about the available
+   tools. It does not cover most of the details of PyQt5 itself: if you get lost, consider switching to the option
    below.
 
  - The **Complete Tutorial**, for people coming from Java or C++, or even Python programmers that simply have no
@@ -33,7 +33,7 @@ Contents
 --------
 
 .. toctree::
-    :maxdepth: 2
 
-    self
+    fast
+    complete
 
