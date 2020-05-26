@@ -35,6 +35,6 @@ Contents
     :maxdepth: 3
 
     self
-    fast/*.rst
-    complete/*.rst
+    /fast/*.rst
+    /complete/*.rst
 
