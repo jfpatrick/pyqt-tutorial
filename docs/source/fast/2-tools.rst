@@ -4,6 +4,9 @@
 Development Tools
 -----------------
 
+.. index:: PyCharm
+.. _pycharm
+
 PyCharm
 ^^^^^^^
 
@@ -29,6 +32,10 @@ Remember that adding a path to a folder after the command makes PyCharm load tha
     which makes it hang for several minutes every time it tries to access an AFS directory (like most user's homes).
     Therefore it's important to avoid using it by launching PyCharm from the relevant directory directly.
 
+.. index:: Qt Designer
+.. index:: designer
+.. _qtdesigner
+
 Qt Designer
 ^^^^^^^^^^^^
 
@@ -51,6 +58,8 @@ Refer to your library's documentation to know which paths to add to this variabl
     `official Qt documentation <https://doc.qt.io/qtcreator/adding-plugins.html#locating-qt-designer-plugins>`_
     for hints.
 
+.. index:: Development Tools FAQ
+.. tools_faq
 
 FAQ
 ^^^
