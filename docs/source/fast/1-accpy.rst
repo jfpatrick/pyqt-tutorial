@@ -87,7 +87,7 @@ Once done, the user only has to edit the ``setup.py`` files adding its project d
 
 	acc-py devrelease
 
-**Note**: that this command succeeds only if you **upgraded the version number** into ``setup.py`` since the last time
+.. note:: this command succeeds only if you **upgraded the version number** into ``setup.py`` since the last time
 you issued it.
 
 Acc-Py can do a lot more. Notable features are:
