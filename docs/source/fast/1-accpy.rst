@@ -99,6 +99,9 @@ Once done, the user only has to edit the ``setup.py`` files adding its project d
 .. note:: this command succeeds only if you **upgraded the version number** into ``setup.py`` since the last time
         you issued it.
 
+Other features
+^^^^^^^^^^^^^^
+
 Acc-Py can do a lot more. Notable features are:
 
     - *Code Linting*. Typing ``acc-py check`` runs a few linters against your code and provides you with a code quality
