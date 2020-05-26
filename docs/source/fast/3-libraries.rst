@@ -36,7 +36,6 @@ to learn more about this tool.
     transition effort from one tool to the other.
     ** PLEASE UPDATE THIS SECTION **
 
-
 .. index:: accwidgets
 .. _accwidgets
 
@@ -66,9 +65,12 @@ Control System Libraries
 In addition to the GUI Libraries, the Acc-Py team also maintains most of the libraries that access the control
 system (RDA, JAPC, LSA, ... ). Here is a non-exhaustive list of the most relevant ones:
 
-    - PyJAPC
-    - PyRDA
-    - PyLSA
-    - papc
-    - accjapc
-    - ect...
+    - PyJAPC: Python binding for JAPC. See the
+        `documentation <https://acc-py.web.cern.ch/gitlab/scripting-tools/pyjapc/docs/stable/>`_.
+    - PyRDA: Python binding for RDA. See the `documentation [missing link]`.
+    - PyLSA: Python binding for LSA. See the `documentation [missing link]`.
+    - papc: pure Python JAPC devices simulator. Useful for tests and simulations. See the
+        `documentation <https://acc-py.web.cern.ch/gitlab/pelson/papc/docs/stable/>`_.
+    - accjapc: PyQt friendly interface to JAPC devices, supports signals and slots internally. See the
+        `documentation <https://acc-py.web.cern.ch/gitlab/isinkare/accjapc/docs/stable>`_.
+    - etc...
