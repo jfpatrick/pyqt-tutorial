@@ -1,5 +1,5 @@
 .. index:: Fast Tutorial
-.. fast_tutorial
+.. _fast_tutorial
 
 -----------------------
 The Fast PyQt5 Tutorial
@@ -33,4 +33,5 @@ Contents
 
     1-accpy
     2-tools
+    3-libraries
 

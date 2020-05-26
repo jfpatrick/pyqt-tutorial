@@ -1,5 +1,5 @@
 .. index:: Complete Tutorial
-.. complete_tutorial
+.. _complete_tutorial
 
 ---------------------------
 The Complete PyQt5 Tutorial

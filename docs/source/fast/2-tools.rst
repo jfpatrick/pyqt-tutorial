@@ -1,5 +1,5 @@
 .. index:: Development Tools
-.. tools
+.. _tools
 
 Development Tools
 -----------------

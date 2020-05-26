@@ -1,5 +1,5 @@
 .. index:: Home
-.. home
+.. _home
 
 -------------------
 PyQt5 Mega Tutorial
@@ -41,4 +41,5 @@ Contents
     self
     fast/index
     complete/index
+    genindex
 

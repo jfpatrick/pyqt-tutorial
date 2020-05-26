@@ -1,5 +1,5 @@
 .. index:: acc-py
-.. acc-py
+.. _acc-py
 
 The environment: Acc-Py
 ------------------------

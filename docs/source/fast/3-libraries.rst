@@ -1,5 +1,5 @@
 .. index:: Libraries
-.. libraries
+.. _libraries
 
 Libraries
 ----------
