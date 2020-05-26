@@ -23,19 +23,10 @@ if you feel like you'd like to brush up your PyQt5 knowledge too.
     .. raw:: html
     <video controls src="_static/sample-video.mp4" type='video/mp4' width="700px"></video>
 
-
-Contribute
-----------
-
-Please report issues and make PR on the `
-GitLab repository <https://gitlab.cern.ch/szanzott/pyqt-mega-tutorial-for-be-bi>`_.
-
 Contents
 --------
 
 .. toctree::
-    :maxdepth: 1
-    :hidden:
 
     self
 

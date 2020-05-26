@@ -22,17 +22,11 @@ also the basics of PyQt5. Alternatively, please follow any good PyQt5 tutorial y
     .. raw:: html
     <video controls src="_static/sample-video.mp4" type='video/mp4' width="700px"></video>
 
-
-Contribute
-----------
-
-Please report issues and make PR on the
-`GitLab repository <https://gitlab.cern.ch/szanzott/pyqt-mega-tutorial-for-be-bi>`_.
-
 Contents
 --------
 
 .. toctree::
 
     self
+    1-accpy
 
