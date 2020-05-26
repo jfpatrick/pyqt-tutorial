@@ -33,7 +33,8 @@ Contents
 --------
 
 .. toctree::
+    :maxdepth: 1
 
-    fast
-    complete
+    fast/
+    complete/
 
