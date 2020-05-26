@@ -1,5 +1,5 @@
 -----------------------
-The PyQt5 Fast Tutorial
+The Fast PyQt5 Tutorial
 -----------------------
 
 Welcome to the PyQt5 Fast Tutorial for BE/BI!
