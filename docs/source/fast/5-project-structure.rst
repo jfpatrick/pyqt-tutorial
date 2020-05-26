@@ -1,3 +1,6 @@
+.. index:: Project Structure
+.. _project_structure
+
 Project Structure
 -----------------
 
@@ -21,6 +24,9 @@ The template provides:
 
 We are going to cover each of these files one by one.
 
+.. index:: .gitignore
+.. _gitignore
+
 .gitignore
 ^^^^^^^^^^^
 Typical ``.gitignore`` file that excludes most Python artifacts. You can add your
@@ -28,6 +34,9 @@ own files/folders to exclude them from version control.
 
 If you have doubts about this file, check
 `this link <https://www.freecodecamp.org/news/gitignore-what-is-it-and-how-to-add-to-repo/>`_ or Google it.
+
+.. index:: .gitlab-ci.yml
+.. _gitlab-ci_conf
 
 .gitlab-ci.yml
 ^^^^^^^^^^^^^^^
@@ -42,12 +51,18 @@ It differs a lot from the default obtained by executing ``acc-py init-ci``, beca
 You can  modify it to add more tasks, deploy automatically, do linting, or anything else. For more information, check
 `Acc-Py documentation <https://wikis.cern.ch/display/ACCPY/GUI+Testing>`_ or Google the file name.
 
+.. index:: activate.sh
+.. _activate.sh
+
 activate.sh
 ^^^^^^^^^^^
 
 Small bash script sourcing, in order, Acc-Py-PyQt and your virtualenv (assuming it's called venv and lives in the
 current directory). It also sets the ``PYQTDESIGNERPATH`` in case you want to use QtDesigner with the ``accwidget``'s
 plugin. See the previous sections (namely :ref:`accwidgets`) for a recap on this specific env var.
+
+.. index:: README.md
+.. _readme
 
 README.md
 ^^^^^^^^^^
@@ -58,6 +73,9 @@ your project is, how to run it, who's the author/maintainer and any precautions 
 .. note:: ``bipy-gui-manager`` will create for you a standard ``README.md`` with some basic information.
     You're still encouraged to expand it with a meaningful description of your project's
     goals and features.
+
+.. index:: setup.py
+.. _setup.py
 
 setup.py
 ^^^^^^^^
@@ -77,10 +95,18 @@ It gathers a few important information, namely:
     Notably, it creates an entry point called ``<project_name>`` (replace with the actual project name!) that can be
     used to launch your application directly, without invoking explicitly the Python interpreter.
 
+.. index:: project_name/
+.. _project_folder
+
 <project_name>/
 ^^^^^^^^^^^^^^^
 This is where your project's code lives. All the files included in this folder will be packaged and distributed
-with your code.
+with your code. When importing from the various scripts, this folder's name is the root of all the imports.
+
+.. note:: This name can be changed, but it's recommended not to do it, to avoid confusion.
+
+.. index:: main.py
+.. _main.py
 
 <project_name>/main.py
 ^^^^^^^^^^^^^^^^^^^^^^
@@ -91,6 +117,9 @@ some error handling). The rest of the logic will go in the other folders.
 In the demo application, ``ExampleWidget`` (from ``<project_name>/widgets/example_widget.py``) is instantiated and 
 loaded here.
 
+.. index:: widgets/
+.. _widgets_folder
+
 <project_name>/widgets/
 ^^^^^^^^^^^^^^^^^^^^^^^
 This contains the components of your application. In an MVP model, these are the Presenters: they instantiate the Views 
@@ -98,6 +127,9 @@ This contains the components of your application. In an MVP model, these are the
 intermediary when required.
 
 In the demo application, ``ExampleWidget`` is the Presenter and lives in there, in ``example_widget.py``.
+
+.. index:: resources/
+.. _resources_folder
 
 <project_name>/resources
 ^^^^^^^^^^^^^^^^^^^^^^^^
@@ -124,6 +156,9 @@ They are:
     you're doing) and load the Views into the Presenters (``widgets/`` folder) by importing the ``ui_*.py`` files from
     the generated folder. You can see this happening in the ``ExampleWidget`` class.
 
+.. index:: models/
+.. _models>folder
+
 <project_name>/models
 ^^^^^^^^^^^^^^^^^^^^^^
 This folder contains the Models of your application. The Model manages any object connecting to the control system,
@@ -134,6 +169,9 @@ In the demo application, this folder contains a ``data_sources.py`` file that ho
 You are encouraged to create as many files as you wish. In this file, the ``ExampleModel`` class does mostly PyJapc SET
 operations, while the plots' models retrieve data. No direct operation on the GUI is done here.
 
+.. index:: papc_setup/
+.. _papc_setup
+
 <project_name>/models/papc_setup/
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 This folder contains a barebone ``papc`` setup to sandbox your application. ``papc`` is a library that can trick your
@@ -142,6 +180,9 @@ This also allows control system apps to run in a sandbox also on non-TN machines
 
 ``papc`` is primarily an option for creating meaningful and thorough GUI tests. Read more about it on the
 `papc documentation <https://acc-py.web.cern.ch/gitlab/pelson/papc/docs/stable/>`_.
+
+.. index:: tests/
+.. _tests_folder
 
 tests/
 ^^^^^^
