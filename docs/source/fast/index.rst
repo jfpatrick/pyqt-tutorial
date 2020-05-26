@@ -29,4 +29,5 @@ Contents
 .. toctree::
 
     1-accpy
+    2-tools
 
