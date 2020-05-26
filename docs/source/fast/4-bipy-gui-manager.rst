@@ -34,6 +34,21 @@ with this tutorial.
 
 In the next section we are going to review the project structure, so skip ahead if you're interested.
 
+.. note:: After running ``bipy-gui-manager`` you already have a running application. To start it, type in the console
+    the name of your project (the one you gave to bipy-gui-manager while creating the project). You should see the
+    frame with a dummy application in the center, like this:
+
+    .. raw:: html
+
+        <img width="300px" src="https://gitlab.cern.ch/bisw-python/be-bi-pyqt-template/-/raw/master/images/pyqt-template.png" />
+
+    or a smaller window with an error. In the latter case, please report the error
+    to the maintainers.
+
+    To obtain an empty template (without the demo application), type::
+
+        bipy-gui-manager create-project --no-demo
+
 .. index:: Aliasing and linking ``bipy-gui-manager``
 .. _bipy-gui-manager_aliasing
 
