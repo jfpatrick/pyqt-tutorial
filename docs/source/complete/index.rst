@@ -1,3 +1,6 @@
+.. index:: Complete Tutorial
+.. complete_tutorial
+
 ---------------------------
 The Complete PyQt5 Tutorial
 ---------------------------
@@ -17,7 +20,7 @@ before starting.
 If you have no idea what an ``__init__.py`` file does, please follow a good Python tutorial first (LINKS HERE).
 
 If you are comfortable with Python, but you have no idea what a ``myform.ui`` file might be, then this is the
-place for you. Otherwise, you might consider trying with the PyQt5 Fast Tutorial first, and eventually head back here
+place for you. Otherwise, you might consider trying with the :ref:`fast_tutorial` first, and eventually head back here
 if you feel like you'd like to brush up your PyQt5 knowledge too.
 
 ..  Example Video

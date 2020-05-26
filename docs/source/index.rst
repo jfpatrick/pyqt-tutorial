@@ -1,3 +1,6 @@
+.. index:: Home
+.. home
+
 -------------------
 PyQt5 Mega Tutorial
 -------------------

@@ -1,3 +1,6 @@
+.. index:: acc-py
+.. acc-py
+
 The environment: Acc-Py
 ------------------------
 
@@ -20,10 +23,10 @@ the official documentation (`here <https://wikis.cern.ch/display/ACCPY/Accelerat
 
 At the time of writing (May 2020), the main features of the Acc-Py distribution are:
 
-    - *The package repository*. The Acc-Py repo acts at the same time as a package manager for CERN specific Python
+    - **The package repository**. The Acc-Py repo acts at the same time as a package manager for CERN specific Python
       packages, and as a proxy to the central PyPi servers. Regular CERN releases should target this repository.
 
-    - *The acc-py command line tool*. It can be used to automate maintenance and routine operations of various type,
+    - **The acc-py command line tool**. It can be used to automate maintenance and routine operations of various type,
       for example:
 
         - Project creation, with ``acc-py init``
@@ -46,11 +49,14 @@ in fact is pointing you to a full-fledged distribution. You can check that by ty
 	pip freeze
 
 This gives you the list of all the packages which are automatically available from any Python script running into
-Acc-Py. At this point, you can already start developing a simple script that uses, for example, numpy, PyJAPC or other
-libraries.
+Acc-Py. At this point, you can already start developing a simple script that uses, for example, ``numpy``, ``pyjapc``
+or other libraries.
 
-However, most users need more. To install your own packages, or change version to the existing ones, you should setup
-your own virtual environment to ensure isolation between different projects. To do so, type::
+Can I install/remove packages?
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+To install your own packages, or change version to the existing ones, you should setup your own virtual environment
+to ensure isolation between different projects. To do so, type::
 
 	acc-py venv <virtualenv_name>
 
@@ -64,6 +70,9 @@ freely.
 This setup gives you the freedom of a plain local Python install, but it comes already wired to the CERN Python
 repository, so saving you a few configuration steps. In addition, the Python version is constantly updated, ensuring
 uniformity among all CERN machines without having to stick to older Python versions.
+
+Can I release my project?
+^^^^^^^^^^^^^^^^^^^^^^^^^
 
 At this point, users can write their own Python scripts, manage their dependencies, and run their code on any TN
 machine. What about releasing?
