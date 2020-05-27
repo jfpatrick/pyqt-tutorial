@@ -36,4 +36,5 @@ Contents
     3-libraries
     4-bipy-gui-manager
     5-project-structure
+    6-dev-guidelines
 

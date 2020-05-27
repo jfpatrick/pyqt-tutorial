@@ -8,7 +8,7 @@ In principle, once you setup your Acc-Py project, you can start developing your 
 
 However, for consistency and maintainability, in BI we agreed on a common project structure that every PyQt5 project
 should abide, as far as possible. A small tool called
-`BI Python Expert GUI Manager <https://gitlab.cern.ch/bisw-python/bipy-gui-manager>`_ to
+`BI Python Expert GUI Manager <https://gitlab.cern.ch/bisw-python/bipy-gui-manager>`_
 eases the process of setting up a proper project structure.
 
 .. index:: BI Python Expert GUI Manager
@@ -32,15 +32,13 @@ The script will guide you through the configuration of a new project. The script
 of what's going on and the next steps after the install, so feel free to go ahead and try it out before proceeding
 with this tutorial.
 
-In the next section we are going to review the project structure, so skip ahead if you're interested.
-
 .. note:: After running ``bipy-gui-manager`` you already have a running application. To start it, type in the console
-    the name of your project (the one you gave to bipy-gui-manager while creating the project). You should see the
+    the name of your project (the one you gave to ``bipy-gui-manager`` while creating the project). You should see the
     frame with a dummy application in the center, like this:
 
     .. raw:: html
 
-        <img width="300px" src="https://gitlab.cern.ch/bisw-python/be-bi-pyqt-template/-/raw/master/images/pyqt-template.png" />
+        <img width="300px" src="_static/application-template.png" style="margin:auto;"/>
 
     or a smaller window with an error. In the latter case, please report the error
     to the maintainers.
@@ -48,6 +46,10 @@ In the next section we are going to review the project structure, so skip ahead 
     To obtain an empty template (without the demo application), type::
 
         bipy-gui-manager create-project --no-demo
+
+
+In the next section we are going to review the project structure, so skip ahead if you're interested.
+
 
 .. index:: Aliasing and linking ``bipy-gui-manager``
 .. _bipy-gui-manager_aliasing
@@ -58,20 +60,20 @@ How to avoid using the full path?
 If you plan to use this tool again in the future, you can make ``bipy-gui-manager`` available in your console without
 having to type the full path. To do so, use one of the following strategies:
 
-    #. **Alias it**
+    - **Alias it**
         This method will not modify your ``PATH`` and won't create symlinks, but requires you to edit your
         ``~/.bashrc``. Add the following line to your ``~/.bashrc``::
 
             alias bipy-gui-manager="/user/bdisoft/development/python/gui/bipy-gui-manager"
 
 
-    #. **Add it to PATH under ~/.local/bin**
+    - **Add it to PATH under ~/.local/bin**
         This method assumes that ``~/.local/bin`` is already in your ``PATH``, or that you can add it yourself.
         It will create a symlink to ``bipy-gui-manager`` under ``~/.local/bin``. Simply type::
 
             ln -s /user/bdisoft/development/python/gui/bipy-gui-manager ~/.local/bin/bipy-gui-manager
 
-    #. **Add it to PATH under '/usr/local/bin'**
+    - **Add it to PATH under '/usr/local/bin'**
         This method assumes that ``/usr/local/bin`` is already in your ``PATH``, which is true for most users, and
         that you can perform operations as ``sudo``. It will create a symlink to ``bipy-gui-manager`` under
         ``/usr/local/bin``. Simply type::

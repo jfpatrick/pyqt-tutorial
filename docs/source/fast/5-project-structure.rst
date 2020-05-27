@@ -4,7 +4,7 @@
 Project Structure
 -----------------
 
-All BI Expert GUI should try to use a common project structure. This is also the default
+All BI Expert GUIs should try to use a common project structure. This is also the default
 structure of projects created with ``bipy-gui-manager``.
 
 You can find the project template in
@@ -17,7 +17,7 @@ The template provides:
  - A minimal simulation environment for your tests (based on ``papc``),
    that can be extended to simulate your real data sources (FESA, NXCALS, ...)
  - A ``setup.py`` to customize for quick packaging & release, with entry points,
- - A ``.gitignore`` with common Python artifacts,
+ - A ``.gitignore`` for Python artifacts,
  - A ``.gitlab-ci.yml`` supporting GUI testing out of the box and coverage reports,
  - A small ``activate.sh`` activation script to activate both your virtualenv and Acc-Py,
    and sets up some env vars for Qt Designer.
@@ -58,8 +58,10 @@ activate.sh
 ^^^^^^^^^^^
 
 Small bash script sourcing, in order, Acc-Py-PyQt and your virtualenv (assuming it's called venv and lives in the
-current directory). It also sets the ``PYQTDESIGNERPATH`` in case you want to use QtDesigner with the ``accwidget``'s
-plugin. See the previous sections (namely :ref:`accwidgets`) for a recap on this specific env var.
+current directory). This ensures that the overall environment is setup correctly.
+
+It also sets the ``PYQTDESIGNERPATH`` in case you want to use Qt Designer with the ``accwidget``'s
+plugin. See the Libraries sections (under :ref:`accwidgets`) for a recap on this specific env var.
 
 .. index:: README.md
 .. _readme
@@ -103,7 +105,9 @@ It gathers a few important information, namely:
 This is where your project's code lives. All the files included in this folder will be packaged and distributed
 with your code. When importing from the various scripts, this folder's name is the root of all the imports.
 
-.. note:: This name can be changed, but it's recommended not to do it, to avoid confusion.
+.. note:: While top-level project names are recommended to use dashes as separators, modules must use underscores to
+    comply with Python syntax. Therefore, if your project was called ``my-test-project``, this folder will be called
+    ``my_test_project``.
 
 .. index:: main.py
 .. _main.py
@@ -131,8 +135,8 @@ In the demo application, ``ExampleWidget`` is the Presenter and lives in there, 
 .. index:: resources/
 .. _resources_folder
 
-<project_name>/resources
-^^^^^^^^^^^^^^^^^^^^^^^^
+<project_name>/resources/
+^^^^^^^^^^^^^^^^^^^^^^^^^
 This folder contains multiple entities, all related to the static GUI's
 structure definition. These represent the View from an MVP perspective.
 They are:
@@ -159,7 +163,7 @@ They are:
 .. index:: models/
 .. _models>folder
 
-<project_name>/models
+<project_name>/models/
 ^^^^^^^^^^^^^^^^^^^^^^
 This folder contains the Models of your application. The Model manages any object connecting to the control system,
 like PyJAPC instances, NXCALS connections, etc. Models should send their data to the Views by emitting *signals* that
