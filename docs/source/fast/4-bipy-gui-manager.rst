@@ -38,7 +38,7 @@ with this tutorial.
 
     .. raw:: html
 
-        <img width="300px" src="_static/application-template.png" style="margin:auto;"/>
+        <img width="300px" src="../_static/application-template.png" style="margin:auto;"/>
 
     or a smaller window with an error. In the latter case, please report the error
     to the maintainers.

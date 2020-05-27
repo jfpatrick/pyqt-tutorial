@@ -81,7 +81,6 @@ repository, so saving you a few configuration steps. In addition, the Python ver
 uniformity among all CERN machines without having to stick to older Python versions.
 
 .. index:: init project
-.. index:: setup.py
 .. index:: Release
 .. _acc-py_release
 
