@@ -26,10 +26,10 @@ the official documentation (`here <https://wikis.cern.ch/display/ACCPY/Accelerat
 
 At the time of writing (May 2020), the main features of the Acc-Py distribution are:
 
-    - **The package repository**. The Acc-Py repo acts at the same time as a package manager for CERN specific Python
+    * **The package repository**. The Acc-Py repo acts at the same time as a package manager for CERN specific Python
       packages, and as a proxy to the central PyPi servers. Regular CERN releases should target this repository.
 
-    - **The acc-py command line tool**. It can be used to automate maintenance and routine operations of various type,
+    * **The acc-py command line tool**. It can be used to automate maintenance and routine operations of various type,
       for example:
 
         - Project creation, with ``acc-py init``
@@ -97,12 +97,12 @@ code before being able to release. Such process is also semi-automated by the co
 
 It will generate (in the current folder) a package template consisting of number of files:
 
-    - an empty ``__init__.py``,
-    - a basic, semi-complete ``setup.py`` (check
+    * an empty ``__init__.py``,
+    * a basic, semi-complete ``setup.py`` (check
       `this SO thread <https://stackoverflow.com/questions/1471994/what-is-setup-py>`_
       to learn more about ``setup.py``),
-    - a ``README.md``,
-    - a ``test/`` folder with an example test inside.
+    * a ``README.md``,
+    * a ``test/`` folder with an example test inside.
 
 Once done, the user only has to edit the ``setup.py`` files adding its project dependencies and a few other information
 (like their own name and email as authors). After that, the project can be released by typing::
@@ -120,15 +120,15 @@ Other features
 
 Acc-Py can do a lot more. Notable features are:
 
-    - *Code Linting*. Typing ``acc-py check`` runs a few linters against your code and provides you with a code quality
+    * *Code Linting*. Typing ``acc-py check`` runs a few linters against your code and provides you with a code quality
       report.
 
-    - *GitLab CI setup*. Typing ``acc-py init-ci`` creates a standard GitLab CI configuration file that takes care of
+    * *GitLab CI setup*. Typing ``acc-py init-ci`` creates a standard GitLab CI configuration file that takes care of
       setting up an automated testing pipeline. In short, it will tell GitLab to run all your tests every time you
       upload new code and inform you whether any of those tests failed. It will also devrelease your project every time
       you create a new tag on GitLab.
 
-    - *Automatic Documentation*. Typing ``acc-py init-docs`` creates a basic Sphinx setup that autogenerates an API
+    * *Automatic Documentation*. Typing ``acc-py init-docs`` creates a basic Sphinx setup that autogenerates an API
       description based on your code and your in-code comments. Such documentation will be visible directly at
       `this link <https://acc-py.web.cern.ch>`_.
 

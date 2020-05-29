@@ -44,9 +44,9 @@ accwidgets
 
 `accwidgets` is a collection of widgets for PyQt5 for the Acc-Py community. It includes components like:
 
- - **LED widgets** to indicate status
- - **Property Editor widgets**, that shows the fields of a device/property (similar to the Knob of a WorkingSet)
- - **Plotting widgets** built upon an `extended <https://gitlab.cern.ch/fsorn/pyqtgraph-extensions>`_ version of
+ * **LED widgets** to indicate status
+ * **Property Editor widgets**, that shows the fields of a device/property (similar to the Knob of a WorkingSet)
+ * **Plotting widgets** built upon an `extended <https://gitlab.cern.ch/fsorn/pyqtgraph-extensions>`_ version of
    `PyQtGraph <https://gitlab.cern.ch/acc-co/accsoft/gui/accsoft-gui-pyqtgraph>`_.
 
 The plotting widgets make for an extensive share of accwidgets itself, and are commonly referred as the `accgraph`
@@ -65,12 +65,26 @@ Control System Libraries
 In addition to the GUI Libraries, the Acc-Py team also maintains most of the libraries that access the control
 system (RDA, JAPC, LSA, ... ). Here is a non-exhaustive list of the most relevant ones:
 
-    - PyJAPC: Python binding for JAPC. See the
+    * PyJAPC: Python binding for JAPC. See the
         `documentation <https://acc-py.web.cern.ch/gitlab/scripting-tools/pyjapc/docs/stable/>`_.
-    - PyRDA: Python binding for RDA. See the `documentation [missing link]`.
-    - PyLSA: Python binding for LSA. See the `documentation [missing link]`.
-    - papc: pure Python JAPC devices simulator. Useful for tests and simulations. See the
+    * papc: pure Python JAPC devices simulator. Useful for tests and simulations. See the
         `documentation <https://acc-py.web.cern.ch/gitlab/pelson/papc/docs/stable/>`_.
-    - accjapc: PyQt friendly interface to JAPC devices, supports signals and slots internally. See the
+    * accjapc: PyQt friendly interface to JAPC devices, supports signals and slots internally. See the
         `documentation <https://acc-py.web.cern.ch/gitlab/isinkare/accjapc/docs/stable>`_.
-    - etc...
+    * PyPhoneBook: Python implementation of the PhoneBook ClI tool. See the
+        `documentation <https://acc-py.web.cern.ch/gitlab/szanzott/pyphonebook/docs/master/>`_.
+    * PyRDA: Python binding for RDA (Work In Progress).
+    * PyRBAC: Python binding for RBAC (Work In Progress).
+    * PyLSA: Python binding for LSA. (Work In Progress).
+
+
+etc.
+
+
+.. index:: libraries FAQ
+.. libraries_faq
+
+FAQ
+^^^
+
+*TODO*

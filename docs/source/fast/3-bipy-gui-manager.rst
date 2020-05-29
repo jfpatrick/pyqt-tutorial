@@ -11,6 +11,7 @@ should abide, as far as possible. A small tool called
 `BI Python Expert GUI Manager <https://gitlab.cern.ch/bisw-python/bipy-gui-manager>`_
 eases the process of setting up a proper project structure.
 
+
 .. index:: BI Python Expert GUI Manager
 .. index:: bipy-gui-manager
 .. _bipy-gui-manager
@@ -40,6 +41,7 @@ with this tutorial.
 
         <img width="300px" src="../_static/application-template.png" style="margin:auto;"/>
 
+
     or a smaller window with an error. In the latter case, please report the error
     to the maintainers.
 
@@ -60,20 +62,20 @@ How to avoid using the full path?
 If you plan to use this tool again in the future, you can make ``bipy-gui-manager`` available in your console without
 having to type the full path. To do so, use one of the following strategies:
 
-    - **Alias it**
+    * **Alias it**
         This method will not modify your ``PATH`` and won't create symlinks, but requires you to edit your
         ``~/.bashrc``. Add the following line to your ``~/.bashrc``::
 
             alias bipy-gui-manager="/user/bdisoft/development/python/gui/bipy-gui-manager"
 
 
-    - **Add it to PATH under ~/.local/bin**
+    * **Add it to PATH under ~/.local/bin**
         This method assumes that ``~/.local/bin`` is already in your ``PATH``, or that you can add it yourself.
         It will create a symlink to ``bipy-gui-manager`` under ``~/.local/bin``. Simply type::
 
             ln -s /user/bdisoft/development/python/gui/bipy-gui-manager ~/.local/bin/bipy-gui-manager
 
-    - **Add it to PATH under '/usr/local/bin'**
+    * **Add it to PATH under '/usr/local/bin'**
         This method assumes that ``/usr/local/bin`` is already in your ``PATH``, which is true for most users, and
         that you can perform operations as ``sudo``. It will create a symlink to ``bipy-gui-manager`` under
         ``/usr/local/bin``. Simply type::
@@ -102,3 +104,12 @@ for a complete description of create-project's CLI interface.
 Contacts
 ~~~~~~~~~
 For questions or bug reports about ``bipy-gui-manager``, contact Sara Zanzottera or Steen Jensen.
+
+
+.. index:: bipy-gui-manager FAQ
+.. bipy-gui-manager_faq
+
+FAQ
+^^^
+
+*TODO*
