@@ -10,6 +10,10 @@ Welcome to the PyQt5 Fast Tutorial for BE/BI!
 We will cover the current infrastructure for PyQt development at CERN, with special focus on the tools
 provided by BE/CO.
 
+.. note:: Remember that `the Acc-Py documentation <https://wikis.cern.ch/display/ACCPY/Accelerating+Python+Home>`_ is
+    always the only official resource regarding Acc-Py features.
+    If you have any trouble, please refer to their documentation first to make sure this page is not outdated.
+
 Is this tutorial for me?
 ------------------------
 
@@ -33,8 +37,8 @@ Contents
 
     1-accpy
     2-tools
-    3-libraries
-    4-bipy-gui-manager
-    5-project-structure
+    3-bipy-gui-manager
+    4-project-structure
+    5-libraries
     6-dev-guidelines
 

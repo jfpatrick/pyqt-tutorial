@@ -24,6 +24,7 @@ The template provides:
 
 We are going to cover each of these files one by one.
 
+
 .. index:: .gitignore
 .. _gitignore
 
@@ -35,6 +36,7 @@ own files/folders to exclude them from version control.
 If you have doubts about this file, check
 `this link <https://www.freecodecamp.org/news/gitignore-what-is-it-and-how-to-add-to-repo/>`_ or Google it.
 
+
 .. index:: .gitlab-ci.yml
 .. _gitlab-ci_conf
 
@@ -42,26 +44,43 @@ If you have doubts about this file, check
 ^^^^^^^^^^^^^^^
 This file configures GitLab CI to run your tests each time you push your code
 to the repository.
-It differs a lot from the default obtained by executing ``acc-py init-ci``, because it has been configured to:
+
+It also automatically generates a documentation page for you at this address:
+https://acc-py.web.cern.ch/gitlab/<bisw-python_or_your_username>/<project_name>/docs/master/index.html
+
+It differs a lot from the default version obtained by executing ``acc-py init-ci``, because it has been configured to:
 
  - Run headless GUI tests with ``pytest-qt``
  - Provide a coverage report that you can use as a repository badge.
  - Do not deploy automatically on the CERN Python repository.
+ - Generate the documentation.
 
 You can  modify it to add more tasks, deploy automatically, do linting, or anything else. For more information, check
 `Acc-Py documentation <https://wikis.cern.ch/display/ACCPY/GUI+Testing>`_ or Google the file name.
+
 
 .. index:: activate.sh
 .. _activate.sh
 
 activate.sh
 ^^^^^^^^^^^
-
 Small bash script sourcing, in order, Acc-Py-PyQt and your virtualenv (assuming it's called venv and lives in the
 current directory). This ensures that the overall environment is setup correctly.
 
+.. warning:: You should source this script **every time** you start working on your project.
+    This is done by typing::
+
+        source activate.sh
+
 It also sets the ``PYQTDESIGNERPATH`` in case you want to use Qt Designer with the ``accwidget``'s
 plugin. See the Libraries sections (under :ref:`accwidgets`) for a recap on this specific env var.
+
+It also put Acc-Py shared PyCharm instance in your ``PATH``. In this was you can launch PyCharm by typing::
+
+    pycharm.sh
+
+in your shell.
+
 
 .. index:: README.md
 .. _readme
@@ -70,11 +89,12 @@ README.md
 ^^^^^^^^^^
 A simple Markdown based README file. It's recommended to add some information to it, including at the minimum what
 your project is, how to run it, who's the author/maintainer and any precautions to take when running/debugging
-(i.e. is this GUI operational?)
+(i.e. is this GUI operational?).
 
 .. note:: ``bipy-gui-manager`` will create for you a standard ``README.md`` with some basic information.
     You're still encouraged to expand it with a meaningful description of your project's
     goals and features.
+
 
 .. index:: setup.py
 .. _setup.py
@@ -97,6 +117,7 @@ It gathers a few important information, namely:
     Notably, it creates an entry point called ``<project_name>`` (replace with the actual project name!) that can be
     used to launch your application directly, without invoking explicitly the Python interpreter.
 
+
 .. index:: project_name/
 .. _project_folder
 
@@ -109,17 +130,67 @@ with your code. When importing from the various scripts, this folder's name is t
     comply with Python syntax. Therefore, if your project was called ``my-test-project``, this folder will be called
     ``my_test_project``.
 
+
+.. index:: __init__.py
+.. ___init__py.py
+
+<project_name>/__init__.py
+^^^^^^^^^^^^^^^^^^^^^^^^^^
+.. note:: Usually, ``__init__.py`` files are empty. If you're unsure why, check out the Python documentation first.
+    However this specific ``__init__.py`` file contains three lines of code that do not need to be modified,
+    but are explained here for completeness.
+    If you're a beginner, feel free to ignore the content of this file.
+
+These lines use ``pyqt5ac`` to do the following:
+
+     - Verify whether your ``.ui`` and ``.qrc`` files have been compiled to Python code, so that their counterparts
+     exist in the ``<project_name>/resources/generated/`` folder and if not, generates them.
+
+     - If the files are found, verify whether such files are actually up-to-date with their corresponding XML files and,
+     if not, re-generates them.
+
+This is critical to ensure that the XML files and their corresponding Python translations are always in sync, and lifts
+from the user the burden of learning how to use ``pyuic5`` and ``pyrcc5`` to compile their XMLs.
+
+
+.. index:: pyqt5ac.yml
+.. _pyqt5ac.yml
+
+<project_name>/pyqt5ac.yml
+^^^^^^^^^^^^^^^^^^^^^^^^^^
+.. note:: If you're a beginner, feel free to ignore the content of this file.
+
+This file is the configuration file for ``pyqt5ac`` (see above). It tells where are your XML files, where to put
+the generated Python files, and a few options to pass to ``pyuic5`` and ``pyrcc5`` at compile time.
+It doesn't need to be edited, unless you change the path of your XML or generated files (not recommended).
+
+
 .. index:: main.py
 .. _main.py
 
 <project_name>/main.py
 ^^^^^^^^^^^^^^^^^^^^^^
-The application's entry point. You can edit the ``main()`` function to load your GUI, as specified in the comments in the
-file itself, but this file should contain no more than the small function that starts the event loop (and at most do
-some error handling). The rest of the logic will go in the other folders.
+The application's entry point. You can edit the ``main()`` function to load your GUI, as specified in the comments in
+the file itself, but this file should contain no more than the small function that starts the event loop (and at most
+do some error handling). The rest of the logic will go in the other folders.
 
 In the demo application, ``ExampleWidget`` (from ``<project_name>/widgets/example_widget.py``) is instantiated and 
 loaded here.
+
+
+.. index:: constants.py
+.. _contants.py
+
+<project_name>/constants.py
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+This simple file contains a few constants that can be reused in your code, like the project's name, the authro name and
+their contact informations.
+
+Feed free to add any other constants that your code might require.
+
+.. warning:: There values are supposed to be **constant**. They are not supposed to work as global variables or
+anything like that. Expect nasty bugs if you try to modify these values at runtime.
+
 
 .. index:: widgets/
 .. _widgets_folder
@@ -132,33 +203,46 @@ intermediary when required.
 
 In the demo application, ``ExampleWidget`` is the Presenter and lives in there, in ``example_widget.py``.
 
+
 .. index:: resources/
 .. _resources_folder
 
 <project_name>/resources/
 ^^^^^^^^^^^^^^^^^^^^^^^^^
-This folder contains multiple entities, all related to the static GUI's
-structure definition. These represent the View from an MVP perspective.
-They are:
+This folder contains multiple entities, all related to the static GUI's structure definition.
+These represent the View from an MVP perspective. They are:
 
  - **.ui files**. These are generated by Qt Designer and are XML files describing your GUI's layout, with no logic.
+
  - The ``images/`` folder containing static resources (PNG, GIF, etc...) and **.qrc files**. These files are
     Qt's Resource Files and are used to load static files, like images and icons, into the GUI.
- - The ``generated`` subfolder, that contains generated code of two kinds:
 
-     - **ui_<view_name>.py files**. These files are generated by ``pyuic5`` basing on the *.ui file with matching name.
-        NEVER MODIFY THESE FILES: they contain generated code and every modification will be erased at the next run
-        of ``pyuic5``.
+ - The ``generated`` subfolder (will appear after you first run the app), that contains generated code of two kinds:
 
-     - **<folder_name>_rc.py files**. These are generated by ``pyrcc5`` basing on the *.qrc files with a matching name.
-        NEVER MODIFY THESE FILES: they contain generated code and every modification will be erased at the next run
-        of ``pyrcc5``.
+     - **ui_<view_name>.py files**. These files are generated by ``pyqt5ac`` basing on the ``.ui`` file with matching
+        name. NEVER MODIFY THESE FILES.
 
-    .. note:: More instruction on how to use ``pyuic5`` and ``pyrcc5`` (or a way to go around them) coming soon.
+     - **<folder_name>_rc.py files**. These are also generated by ``pyqt5ac`` basing on the ``.qrc`` files with a
+        matching name. NEVER MODIFY THESE FILES.
 
-    In this folder, you should modify the ``*.ui`` and ``*.qrc`` files only with QtDesigner (unless you really know what
-    you're doing) and load the Views into the Presenters (``widgets/`` folder) by importing the ``ui_*.py`` files from
-    the generated folder. You can see this happening in the ``ExampleWidget`` class.
+    In this folder, you should modify the ``.ui`` and ``.qrc`` files only with Qt Designer (unless you really know
+    what you're doing) and load the Views into the Presenters (``widgets/`` folder) by importing the
+    ``ui_ <view_name> .py`` files from the generated folder.
+    You can see this happening in the ``ExampleWidget`` class::
+
+        # Import the code generated from the example_widget.ui file
+        from be_bi_pyqt_template.resources.generated.ui_example_widget import Ui_TabWidget
+
+        class ExampleWidget(QTabWidget, Ui_TabWidget):
+            ...
+
+
+    .. note:: These generated files are automatically regenerated by ``pyqt5ac`` every time you modify them from
+        the Qt Designer.
+        They can also be updated manually using ``pyuic5`` and ``pyrcc5`` if you're more familiar with these tools.
+        In this case, you might want to erase the content of `<project_name>/__init__.py` and remove ``pyqt5ac`` from
+        the core dependendencies
+
 
 .. index:: models/
 .. _models>folder
@@ -171,19 +255,26 @@ match corresponding *slots* in the View or Presenter.
 
 In the demo application, this folder contains a ``data_sources.py`` file that hosts all the Model classes.
 You are encouraged to create as many files as you wish. In this file, the ``ExampleModel`` class does mostly PyJapc SET
-operations, while the plots' models retrieve data. No direct operation on the GUI is done here.
+operations, while the plots' models retrieve data.
+
+No direct operation on the GUI is done here: this classes just translate the raw data into a format that is
+compatible with PyQt's signals and slots pattern.
+
 
 .. index:: papc_setup/
 .. _papc_setup
 
 <project_name>/models/papc_setup/
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-This folder contains a barebone ``papc`` setup to sandbox your application. ``papc`` is a library that can trick your
-application into believing it's connecting to the control system, while it's receiving simulated data instead.
+This folder contains a barebone ``papc`` setup to sandbox your application.
+
+``papc`` is a library that can trick your application into believing it's connecting to the control system, while
+it's receiving simulated data instead.
 This also allows control system apps to run in a sandbox also on non-TN machines, without the need of any modification.
 
 ``papc`` is primarily an option for creating meaningful and thorough GUI tests. Read more about it on the
 `papc documentation <https://acc-py.web.cern.ch/gitlab/pelson/papc/docs/stable/>`_.
+
 
 .. index:: tests/
 .. _tests_folder
@@ -206,4 +297,18 @@ To see the coverage report, type::
     GitLab CI. To see the stacktrace, re-run the tests as::
 
         python -m pytest --vv --log-cli-level=DEBUG
+
+
+.. index:: docs/
+.. _docs_folder
+
+docs/
+^^^^^^
+This folder is a slight modification of the default one generated with ``acc-py init-docs``. It contains all that's
+needed to have an empty documentation page on the `Acc-Py ReadTheDocs server <https://acc-py.web.cern.ch/>`_. Such
+page is configured to include a description of your API based on the comments you place in your code.
+
+To know more about the overall way of building your cod pages, check out the
+`official Acc-Py documentation <https://wikis.cern.ch/display/ACCPY/Documentation>`_ on this topic, or head directly
+to `Sphinx's documentation <https://www.sphinx-doc.org/en/master/>`_.
 
