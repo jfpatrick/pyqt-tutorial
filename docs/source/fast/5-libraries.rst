@@ -1,14 +1,15 @@
 .. index:: Libraries
 .. _libraries
 
+=========
 Libraries
-----------
+=========
 
 .. index:: GUI Libraries
 .. _gui_libraries
 
 GUI Libraries
-^^^^^^^^^^^^^
+=============
 
 The Acc-Py team provides and maintain a lot of Python libraries. Here is a non-exhaustive list of the most
 important ones related to PyQt5 (May 2020):
@@ -17,7 +18,7 @@ important ones related to PyQt5 (May 2020):
 .. _comrad
 
 ComRAD
-~~~~~~~
+------
 
 ComRAD is CO's Rapid Application Development Framework for PyQt5 GUIs. It can be used to create GUIs by solely
 using Qt Designer. In most cases users are able to develop fairly complex interfaces without the need to write
@@ -40,7 +41,7 @@ to learn more about this tool.
 .. _accwidgets
 
 accwidgets
-~~~~~~~~~~
+----------
 
 `accwidgets` is a collection of widgets for PyQt5 for the Acc-Py community. It includes components like:
 
@@ -60,7 +61,7 @@ Many more widgets are likely to be added to this package in the future, so alway
 .. _control_system_libraries
 
 Control System Libraries
-^^^^^^^^^^^^^^^^^^^^^^^^
+========================
 
 In addition to the GUI Libraries, the Acc-Py team also maintains most of the libraries that access the control
 system (RDA, JAPC, LSA, ... ). Here is a non-exhaustive list of the most relevant ones:
@@ -77,7 +78,6 @@ system (RDA, JAPC, LSA, ... ). Here is a non-exhaustive list of the most relevan
     * PyRBAC: Python binding for RBAC (Work In Progress).
     * PyLSA: Python binding for LSA. (Work In Progress).
 
-
 etc.
 
 
@@ -85,6 +85,6 @@ etc.
 .. libraries_faq
 
 FAQ
-^^^
+===
 
 *TODO*

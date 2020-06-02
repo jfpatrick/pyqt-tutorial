@@ -1,14 +1,15 @@
 .. index:: Development Tools
 .. _tools
 
+=================
 Development Tools
------------------
+=================
 
 .. index:: PyCharm
 .. _pycharm
 
 PyCharm
-^^^^^^^
+=======
 
 The Acc-Py team offers also a shared PyCharm instance to ease the development on TN machines.
 Such instance is located under::
@@ -37,7 +38,7 @@ Remember that adding a path to a folder after the command makes PyCharm load tha
 .. _qtdesigner
 
 Qt Designer
-^^^^^^^^^^^^
+===========
 
 The recommended way to implement your PyQt5 GUIs is to use ``.ui`` files to define your interface. Therefore,
 Acc-Py-PyQt provides you with a shared instance of the **Qt Designer**.
@@ -62,6 +63,6 @@ Refer to your library's documentation to know which paths to add to this variabl
 .. tools_faq
 
 FAQ
-^^^
+===
 
 *TODO*

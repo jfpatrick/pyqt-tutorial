@@ -1,8 +1,15 @@
+.. index:: Development Guidelines
+.. _dev_guidelines
+
+======================
 Development Guidelines
------------------------
+======================
+
+.. index:: Testing
+.. _testing
 
 Testing
-^^^^^^^
+=======
 Testing allows you to quickly track down the source of new bugs, and in general reduces maintenance costs in the
 long term. Testing PyQt applications can be done on two levels:
 
@@ -12,8 +19,13 @@ long term. Testing PyQt applications can be done on two levels:
 If your application interacts with the control system, you will also have to mock those interactions either with
 ``MagicMock`` or by simulating the underlying layer with ``papc``.
 
+
+.. index:: Unit Tests with pytest
+.. _unit_tests
+.. _pytest
+
 Simple unit tests - pytest
-~~~~~~~~~~~~~~~~~~~~~~~~~~
+--------------------------
 These can be performed on all the functions that do not belong to any PyQt widget or PyQt's QObject, and don't talk
 to the control system. It boils down to regular Python testing, for which there are multiple tutorials available on
 the Internet.
@@ -47,8 +59,11 @@ Remember to read the `pytest documentation <https://docs.pytest.org/en/latest/co
 setting up and tearing down tests, and to mock bigger components of your application.
 
 
+.. index:: Mocking the Control System API
+.. _mocking
+
 Unit tests on the control system's API
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+--------------------------------------
 Special attention is required if you want to perform tests on some functions that interact with the control system,
 but at the same time you don't want the interaction to happen for real (for example, to avoid having to reset your
 device every time you run a test, or if your app is interacting with operational devices).
@@ -70,9 +85,13 @@ This can be done on different levels:
    For more complex use cases where you need a full-blown simulation of your target devices in the control system.
    Requires more work than the previous two. See the `dedicated section <#>`_.
 
+
+.. index:: Mocking PyJAPC
+.. _mocking_pyjapc
+
 Example: Mocking PyJapc
-~~~~~~~~~~~~~~~~~~~~~~~
-This fixture will monkey-patch PyJapc objects by replacing them with a mock of your choice::
+-----------------------
+This fixture will monkey-patch PyJAPC objects by replacing them with a mock of your choice::
 
     @pytest.fixture(autouse=True)  # autouse=True is optional: means that this fixture is applied to all the tests
     def mock_pyjapc():
@@ -96,8 +115,14 @@ and the ``Mock()`` and ``MagicMock()`` documentation for examples.
 Passing such fixture as an argument to your test, your application's ``pyjapc.PyJapc`` class will be automagically
 replaced by the mock without having to modify any code.
 
+
+.. index:: Graphical Tests with ``pytest-qt``
+.. _graphical_tests
+.. _acceptance_tests
+.. _pytest_qt
+
 Graphical acceptance tests
-~~~~~~~~~~~~~~~~~~~~~~~~~~
+--------------------------
 Running graphical acceptance tests is surprisingly easy, even though slightly fragile.
 
 You need to install the ``pytest-qt`` package and basically follow its documentation.
@@ -124,6 +149,142 @@ Here is a simple example of a graphical test::
         qtbot.mouseClick(main_window.freeze_btn, Qt.LeftButton)
         assert main_window.freeze_btn.text() == "Freeze"
 
+
+.. index:: Linting
+.. _linting
+
 Linting
-^^^^^^^
-[TODO once I do it myself]
+=======
+*TODO*
+
+
+.. index:: GUI Design Strategies
+.. _gui_design
+
+GUI Design
+==========
+PyQt5 allows for two strategies for designing GUIs: either with the Qt Designer, which generates XML ``.ui`` files,
+or through code, in ``.py`` files.
+
+In general, for complex applications, it is recommended to design the interface with Qt Designer.
+However, in special cases it might be more convenient to use only code: in the end it's up to you to decide what
+is the more sensible approach for your specific case.
+
+
+.. index:: Qt Designer files
+.. index:: ``.ui`` files
+.. _ui_files
+
+Design with Qt Designer (using .ui files)
+-----------------------------------------
+You can design your PyQt GUI by using the Qt Designer.
+
+The version shipped with Acc-Py is basically identical to any vanilla Qt Designer, so any good
+`tutorial <https://doc.qt.io/qt-5/qtdesigner-manual.html>`_ on the Internet should be valid.
+The only addition of Acc-Py version is the presence of some extra CERN specific widgets,
+which you can add to your app just like regular Qt widgets.
+
+Once you finished your design, you will end up with one or more XML ``.ui`` files.
+These files cannot be loaded directly in a PyQt application (unlike QML files), but have to be compiled.
+
+.. warning:: QML files are **not recommended** and **not supported** by Acc-Py's team or by BI, due to its
+    remarkably poor plotting performance.
+
+.. note:: The compilation can be done automatically, but also manually. if you are using the boilerplate code from
+    ``bipy-gui-manager``, the automatic compilation is already setup for you. If you want to know the details of how
+    it works, or you need to compile manually, check `this page <#>`_.
+
+Using the .ui files in code
+---------------------------
+Once you created your interface, you can load the interface in two ways:
+
+ * By inheriting from it (most common approach). Example::
+
+        import sys
+        from PyQt5 import QtCore, QtGui, QtWidgets
+        from PyQt5.QtWidgets import QApplication
+        from my_app.main_window import Ui_MyMainWindow
+
+        class MyAppGui(QtWidgets.QMainWindow, Ui_MyMainWindow):
+            def __init__(self, parent=None):
+                super(MyAppGui, self).__init__(parent)
+                self.setupUi(self)
+
+        def main():
+            app = QApplication(sys.argv)
+            gui = MyAppGui()
+            gui.show()
+            app.exec_()
+
+        if __name__ == '__main__':
+            main()
+
+ * By instantiating it as an attribute of your main window, and then loading it in the window
+   (old-fashioned, PyQt4-style). Example::
+
+        import sys
+        from PyQt5 import QtCore, QtGui, QtWidgets
+        from PyQt5.QtWidgets import QApplication
+        from my_app.main_window import Ui_MyMainWindow
+
+        class MyAppGui(QtWidgets.QMainWindow):
+            def __init__(self, parent=None):
+                QtWidgets.QMainWindow.__init__(self, parent)
+                self.ui = Ui_MyMainWindow()
+                self.ui.setupUi(self)
+
+        def main():
+            app = QApplication(sys.argv)
+            gui = MyAppGui()
+            gui.show()
+            app.exec_()
+
+        if __name__ == '__main__':
+            main()
+
+
+.. index:: Design GUI in code
+.. _gui_py_files
+
+Design in code
+--------------
+If you have very specific use cases, or your application is made mostly of reusable widgets that don't come from
+``accwidgets`` (thus not available in Qt Designer), you might want to build up you interface directly in code.
+From this regard, there are no limitations in what you can do: just follow some good tutorial on how to deal with
+``QMainWindow`` and Qt's layouts before jumping in.
+
+In addition, you can still use ``accwidgets``' components by importing it (remember to add ``accwidgets``
+in the core dependencies of your ``setup.py``). It's still recommended, where it makes sense, to isolate the
+layouting code from the wiring (signal/slots) and from the rest of the application's logic.
+
+So please don't write your entire GUI as a single file, unless is nothing more than a quick experiment.
+
+.. index:: Resource Files (.qrc)
+.. index:: .qrc files
+.. _qrc_files
+
+Resource files (.qrc)
+---------------------
+If you're adding static resources to your interface (like images, custom icons, etc..) you have to use a
+**resource file (.qrc)**.
+
+If you are using Qt Designer, the procedure goes as follow:
+
+ * Add a new resource file by clicking on the wrench icon on the ``Select Resource`` dialog
+   (opened, for example, by trying to add an icon to a Window).
+
+ * Create a new file in the folder of your resources, named for example ``resources.qrc``
+
+ * Add the path to your icon/image in such file, still using the dialog.
+
+ * Put your icons/images where you need and save your ``.ui`` file.
+
+ * If your Designer files are compiled automatically, your ``.qrc`` file will be automatically detected and compiled
+   as soon as you start your application. If not, check out `the advanced topics page <>`_
+   to know more about how to compile these files manually.
+
+ * You should have a file called ``resources_rc.py`` among your generated ``ui_*.py`` files.
+
+You can now launch the application and make sure it runs.
+
+

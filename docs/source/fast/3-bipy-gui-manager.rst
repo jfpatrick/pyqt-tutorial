@@ -1,8 +1,9 @@
 .. index:: Setup a New Project
 .. _setup_new_project
 
+=================
 Setup New Project
---------------------
+=================
 
 In principle, once you setup your Acc-Py project, you can start developing your PyQt5 application right away.
 
@@ -17,13 +18,13 @@ eases the process of setting up a proper project structure.
 .. _bipy-gui-manager
 
 BI Python Expert GUI Manager (bipy-gui-manager)
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+===============================================
 
 ``bipy-gui-manager`` is a small Python utility to create a project stub (think of it as a Java archetype) for an
 Expert GUI PyQt5 application. It's specifically tuned for BI Expert GUIs.
 
 How do I use it?
-~~~~~~~~~~~~~~~~
+================
 
 Open a terminal on a virtual Linux machine with TN access and type::
 
@@ -57,7 +58,7 @@ In the next section we are going to review the project structure, so skip ahead 
 .. _bipy-gui-manager_aliasing
 
 How to avoid using the full path?
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+=================================
 
 If you plan to use this tool again in the future, you can make ``bipy-gui-manager`` available in your console without
 having to type the full path. To do so, use one of the following strategies:
@@ -86,7 +87,7 @@ having to type the full path. To do so, use one of the following strategies:
 .. _bipy-gui-manager_advanced
 
 Advanced Usage
-~~~~~~~~~~~~~~~
+==============
 
 ``bipy-gui-manager`` has a CLI interface that allows for some degree of automation. Type::
 
@@ -102,7 +103,7 @@ for a complete description of create-project's CLI interface.
 .. _bipy-gui-manager_contacts
 
 Contacts
-~~~~~~~~~
+========
 For questions or bug reports about ``bipy-gui-manager``, contact Sara Zanzottera or Steen Jensen.
 
 
@@ -110,6 +111,6 @@ For questions or bug reports about ``bipy-gui-manager``, contact Sara Zanzottera
 .. bipy-gui-manager_faq
 
 FAQ
-^^^
+===
 
 *TODO*

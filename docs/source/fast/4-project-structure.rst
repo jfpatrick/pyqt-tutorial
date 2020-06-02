@@ -1,8 +1,9 @@
 .. index:: Project Structure
 .. _project_structure
 
+=================
 Project Structure
------------------
+=================
 
 All BI Expert GUIs should try to use a common project structure. This is also the default
 structure of projects created with ``bipy-gui-manager``.
@@ -29,7 +30,7 @@ We are going to cover each of these files one by one.
 .. _gitignore
 
 .gitignore
-^^^^^^^^^^^
+==========
 Typical ``.gitignore`` file that excludes most Python artifacts. You can add your
 own files/folders to exclude them from version control.
 
@@ -41,7 +42,7 @@ If you have doubts about this file, check
 .. _gitlab-ci_conf
 
 .gitlab-ci.yml
-^^^^^^^^^^^^^^^
+==============
 This file configures GitLab CI to run your tests each time you push your code
 to the repository.
 
@@ -63,7 +64,7 @@ You can  modify it to add more tasks, deploy automatically, do linting, or anyth
 .. _activate.sh
 
 activate.sh
-^^^^^^^^^^^
+===========
 Small bash script sourcing, in order, Acc-Py-PyQt and your virtualenv (assuming it's called venv and lives in the
 current directory). This ensures that the overall environment is setup correctly.
 
@@ -86,7 +87,7 @@ in your shell.
 .. _readme
 
 README.md
-^^^^^^^^^^
+=========
 A simple Markdown based README file. It's recommended to add some information to it, including at the minimum what
 your project is, how to run it, who's the author/maintainer and any precautions to take when running/debugging
 (i.e. is this GUI operational?).
@@ -100,7 +101,7 @@ your project is, how to run it, who's the author/maintainer and any precautions 
 .. _setup.py
 
 setup.py
-^^^^^^^^
+========
 This file defines your application as a Python package. You can learn more about Python packaging in
 `here <https://packaging.python.org/>`_.
 
@@ -123,7 +124,7 @@ and more.
 .. _project_folder
 
 <project_name>/
-^^^^^^^^^^^^^^^
+===============
 This is where your project's code lives. All the files included in this folder will be packaged and distributed
 with your code. When importing from the various scripts, this folder's name is the root of all the imports.
 
@@ -136,7 +137,7 @@ with your code. When importing from the various scripts, this folder's name is t
 .. ___init__py.py
 
 <project_name>/__init__.py
-^^^^^^^^^^^^^^^^^^^^^^^^^^
+==========================
 .. note:: Usually, ``__init__.py`` files are empty (if you're unsure why, check out the Python documentation first).
     However this specific ``__init__.py`` file contains three lines of code that do not need to be modified,
     but are explained here for completeness.
@@ -164,7 +165,7 @@ them through Qt Designer.
 .. _pyqt5ac.yml
 
 <project_name>/pyqt5ac.yml
-^^^^^^^^^^^^^^^^^^^^^^^^^^
+==========================
 .. note:: If you're a beginner, feel free to ignore the content of this file.
 
 This file is the configuration file for ``pyqt5ac`` (see above). It tells where are your XML files, where to put
@@ -176,7 +177,7 @@ It doesn't need to be edited, unless you change the path of your XML or generate
 .. _main.py
 
 <project_name>/main.py
-^^^^^^^^^^^^^^^^^^^^^^
+======================
 The application's entry point. You can edit the ``main()`` function to load your GUI, as specified in the comments in
 the file itself, but this file should contain no more than the small function that starts the event loop (and at most
 do some error handling). The rest of the logic will go in the other folders.
@@ -204,7 +205,7 @@ Feed free to add any other constants that your code might require.
 .. _widgets_folder
 
 <project_name>/widgets/
-^^^^^^^^^^^^^^^^^^^^^^^
+=======================
 This contains the components of your application. In an MVP model, these are the Presenters: they instantiate the Views 
 (see ``<project_name>/resources``) and wire them to the Models (see ``<project_name>/models``), acting as an 
 intermediary when required.
@@ -216,7 +217,7 @@ In the demo application, ``ExampleWidget`` is the Presenter and lives in there, 
 .. _resources_folder
 
 <project_name>/resources/
-^^^^^^^^^^^^^^^^^^^^^^^^^
+=========================
 This folder contains multiple entities, all related to the static GUI's structure definition.
 These represent the View from an MVP perspective. They are:
 
@@ -258,7 +259,7 @@ You can see this happening in the ``ExampleWidget`` class::
 .. _models>folder
 
 <project_name>/models/
-^^^^^^^^^^^^^^^^^^^^^^
+======================
 This folder contains the Models of your application. The Model manages any object connecting to the control system,
 like PyJAPC instances, NXCALS connections, etc. Models should send their data to the Views by emitting *signals* that
 match corresponding *slots* in the View or Presenter.
@@ -275,7 +276,7 @@ compatible with PyQt's signals and slots pattern.
 .. _papc_setup
 
 <project_name>/models/papc_setup/
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+=================================
 This folder contains a barebone ``papc`` setup to sandbox your application.
 
 ``papc`` is a library that can trick your application into believing it's connecting to the control system, while
@@ -290,7 +291,7 @@ This also allows control system apps to run in a sandbox also on non-TN machines
 .. _tests_folder
 
 tests/
-^^^^^^
+======
 This folder contains the automated tests for your app. It already contains some basic tests to ensure your setup is
 correct, and they will be run on GitLab CI every time you push code to your repository.
 
@@ -313,7 +314,7 @@ To see the coverage report, type::
 .. _docs_folder
 
 docs/
-^^^^^
+=====
 This folder is a slight modification of the default one generated with ``acc-py init-docs``. It contains all that's
 needed to have an empty documentation page on the `Acc-Py ReadTheDocs server <https://acc-py.web.cern.ch/>`_. Such
 page is configured to include a description of your API based on the comments you place in your code.
@@ -328,6 +329,6 @@ to `Sphinx's documentation <https://www.sphinx-doc.org/en/master/>`_.
 .. project_structure_faq
 
 FAQ
-^^^
+===
 
 *TODO*

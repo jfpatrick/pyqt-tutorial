@@ -1,9 +1,9 @@
 .. index:: Home
 .. _home
 
--------------------
+===================
 PyQt5 Mega Tutorial
--------------------
+===================
 
 Welcome to the PyQt5 Mega Tutorial for BE/BI!
 
@@ -11,7 +11,7 @@ We will cover the current infrastructure for PyQt development at CERN, with spec
 provided by BE/CO.
 
 Where do I start?
------------------
+=================
 We provide a two-tier tutorial:
 
  - The **Fast Tutorial**, for people that already has some PyQt5 knowledge and wants to know more about the available
@@ -26,7 +26,7 @@ Both tutorials are equipped with videos, runnable code and descriptions. They mo
 videos cover the same materials as their host page, and they both refer to the same code.
 
 Contribute
-----------
+==========
 
 Any form of contribution is welcome!
 
@@ -34,7 +34,7 @@ Please report issues and make PR on the
 `GitLab repository <https://gitlab.cern.ch/szanzott/pyqt-mega-tutorial-for-be-bi>`_.
 
 Contents
---------
+========
 .. toctree::
     :maxdepth: 1
 
