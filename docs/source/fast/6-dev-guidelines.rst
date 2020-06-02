@@ -40,7 +40,8 @@ the Internet.
 
 ``pytest`` has a number of interesting options and plugins. The most interesting ones for unit tests are the following:
 
- * **Verbosity settings**:
+ * **Verbosity**:
+
     - ``-vv`` increases pytests' own log level to the maximum verbosity.
     - ``--log-cli-level=DEBUG`` displays the logs from your application down to the level specified
       (in the example, ``DEBUG``).
@@ -68,20 +69,24 @@ Special attention is required if you want to perform tests on some functions tha
 but at the same time you don't want the interaction to happen for real (for example, to avoid having to reset your
 device every time you run a test, or if your app is interacting with operational devices).
 
-Testing can be done successfully (and meaningfully) by mocking the control system's API.
+Testing can be done successfully (and meaningfully) by
+`mocking the control system's API <https://en.wikipedia.org/wiki/Mock_object>`_.
 This can be done on different levels:
 
  * With a ``Mock`` object from the ``unittest`` package
+
    Useful for somebody who just want to be able to instantiate a class that connects to the control system, but
    does not need to get/set any data from them for the test.
-   See the documentation for examples and more information.
+   See the `documentation <https://docs.python.org/3.6/library/unittest.mock.html>`_ for examples and more information.
 
  * With a ``MagicMock`` object from the ``unittest`` package
+
    Useful for somebody who wants to be able to get/set data on the control system, but needs only to make sure
    the get/set is done with the correct data, not that it actually has the desired effect on the device.
-   See the documentation for examples and more information.
+   See the `documentation <https://docs.python.org/3.6/library/unittest.mock.html>`_ for examples and more information.
 
  * With ``papc``
+
    For more complex use cases where you need a full-blown simulation of your target devices in the control system.
    Requires more work than the previous two. See the `dedicated section <#>`_.
 
@@ -93,24 +98,37 @@ Example: Mocking PyJapc
 -----------------------
 This fixture will monkey-patch PyJAPC objects by replacing them with a mock of your choice::
 
-    @pytest.fixture(autouse=True)  # autouse=True is optional: means that this fixture is applied to all the tests
+    # autouse=True is optional: means that this fixture is applied to all the tests
+    @pytest.fixture(autouse=True)
     def mock_pyjapc():
+
         # Execute this part before the test
-        pyjapc.PyJapc = <Mock(), MagicMock(), or your papc-simulated PyJapc object>  # From now, calling pyjapc.PyJapc() will not instantiate a PyJapc() object,
-                                                                                     # but a Mock() / MagicMock() / papc object instead, without your app noticing.
+        # From now, calling pyjapc.PyJapc() will not instantiate a PyJapc() object,
+        # but a Mock() / MagicMock() / papc object instead, without your app noticing.
+        pyjapc.PyJapc = <Mock(), MagicMock(), or your papc-simulated PyJapc object>
+
         logging.debug("pyjapc.PyJapc has been replaced by {}".format(pyjapc.PyJapc))
+
         # Execute the test
         yield
+
         # Execute this part after the test
-        pyjapc.PyJapc = None  # Important to avoid memory leaks, especially with papc
+        # Important to avoid memory leaks, especially with papc
+        pyjapc.PyJapc = None
 
     def test_myapp_thinks_it_can_use_pyjapc(mock_pyjapc):
+
+        # Now this function will not fail even if it cannot access the control system.
         my_app.function_instantiating_PyJapc_objects()
+
+        # Now this function will not actually set anything, but it will not fail.
         my_app.function_setting_values_to_some_device("some value")
 
-The same thing can be done with functions, object's functions, and the like.
-See the documentation for more examples of monkey-patching that might work better for your use-case,
-and the ``Mock()`` and ``MagicMock()`` documentation for examples.
+The same thing can be done with functions, object's functions, etc.
+See the `documentation <https://docs.pytest.org/en/latest/monkeypatch.html>`_
+for more examples of monkey-patching that might work better for your use-case,
+and the ``Mock()`` and ``MagicMock()`` `documentation <https://docs.python.org/3.6/library/unittest.mock.html>`_
+for examples.
 
 Passing such fixture as an argument to your test, your application's ``pyjapc.PyJapc`` class will be automagically
 replaced by the mock without having to modify any code.
@@ -125,7 +143,8 @@ Graphical acceptance tests
 --------------------------
 Running graphical acceptance tests is surprisingly easy, even though slightly fragile.
 
-You need to install the ``pytest-qt`` package and basically follow its documentation.
+You need to install the ``pytest-qt`` package and basically
+`follow its documentation <https://pytest-qt.readthedocs.io/en/latest/tutorial.html>`_.
 
 The core idea is that you are given an object, called ``qtbot``, that can perform clicks, scrolls, and regular
 user interface operations on your GUI, while you can inspect the Python objects to see if the expected changes happen.
@@ -172,7 +191,7 @@ is the more sensible approach for your specific case.
 
 
 .. index:: Qt Designer files
-.. index:: ``.ui`` files
+.. index:: .ui files
 .. _ui_files
 
 Design with Qt Designer (using .ui files)
@@ -194,53 +213,42 @@ These files cannot be loaded directly in a PyQt application (unlike QML files), 
     ``bipy-gui-manager``, the automatic compilation is already setup for you. If you want to know the details of how
     it works, or you need to compile manually, check `this page <#>`_.
 
+
+.. index:: Using .ui files
+.. index:: .ui files usage
+.. _ui_files_usage
+
 Using the .ui files in code
 ---------------------------
-Once you created your interface, you can load the interface in two ways:
+Once you created your interface, you can load the interface into your application.
 
- * By inheriting from it (most common approach). Example::
+The loading is done into the Presenter, that is, into any file in the ``widgets`` folder::
 
-        import sys
-        from PyQt5 import QtCore, QtGui, QtWidgets
-        from PyQt5.QtWidgets import QApplication
-        from my_app.main_window import Ui_MyMainWindow
+    import sys
+    from PyQt5 import QtCore, QtGui, QtWidgets
+    from PyQt5.QtWidgets import QApplication
+    from my_app.main_window import Ui_MyMainWindow
 
-        class MyAppGui(QtWidgets.QMainWindow, Ui_MyMainWindow):
-            def __init__(self, parent=None):
-                super(MyAppGui, self).__init__(parent)
-                self.setupUi(self)
+    class ExampleWidget(QtWidgets.QMainWindow, Ui_MyMainWindow):
+        def __init__(self, parent=None):
+            super(MyAppGui, self).__init__(parent)
+            self.setupUi(self)
 
-        def main():
-            app = QApplication(sys.argv)
-            gui = MyAppGui()
-            gui.show()
-            app.exec_()
+.. note:: Some older PyQt tutorials recommend loading the Ui in another, equally valid way, which is the following::
 
-        if __name__ == '__main__':
-            main()
+            import sys
+            from PyQt5 import QtCore, QtGui, QtWidgets
+            from PyQt5.QtWidgets import QApplication
+            from my_app.main_window import Ui_MyMainWindow
 
- * By instantiating it as an attribute of your main window, and then loading it in the window
-   (old-fashioned, PyQt4-style). Example::
+            class MyAppGui(QtWidgets.QMainWindow):
+                def __init__(self, parent=None):
+                    QtWidgets.QMainWindow.__init__(self, parent)
+                    self.ui = Ui_MyMainWindow()
+                    self.ui.setupUi(self)
 
-        import sys
-        from PyQt5 import QtCore, QtGui, QtWidgets
-        from PyQt5.QtWidgets import QApplication
-        from my_app.main_window import Ui_MyMainWindow
-
-        class MyAppGui(QtWidgets.QMainWindow):
-            def __init__(self, parent=None):
-                QtWidgets.QMainWindow.__init__(self, parent)
-                self.ui = Ui_MyMainWindow()
-                self.ui.setupUi(self)
-
-        def main():
-            app = QApplication(sys.argv)
-            gui = MyAppGui()
-            gui.show()
-            app.exec_()
-
-        if __name__ == '__main__':
-            main()
+    This loads the Ui by instantiating it as an attribute of your main window. It's an old-fashioned,
+    PyQt4-style, but works.
 
 
 .. index:: Design GUI in code
@@ -258,6 +266,7 @@ in the core dependencies of your ``setup.py``). It's still recommended, where it
 layouting code from the wiring (signal/slots) and from the rest of the application's logic.
 
 So please don't write your entire GUI as a single file, unless is nothing more than a quick experiment.
+
 
 .. index:: Resource Files (.qrc)
 .. index:: .qrc files
@@ -280,11 +289,75 @@ If you are using Qt Designer, the procedure goes as follow:
  * Put your icons/images where you need and save your ``.ui`` file.
 
  * If your Designer files are compiled automatically, your ``.qrc`` file will be automatically detected and compiled
-   as soon as you start your application. If not, check out `the advanced topics page <>`_
+   as soon as you start your application. If not, check out `the advanced topics page <#>`_
    to know more about how to compile these files manually.
 
- * You should have a file called ``resources_rc.py`` among your generated ``ui_*.py`` files.
+ * You can now launch the application and make sure it runs. After the first run,
+   you should see a file called ``resources_rc.py`` among your generated ``ui_*.py`` files.
 
-You can now launch the application and make sure it runs.
 
+.. index:: Continuous Integration
+.. index:: GitLab CI
+.. _gitlab_ci
 
+Continuous Integration (CI)
+============================
+
+GitLab CI is a powerful tool to ensure the code you publish on GitLab works as expected.
+It's a pipeline that sets up a virtual machine and runs a number of operations on your code, namely running tests,
+linting, producing coverage reports, and many more.
+
+It is mostly setup already by the Acc-Py team, and some extra customizations are added by ``bipy-gui-manager``.
+To learn more about the nature of such modifications, check out the `.gitlab-ci.yml` file description
+`here <LINK HERE>`_.
+
+.. index:: GitLab CI Troubleshooting
+.. _gitlab_ci_troubleshoot
+
+Troubleshooting
+---------------
+
+.. index:: Abort()
+.. _qt_abort
+
+Qt throws Abort() during the tests
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+If you installed ``pytest-xvfb`` on your GitLab CI image, please remove it and try again.
+Otherwise, make sure you're passing your Qt objects to ``qtbot`` with ``qtbot.addWidget(my_widget)``
+ before trying to perform any operation on it.
+
+.. index:: CI pipeline never starts
+.. _pipeline_hangs
+
+The pipeline hangs forever while trying to start the tests
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+It might be trying to communicate with the control system: GitLab CI is *not* TN-trusted, so it will fail.
+Verify which part of your application is trying to contact the control system and mock it in a meaningful way.
+See the above paragraph on testing control system APIs.
+
+.. index:: "Failed to connect to all InCA servers"
+.. _failed_to_connect
+
+The pipeline fails with an error saying "Failed to connect to all InCA servers"
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Full error is: ``jpype._jclass.org.springframework.remoting.RemoteAccessException: org.springframework.remoting.RemoteAccessException: Failed to connect to all InCA servers``.
+
+Same as above: your app is probably trying to contact the control system. Mock the relative function/object.
+See the above paragraph on testing control system APIs.
+
+Tips and Tricks
+---------------
+
+Add coverage badge
+~~~~~~~~~~~~~~~~~~~
+In GitLab's side bar, press ``Settings > General > Badges``. The fill the fields as follows::
+
+    Name: coverage
+    Link: https://gitlab.cern.ch/<user or group>/<my_app>/pipelines
+    Badge image URL: https://gitlab.cern.ch/<user or group>/<my_app>/badges/master/coverage.svg
+
+The next time a pipeline runs on master, the number should be updated.
+
+Make screenshot during the tests
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+*TODO Check Acc_py documentation*
