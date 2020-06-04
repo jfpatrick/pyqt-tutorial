@@ -6,7 +6,7 @@ from papc.fieldtype import FieldType
 from papc.deviceproperty import Acquisition, Setting
 from papc.timingselector import TimingSelector
 
-from demo.models import IntervalUpdateDevice
+from demo.models.papc_setup.papc_utils import IntervalUpdateDevice
 
 
 def setup_papc_devices() -> SimulatedPyJapc:

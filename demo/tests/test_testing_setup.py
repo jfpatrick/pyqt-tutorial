@@ -1,4 +1,3 @@
-import math
 import pyjapc
 
 from PyQt5.QtWidgets import QTabWidget

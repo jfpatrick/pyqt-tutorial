@@ -2,7 +2,7 @@ import pytest
 import pyjapc
 
 from demo.widgets.example_widget import ExampleWidget
-from demo.models import setup_papc_devices
+from demo.models.papc_setup.papc_devices import setup_papc_devices
 
 
 @pytest.fixture()
