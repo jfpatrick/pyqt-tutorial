@@ -12,8 +12,8 @@ GUI Tests:
   script:
    - source /opt/venv/bin/activate
    - git config --global url."https://gitlab-ci-token:${CI_JOB_TOKEN}@gitlab.cern.ch".insteadOf https://:@gitlab.cern.ch:8443
-   - pip install demo-[core,test]
-   - run_headless python -m pytest demo- --log-cli-level=DEBUG --random-order --junitxml=report.xml  \
+   - pip install demo[core,test]
+   - run_headless python -m pytest demo --log-cli-level=DEBUG --random-order --junitxml=report.xml  \
      --cov-report html:coverage --cov-report term-missing:skip-covered --cov=demo
      \ -vx --color=yes
   coverage: /TOTAL.+ ([0-9]{1,3}%)/
