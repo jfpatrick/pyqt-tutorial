@@ -57,8 +57,8 @@ setup(
         "Programming Language :: Python :: 3",
         "Operating System :: OS Independent",
     ],
-
     install_requires=REQUIREMENTS['core'],
+    include_package_data=True,
     extras_require={
         **REQUIREMENTS,
         # The 'dev' extra is the union of 'test' and 'doc', with an option
