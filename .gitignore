@@ -4,3 +4,5 @@
 **/.hypothesis/*
 **/.pytest_cache/*
 **/generated/*
+**/*.egg-info/*
+**/coverage/*

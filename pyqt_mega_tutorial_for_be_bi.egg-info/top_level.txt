@@ -1,2 +1,0 @@
-be_bi_pyqt_template
-demo

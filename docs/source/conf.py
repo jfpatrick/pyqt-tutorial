@@ -3,7 +3,7 @@ import pkg_resources
 
 project = "PyQt5 Mega Tutorial"
 author = "Sara Zanzottera (BE-BI-SW)"
-version = pkg_resources.get_distribution("demo").version
+version = "0.0.1"
 
 copyright = "{0}, CERN".format(datetime.datetime.now().year)
 

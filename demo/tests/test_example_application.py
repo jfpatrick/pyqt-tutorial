@@ -1,6 +1,6 @@
 import PyQt5
 from PyQt5.QtWidgets import QPushButton, QSpinBox
-from accwidgets.graph import ScrollingPlotWidget, CyclicPlotWidget
+from accwidgets.graph import ScrollingPlotWidget
 from demo.widgets.example_widget import ExampleWidget
 
 

@@ -1,5 +1,5 @@
 """
-setup.py for pyqt-mega-tutorial-for-be-bi.
+setup.py for demo.
 
 For reference see
 https://packaging.python.org/guides/distributing-packages-using-setuptools/
@@ -22,7 +22,8 @@ REQUIREMENTS: dict = {
         "be-bi-application-frame",
         "comrad",  # FIXME Provides the CLogDisplay, remove in favor of the real AppFrame or accwidgets'version when out
         "accwidgets",  # For the plots
-        "pyjapc",  # FIXME Has to go after comrad to pick the right version?
+        "pyjapc==2.1.2",  # FIXME Has to go after comrad to pick the right version?
+        "importlib-metadata==1.0.0",  # FIXME Due to comrad I suppose?
     ],
     'test': [
         "pytest",
@@ -41,7 +42,7 @@ REQUIREMENTS: dict = {
 
 
 setup(
-    name='pyqt-mega-tutorial-for-be-bi',
+    name='demo',
     version="0.0.1.dev0",
 
     author='Sara Zanzottera',
