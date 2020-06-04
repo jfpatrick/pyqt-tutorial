@@ -1,11 +1,9 @@
 import datetime
-
-import demo
-
+import pkg_resources
 
 project = "PyQt5 Mega Tutorial"
 author = "Sara Zanzottera (BE-BI-SW)"
-version = demo.__version__
+version = pkg_resources.get_distribution("be_bi_pyqt_template").version
 
 copyright = "{0}, CERN".format(datetime.datetime.now().year)
 
@@ -41,11 +39,11 @@ exclude_patterns = []
 html_theme = "acc_py"
 html_title = "The BE/BI PyQt5 Mega Tutorial"
 html_short_title = "PyQt5 Tutorial"
-html_logo = '../../images/pyqt-logo-inverted-smaller.png'
-html_favicon = '../../images/pyqt-logo.png'
+html_logo = '../images/pyqt-logo-inverted-smaller.png'
+html_favicon = '../images/pyqt-logo.png'
 
 # Static files directories
-html_static_path = ["../../images", "../../videos"]
+html_static_path = ["../images", "../videos"]
 
 # Add any paths that contain custom static files (such as style sheets) here,
 # relative to this directory. They are copied after the builtin static files,
