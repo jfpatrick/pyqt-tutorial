@@ -3,6 +3,10 @@ include:
    file: acc_py_devtools/templates/gitlab-ci/python.yml
 
 
+variables:
+  project_name: demo
+
+
 GUI Tests:
   image: gitlab-registry.cern.ch/acc-co/accsoft/gui/accsoft-gui-pyqt-distro/acc-py-pyqt:ci
   script:
