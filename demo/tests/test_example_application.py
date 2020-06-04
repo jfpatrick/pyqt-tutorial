@@ -1,6 +1,6 @@
 import PyQt5
 from PyQt5.QtWidgets import QPushButton, QSpinBox
-from accwidgets.graph import ScrollingPlotWidget
+from accwidgets.graph import ScrollingPlotWidget, CyclicPlotWidget
 from demo.widgets.example_widget import ExampleWidget
 
 
@@ -28,21 +28,32 @@ def test_can_open_main_window(monkeypatch, mock_pyjapc, qtbot):
 
 def test_main_window_has_all_tabs(my_gui):
     """ Make sure the example application has all the expected tabs in the right order. """
-    assert my_gui.count() == 2
-    assert my_gui.tabText(0) == "Plot"
-    assert my_gui.tabText(1) == "Image"
+    assert my_gui.count() == 3
+    assert my_gui.tabText(0) == "Scrolling Plot"
+    assert my_gui.tabText(1) == "Cyclic Plot"
+    assert my_gui.tabText(2) == "Image"
 
 
-def test_first_tab(my_gui, mock_pyjapc, qtbot):
-    """ Test the first tab looks right and does what it's expected to do. """
+def test_scrolling_plot_tab(my_gui, mock_pyjapc, qtbot):
+    """ Test the scrolling plot tab looks right and does what it's expected to do. """
 
     # Does it contain a ScrollingPlotWidget?
-    assert my_gui.plot_tab.findChild(ScrollingPlotWidget) is not None
+    assert my_gui.scrolling_plot_tab.findChild(ScrollingPlotWidget) is not None
 
     # Does it contain a QSpinBox called 'amplitude_sin'?
-    spinbox = my_gui.plot_tab.findChild(QSpinBox, "frequency_scrolling_plot")
-    assert spinbox is not None
+    ampl_spinbox = my_gui.scrolling_plot_tab.findChild(QSpinBox, "amplitude_sin")
+    assert ampl_spinbox is not None
+
     # Does it set the right value on the right device?
-    spinbox.clear()
-    qtbot.keyClicks(spinbox, "50")
-    assert mock_pyjapc.getParam("BISWRef1/Settings#frequency") == 50
+    ampl_spinbox.clear()
+    qtbot.keyClicks(ampl_spinbox, "50")
+    assert mock_pyjapc.getParam("TEST_DEVICE/Settings#amplitude_sin") == 50
+
+    # Does it contain a QSpinBox called 'period_sin'?
+    per_spinbox = my_gui.scrolling_plot_tab.findChild(QSpinBox, "period_sin")
+    assert per_spinbox is not None
+
+    # Does it set the right value on the right device?
+    per_spinbox.clear()
+    qtbot.keyClicks(per_spinbox, "30")
+    assert mock_pyjapc.getParam("TEST_DEVICE/Settings#period_sin") == 30

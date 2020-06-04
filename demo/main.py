@@ -28,7 +28,11 @@ def main():
 
         # Apply small customizations to the application (window title, window icon...)
         example_widget.setWindowIcon(QIcon('resources/images/CERN_logo.png'))
+
+        # Add the example widget to the window
         window.setCentralWidget(example_widget)
+
+        # Set the window title
         window.setWindowTitle(APPLICATION_NAME)
 
     except Exception as e:

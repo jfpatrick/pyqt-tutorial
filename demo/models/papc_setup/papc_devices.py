@@ -2,7 +2,7 @@ from typing import List
 from papc.interfaces.pyjapc import SimulatedPyJapc
 from papc.system import System
 from papc.device import Device
-from papc.fieldtype import FieldType
+from papc.fieldtype import FieldType, EquationFieldType
 from papc.deviceproperty import Acquisition, Setting
 from papc.timingselector import TimingSelector
 
@@ -37,10 +37,17 @@ def create_my_devices() -> List[Device]:
         Setting('Settings', (
             FieldType("status", "int", initial_value=1),
             FieldType("name", "str", initial_value="My System"),
-            FieldType("frequency", "float", initial_value=10),
+            FieldType("amplitude_sin", "int", initial_value=50),
+            FieldType("amplitude_cos", "int", initial_value=50),
+            FieldType("period_sin", "int", initial_value=50),
+            FieldType("period_cos", "int", initial_value=50),
+            FieldType("theta", "float", initial_value=0)
         )),
         Acquisition('Acquisition', (
-            FieldType('angle', 'float'),
+            EquationFieldType('sin', 'float',
+                              'sin({Settings#theta}/({Settings#period_sin}/30))*{Settings#amplitude_sin}'),
+            EquationFieldType('cos', 'float',
+                              'cos({Settings#theta}/({Settings#period_cos}/30))*{Settings#amplitude_cos}'),
         )),
         # Next PAPC release will enable these fields too
         # Command('systemOn', (), start_the_device),
@@ -48,11 +55,11 @@ def create_my_devices() -> List[Device]:
     )
     # Instantiate a device using the above information - see IntervalUpdateDevice
     device = IntervalUpdateDevice(
-                        name="BISWRef1",
+                        name="TEST_DEVICE",
                         device_properties=device_properties,
-                        field_to_update="Acquisition#angle",
-                        selector_to_update=TimingSelector(""),
-                        timing_selectors=(TimingSelector("")),
+                        field_to_update="Settings#theta",
+                        selector_to_update=TimingSelector("LHC.USER.ALL"),
+                        timing_selectors=(TimingSelector(""), TimingSelector("LHC.USER.ALL")),
                         frequency=30
                     )
     return [device]

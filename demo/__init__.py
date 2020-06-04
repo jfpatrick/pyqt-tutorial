@@ -1,3 +1,7 @@
+"""
+Documentation for the be_bi_pyqt_template package
+
+"""
 
 # Generate the code from .ui and .qrc files in case they are missing or outdated
 import os

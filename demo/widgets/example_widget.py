@@ -1,7 +1,9 @@
+from typing import Callable
 import logging
 
 from PyQt5.QtWidgets import QTabWidget, QSpinBox
-from accwidgets.graph import TimeSpan, ScrollingPlotWidget
+from pyqtgraph import PlotWidget  # For typing
+from accwidgets.graph import TimeSpan, ScrollingPlotWidget, CyclicPlotWidget
 
 # Import the models
 from demo.models.data_source import ExampleModel, DeviceTimingSource, SinglePointSource
@@ -39,29 +41,63 @@ class ExampleWidget(QTabWidget, Ui_TabWidget):
 
         # Setup the plots
         scrolling_plot = self.findChild(ScrollingPlotWidget, "scrolling_plot")
-        self._setup_plot(scrolling_plot, parameter="BISWRef1/Acquisition#angle", selector="")
+        self._setup_plot(plot_widget=scrolling_plot, parameter="TEST_DEVICE/Acquisition#sin", selector="LHC.USER.ALL")
 
-        # Setup the control widgets for amplitude and period:
-        # - Select the widget
-        frequency_scrolling_plot = self.findChild(QSpinBox, "frequency_scrolling_plot")
-        # - Set their initial value reading it from the devices
-        frequency_scrolling_plot.setValue(self.model.get_frequency())
-        # - Connect them to the device to be able to set
-        frequency_scrolling_plot.valueChanged.connect(self.model.set_frequency)
+        cyclic_plot = self.findChild(CyclicPlotWidget, "cyclic_plot")
+        self._setup_plot(plot_widget=cyclic_plot, parameter="TEST_DEVICE/Acquisition#cos", selector="LHC.USER.ALL")
+
+        # Setup the spinbox widgets
+        self._setup_spinbox(spinbox_name="amplitude_sin",
+                            initial_value=self.model.get_amplitude_sin(),
+                            connect_to=self.model.set_amplitude_sin)
+        self._setup_spinbox(spinbox_name="period_sin",
+                            initial_value=self.model.get_period_sin(),
+                            connect_to=self.model.set_period_sin)
+        self._setup_spinbox(spinbox_name="amplitude_cos",
+                            initial_value=self.model.get_amplitude_cos(),
+                            connect_to=self.model.set_amplitude_cos)
+        self._setup_spinbox(spinbox_name="period_cos",
+                            initial_value=self.model.get_period_cos(),
+                            connect_to=self.model.set_period_cos)
 
         # Log something to see it in the LogDisplay Widget
         logging.debug("This message won't be visible, because the default log level is INFO")
         logging.info("This is a message from the application.")
 
-    def _setup_plot(self, plot_widget, parameter, selector):
-        # Create the data sources - timing and data
+    def _setup_plot(self, plot_widget: PlotWidget, parameter: str, selector: str) -> None:
+        """
+        Sets up the plots by connecting the widgets on the View to their relative Models.
+        :param plot_widget: the widget selected from the View
+        :param parameter: The JAPC parameter to take data from
+        :param selector: The JAPC selector to use
+        :return: None
+        """
+        # Create timing source
         timing_source = DeviceTimingSource(parameter, selector)
-        data_source = SinglePointSource(parameter, selector)
-
-        # Connect plot and data source
+        # Connect the timing source to the plot
         plot_widget.timing_source = timing_source
+
+        # Create the data source
+        data_source = SinglePointSource(parameter, selector)
+        # Add the data source as a curve in the plot
         plot_widget.addCurve(data_source=data_source)
 
-        # Setup the plot
+        # Setup other plot properties
         plot_widget.time_span = TimeSpan(10.0, 0.0),
         plot_widget.time_progress_line = True
+
+    def _setup_spinbox(self, spinbox_name: str, initial_value: int, connect_to: Callable) -> None:
+        """
+        Sets up the spinbox by setting their initial values and then connecting them to the JAPC SET function
+        exposed by the ``ExampleModel`` class.
+        :param spinbox_name: The name of the Spinbox widget on the View
+        :param initial_value: The initial value to display on the widget
+        :param connect_to: the function that performs the SET when a new value is entered in the spinbox.
+        :return: None
+        """
+        # Find the SpinBox by name in the View
+        spinbox = self.findChild(QSpinBox, spinbox_name)
+        # Set its initial value
+        spinbox.setValue(initial_value)
+        # Connect it to the control system to make it able to SET
+        spinbox.valueChanged.connect(connect_to)

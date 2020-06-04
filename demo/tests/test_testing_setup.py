@@ -31,10 +31,15 @@ def test_can_use_pyjapc():
     # Make sure these selectors and properties and fields are available in the mocked devices,
     # otherwise change them.
     japc_ppm.setSelector(timingSelector="")
-    japc_ppm.setParam("BISWRef1/Settings", {'frequency': 1})
-    value = japc_ppm.getParam("BISWRef1/Settings#frequency")
+    japc_ppm.setParam("TEST_DEVICE/Settings", {'amplitude_sin': 1, 'period_cos': 100})
+
+    value = japc_ppm.getParam("TEST_DEVICE/Settings#amplitude_sin")
     assert value is not None
     assert value == 1
+
+    value = japc_ppm.getParam("TEST_DEVICE/Settings#period_cos")
+    assert value is not None
+    assert value == 100
 
 
 def test_can_use_pyjapc_within_qt(qtbot):

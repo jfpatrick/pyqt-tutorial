@@ -7,8 +7,8 @@ from papc.device import Device
 
 class IntervalUpdateDevice(Device):
     """
-        Subclass of Device that updates one of its fields at a specified frequency.
-        You can subclass Device to implement any behavior you might want to simulate.
+        Subclass of ``Device`` that updates one of its fields at a specified frequency.
+        You can subclass ``Device`` to implement any behavior you might want to simulate.
     """
     def __init__(self, field_to_update, selector_to_update, frequency=30, *args, **kwargs):
         # Take out the `frequency` argument from the kwargs, or default to 30Hz
@@ -19,7 +19,7 @@ class IntervalUpdateDevice(Device):
         self.timer = RepeatedTimer(1 / frequency, self.time_tick)
 
     def time_tick(self):
-        """ Callback executed at each timer tick """
+        """ Callback executed at each tick of the timer """
         now = datetime.datetime.now()
         t = time.mktime(now.timetuple()) + now.microsecond / 1e6
         # Set the given field with the current timestamp
@@ -31,7 +31,7 @@ class RepeatedTimer:
     Implementation of a recurrent timer, that keeps calling a given function
     at a given frequency. Can be stopped, paused and resumed.
     Arguments can be passed to the target function by passing them
-    as extra arguments to the init function of this timer.
+    as extra arguments to the ``__init__`` function of this timer.
     """
     def __init__(self, interval, function, *args, **kwargs):
         self.interval = interval
