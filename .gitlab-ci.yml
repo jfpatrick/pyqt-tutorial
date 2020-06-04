@@ -2,30 +2,32 @@ include:
  - project: acc-co/devops/python/acc-py-devtools
    file: acc_py_devtools/templates/gitlab-ci/python.yml
 
-variables:
-  project_name: demo
 
-
-# A full installation of pyqt-mega-tutorial-for-be-bi, tested with pytest.
-test_install:
-  extends: .acc_py_full_test
-
-
-# A development installation of pyqt-mega-tutorial-for-be-bi tested with pytest.
-test_dev:
-  extends: .acc_py_dev_test
-
-
-# A push of the source distribution to the acc-py PyPI, only on git tag.
-release_sdist_on_tag:
-  extends: .acc_py_release_sdist
+GUI Tests:
+  image: gitlab-registry.cern.ch/acc-co/accsoft/gui/accsoft-gui-pyqt-distro/acc-py-pyqt:ci
+  script:
+   - source /opt/venv/bin/activate
+   - git config --global url."https://gitlab-ci-token:${CI_JOB_TOKEN}@gitlab.cern.ch".insteadOf https://:@gitlab.cern.ch:8443
+   - pip install .[core,test]
+   - run_headless python -m pytest --log-cli-level=DEBUG --random-order --junitxml=report.xml  \
+     --cov-report html:coverage --cov-report term-missing:skip-covered --cov=be_bi_pyqt_template
+     \ -vx --color=yes
+  coverage: /TOTAL.+ ([0-9]{1,3}%)/
+  artifacts:
+    name: coverage-report
+    paths:
+     - coverage
+    when: on_success
+    expire_in: 1 month
+    reports:
+      junit: report.xml
 
 
 # A dev build of the documentation, made available through cern.ch/acc-py.
-build_docs:
+Build Docs:
   extends: .acc_py_build_docs
 
 
 # A release build of the documentation, made available through cern.ch/acc-py.
-build_docs_on_tag:
+Build Docs On Tag:
   extends: .acc_py_build_docs_on_tag
