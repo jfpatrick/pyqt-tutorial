@@ -1,5 +1,5 @@
 """
-setup.py for demo.
+setup.py for demo-.
 
 For reference see
 https://packaging.python.org/guides/distributing-packages-using-setuptools/
