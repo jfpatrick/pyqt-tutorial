@@ -3,7 +3,7 @@ include:
    file: acc_py_devtools/templates/gitlab-ci/python.yml
 
 variables:
-  project_name: pyqt_mega_tutorial_for_be_bi
+  project_name: demo
 
 
 # A full installation of pyqt-mega-tutorial-for-be-bi, tested with pytest.

@@ -1,11 +1,11 @@
 import datetime
 
-import pyqt_mega_tutorial_for_be_bi
+import demo
 
 
 project = "PyQt5 Mega Tutorial"
 author = "Sara Zanzottera (BE-BI-SW)"
-version = pyqt_mega_tutorial_for_be_bi.__version__
+version = demo.__version__
 
 copyright = "{0}, CERN".format(datetime.datetime.now().year)
 

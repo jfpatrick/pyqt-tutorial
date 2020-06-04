@@ -69,5 +69,5 @@ Use ComRAD as a debug tool
 While you develop your interface in Qt Designer, you have only a static view of your interface, and it might be
 a bit hard to figure out how does it behave in complex scenarios. In order to try it out, instead of compiling
 into ``.py`` files every time, you can try to load it in
-`ComRAD < https://acc-py.web.cern.ch/gitlab/acc-co/accsoft/gui/rad/accsoft-gui-rad-comrad/docs/stable/index.html>`_
+`ComRAD <https://acc-py.web.cern.ch/gitlab/acc-co/accsoft/gui/rad/accsoft-gui-rad-comrad/docs/stable/index.html>`_
 for a live preview with some mock data.

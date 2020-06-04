@@ -16,9 +16,20 @@ with (HERE / 'README.md').open('rt') as fh:
 
 REQUIREMENTS: dict = {
     'core': [
+        "pyqt5",
+        "pyqt5ac @ git+https://:@gitlab.cern.ch:8443/szanzott/pyqt5ac.git",  # To automate the compilation of .ui and .qrc files
+        "pyqtgraph",
+        "be-bi-application-frame",
+        "comrad",  # FIXME Provides the CLogDisplay, remove in favor of the real AppFrame or accwidgets'version when out
+        "accwidgets",  # For the plots
+        "pyjapc",  # FIXME Has to go after comrad to pick the right version?
     ],
     'test': [
-        'pytest',
+        "pytest",
+        "pytest-qt",
+        "pytest-cov",
+        "pytest-random-order",
+        "papc",  # For the sandbox mode
     ],
     'dev': [
     ],
@@ -57,5 +68,10 @@ setup(
                 for req in REQUIREMENTS.get(extra, [])],
         # The 'all' extra is the union of all requirements.
         'all': [req for reqs in REQUIREMENTS.values() for req in reqs],
+    },
+    entry_points={
+        'console_scripts': [
+            'run-demo=demo.main:main',
+        ],
     },
 )
