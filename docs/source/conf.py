@@ -63,3 +63,4 @@ autosummary_imported_members = True
 # -- Options for sphinx.ext.autosectionlabel
 
 autosectionlabel_prefix_document = True
+autosectionlabel_maxdepth = 10
