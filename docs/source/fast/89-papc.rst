@@ -163,13 +163,11 @@ environment is setup from scratch for every test. See the page on testing for an
 Troubleshooting
 ===============
  * **The tests seems to run fine on my machine, but hang on the CI.**
-
    Make sure the monkey-patching process is really done for each test. Add ``autouse=True`` to the fixture's
    decorator to make absolutely sure this is always done.
 
  * **The tests seems to get slower and slower after the first 5-6 tests.**
    **Last tests are slower even if I randomize the order of execution.**
-
    ``papc`` seems to have trouble being garbage collected at times. Add ``scope="session"`` to the fixture's decorator
    to make ``pytest`` reuse the ``papc`` instance instead of creating new ones.
    Pay strong attention to avoid side effects.

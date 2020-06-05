@@ -1,4 +1,7 @@
 
+.. index:: Testing and Linting
+.. _testing_linting
+
 ===================
 Testing and Linting
 ===================
@@ -14,7 +17,7 @@ Here we overview the tools available to automate these two tasks effectively wit
 Linting
 =======
 
-.. note:: This section is incomplete.
+.. warning:: This section is incomplete.
 
 Linting is the process of automatically checking your Python code for typos, bugs and code smells.
 
@@ -42,7 +45,7 @@ If your application interacts with the control system, you will also have to moc
 
 .. note:: ``papc`` is better suited for complex test scenarios and requires a good amount of coding.
     It's therefore considered a more advanced way of testing and it is covered in a
-    :doc:`separate section <../89-papc>`.
+    :doc:`separate section <89-papc>`.
 
 
 .. index:: Unit Tests with pytest
@@ -113,7 +116,7 @@ This can be done on different levels:
  * With ``papc``
 
    For more complex use cases where you need a full-blown simulation of your target devices in the control system.
-   Requires more work than the previous two. See the :doc:`dedicated page <../89-papc>`.
+   Requires more work than the previous two. See the :doc:`dedicated page <89-papc>`.
 
 
 .. index:: Mocking ``PyJAPC``
@@ -208,7 +211,7 @@ linting, producing coverage reports, and many more.
 
 It is mostly setup already by the Acc-Py team, and some extra customizations are added by ``bipy-gui-manager``.
 To learn more about the nature of such modifications, check out the `.gitlab-ci.yml` file description
-:doc:`separate section <../4-project-structure:gitlab-ci_conf>`.
+:doc:`in the relevant page <4-project-structure:gitlab-ci_conf>`.
 
 .. index:: GitLab CI Troubleshooting
 .. _gitlab_ci_troubleshoot
