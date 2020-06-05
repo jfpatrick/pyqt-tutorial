@@ -101,30 +101,25 @@ Testing can be done successfully (and meaningfully) by
 `mocking the control system's API <https://en.wikipedia.org/wiki/Mock_object>`_.
 This can be done on different levels:
 
- * With a ``Mock`` object from the ``unittest`` package
-
-   Useful for somebody who just want to be able to instantiate a class that connects to the control system, but
-   does not need to get/set any data from them for the test.
+ * With a ``Mock`` object from the ``unittest`` package: Useful for somebody who just want to be able to instantiate a
+   class that connects to the control system, but does not need to get/set any data from them for the test.
    See the `documentation <https://docs.python.org/3.6/library/unittest.mock.html>`_ for examples and more information.
 
- * With a ``MagicMock`` object from the ``unittest`` package
+ * With a ``MagicMock`` object from the ``unittest`` package: Useful for somebody who wants to be able to get/set
+   data on the control system, but needs only to make sure the get/set is done with the correct data,
+   not that it actually has the desired effect on the device. See the
+   `documentation <https://docs.python.org/3.6/library/unittest.mock.html>`_ for examples and more information.
 
-   Useful for somebody who wants to be able to get/set data on the control system, but needs only to make sure
-   the get/set is done with the correct data, not that it actually has the desired effect on the device.
-   See the `documentation <https://docs.python.org/3.6/library/unittest.mock.html>`_ for examples and more information.
-
- * With ``papc``
-
-   For more complex use cases where you need a full-blown simulation of your target devices in the control system.
-   Requires more work than the previous two. See the :doc:`dedicated page <89-papc>`.
+ * With ``papc``: For more complex use cases where you need a full-blown simulation of your target devices
+   in the control system. Requires more work than the previous two. See the :doc:`dedicated page <89-papc>`.
 
 
-.. index:: Mocking ``PyJAPC``
+.. index:: Mocking PyJAPC
 .. _mocking_pyjapc
 
-Example: Mocking ``PyJapc``
+Example: Mocking PyJAPC
 ---------------------------
-This fixture will monkey-patch ``PyJAPC`` objects by replacing them with a mock of your choice::
+This fixture will monkey-patch PyJAPC objects by replacing them with a mock of your choice::
 
     # autouse=True is optional: means that this fixture is applied to all the tests
     @pytest.fixture(autouse=True)
@@ -211,7 +206,7 @@ linting, producing coverage reports, and many more.
 
 It is mostly setup already by the Acc-Py team, and some extra customizations are added by ``bipy-gui-manager``.
 To learn more about the nature of such modifications, check out the `.gitlab-ci.yml` file description
-:doc:`in the relevant page <4-project-structure:gitlab-ci_conf>`.
+:ref:`in the relevant page <4-project-structure:gitlab-ci_conf>`.
 
 .. index:: GitLab CI Troubleshooting
 .. _gitlab_ci_troubleshoot
