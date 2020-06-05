@@ -41,6 +41,7 @@ Contents
     4-project-structure
     5-libraries
     6-dev-guidelines
+    7-testing
 
     89-papc
     90-advanced-xml

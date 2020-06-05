@@ -19,8 +19,9 @@ extensions = [
     'sphinx.ext.autosummary',
     'sphinx.ext.doctest',
     'sphinx.ext.napoleon',
+    'sphinx.ext.intersphinx',
+    'sphinx.ext.autosectionlabel',
 ]
-
 
 # Add any paths that contain templates here, relative to this directory.
 templates_path = ["_templates"]
@@ -57,3 +58,8 @@ html_show_sourcelink = True
 
 autosummary_generate = True
 autosummary_imported_members = True
+
+
+# -- Options for sphinx.ext.autosectionlabel
+
+autosectionlabel_prefix_document = True

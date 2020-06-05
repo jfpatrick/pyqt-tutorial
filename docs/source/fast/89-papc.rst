@@ -2,9 +2,9 @@
 .. index:: ``papc``
 .. _papc
 
-=====================
-Testing with ``papc``
-=====================
+=================
+Testing with papc
+=================
 
 papc is a pure Python library that is designed to mimic ``PyJAPC`` devices for simulation and testing purposes.
 
