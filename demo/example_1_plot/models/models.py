@@ -8,12 +8,12 @@ from accwidgets.graph import UpdateSource, PointData
 #########################################################################################
 # Monkey-patch PyJAPC with papc - connect to simulated devices instead of real devices
 # COMMENT OUT THESE LINES TO CONNECT WITH REAL DEVICES
-from demo.models.papc_setup.papc_devices import setup_papc_devices
+from demo.papc_setup.papc_devices import setup_papc_devices
 pyjapc.PyJapc = setup_papc_devices()
 #########################################################################################
 
 
-class ExampleModel(QObject):
+class JapcModel(QObject):
     """
     This class acts as Model for the ``SpinBox`` below the plot.
 

@@ -73,6 +73,8 @@ setup(
     entry_points={
         'console_scripts': [
             'run-demo=demo.main:main',
+            'run-example-1=demo.example_1_plot.main:main',
+            'run-example-2=demo.example_2_image.main:main',
         ],
     },
 )

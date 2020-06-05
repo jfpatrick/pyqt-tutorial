@@ -1,12 +1,15 @@
+import os
 import sys
 import logging
 
 from PyQt5.QtGui import QIcon
-from PyQt5.QtWidgets import QApplication, QMessageBox
-from be_bi_application_frame.application_frame import ApplicationFrame
+from PyQt5.QtWidgets import QApplication, QMessageBox, QTabWidget
 
-# Import the Presenter from the widgets folder
-from demo.widgets.example_widget import ExampleWidget
+# Import the Presenters from the widgets folder of all the modules
+from demo.example_1_plot.widgets.main_widget import MainWidget as Example1Widget
+from demo.example_2_image.widgets.main_widget import MainWidget as Example2Widget
+
+# Import the constants
 from demo.constants import APPLICATION_NAME, AUTHOR, EMAIL
 
 
@@ -18,35 +21,40 @@ def main():
     """
     logging.info("Starting up {}...".format(APPLICATION_NAME))
 
-    # Instantiate the QApplication and the ApplicationFrame
+    # Instantiate the QApplication
     app = QApplication(sys.argv)
-    window = ApplicationFrame()
+
+    # Create the tabs container
+    tabs = QTabWidget()
 
     try:
-        # Instantiate your GUI (here the ExampleWidget class)
-        example_widget = ExampleWidget(parent=window)
+        # Instantiate your GUIs (here all the widgets from the examples)
+        widget_1 = Example1Widget()
+        widget_2 = Example2Widget()
 
-        # Apply small customizations to the application (window title, window icon...)
-        example_widget.setWindowIcon(QIcon('resources/images/CERN_logo.png'))
-
-        # Add the example widget to the window
-        window.setCentralWidget(example_widget)
+        # Add the widgets to the window as tabs
+        tabs.addTab(widget_1, QIcon(), "Example 1 - Plot")
+        tabs.addTab(widget_2, QIcon(), "Example 2 - Image")
 
         # Set the window title
-        window.setWindowTitle(APPLICATION_NAME)
+        tabs.setWindowTitle(APPLICATION_NAME)
+
+        # Set window icon
+        icon_path = os.path.join(os.path.dirname(os.path.realpath(__file__)), 'window_icon.png')
+        tabs.setWindowIcon(QIcon(icon_path))
 
     except Exception as e:
 
         # If something goes wrong, shows a small QDialog with an error message and quits
         dialog = QMessageBox()
-        dialog.critical(window, "Error", "An Exception occurred at startup:\n\n{}\n\n".format(e) +
-                                         "See the logs for more information, " +
-                                         "and please report this issue to {} ({})".format(AUTHOR, EMAIL))
-        window.deleteLater()
+        dialog.critical(tabs, "Error", "An Exception occurred at startup:\n\n{}\n\n".format(e) +
+                                       "See the logs for more information, " +
+                                       "and please report this issue to {} ({})".format(AUTHOR, EMAIL))
+        tabs.deleteLater()
         return
 
     # Enter the event loop by showing the window
-    window.show()
+    tabs.show()
 
     # Once left the event loop, terminates the application
     sys.exit(app.exec_())

@@ -1,18 +1,18 @@
 from typing import Callable
 import logging
 
-from PyQt5.QtWidgets import QTabWidget, QSpinBox
-from pyqtgraph import PlotWidget  # For typing
-from accwidgets.graph import TimeSpan, ScrollingPlotWidget, CyclicPlotWidget
+from PyQt5.QtWidgets import QWidget, QSpinBox
+import pyqtgraph as pg  # For typing
+from accwidgets.graph import TimeSpan, ScrollingPlotWidget
 
 # Import the models
-from demo.models.data_source import ExampleModel, DeviceTimingSource, SinglePointSource
+from demo.example_1_plot.models.models import JapcModel, DeviceTimingSource, SinglePointSource
 
-# Import the code generated from the example_widget.ui file
-from demo.resources.generated.ui_example_widget import Ui_TabWidget
+# Import the code generated from the view.ui file
+from demo.example_1_plot.resources.generated.ui_view import Ui_Form
 
 
-class ExampleWidget(QTabWidget, Ui_TabWidget):
+class MainWidget(QWidget, Ui_Form):
     """
         This is the main class defining your GUI. In an MVP perspective,
         this is a Presenter, so a component acting as a proxy between Model
@@ -31,20 +31,17 @@ class ExampleWidget(QTabWidget, Ui_TabWidget):
         ExampleModel class, that performs PyJAPC SET operations.
     """
     def __init__(self, parent=None):
-        super(ExampleWidget, self).__init__(parent)
+        super(MainWidget, self).__init__(parent)
 
         # Instantiate the view
         self.setupUi(self)
 
         # Instantiate the model
-        self.model = ExampleModel()
+        self.model = JapcModel()
 
         # Setup the plots
         scrolling_plot = self.findChild(ScrollingPlotWidget, "scrolling_plot")
         self._setup_plot(plot_widget=scrolling_plot, parameter="TEST_DEVICE/Acquisition#sin", selector="LHC.USER.ALL")
-
-        cyclic_plot = self.findChild(CyclicPlotWidget, "cyclic_plot")
-        self._setup_plot(plot_widget=cyclic_plot, parameter="TEST_DEVICE/Acquisition#cos", selector="LHC.USER.ALL")
 
         # Setup the spinbox widgets
         self._setup_spinbox(spinbox_name="amplitude_sin",
@@ -53,18 +50,12 @@ class ExampleWidget(QTabWidget, Ui_TabWidget):
         self._setup_spinbox(spinbox_name="period_sin",
                             initial_value=self.model.get_period_sin(),
                             connect_to=self.model.set_period_sin)
-        self._setup_spinbox(spinbox_name="amplitude_cos",
-                            initial_value=self.model.get_amplitude_cos(),
-                            connect_to=self.model.set_amplitude_cos)
-        self._setup_spinbox(spinbox_name="period_cos",
-                            initial_value=self.model.get_period_cos(),
-                            connect_to=self.model.set_period_cos)
 
         # Log something to see it in the LogDisplay Widget
         logging.debug("This message won't be visible, because the default log level is INFO")
         logging.info("This is a message from the application.")
 
-    def _setup_plot(self, plot_widget: PlotWidget, parameter: str, selector: str) -> None:
+    def _setup_plot(self, plot_widget: pg.PlotWidget, parameter: str, selector: str) -> None:
         """
         Sets up the plots by connecting the widgets on the View to their relative Models.
         :param plot_widget: the widget selected from the View

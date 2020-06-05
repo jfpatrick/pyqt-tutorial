@@ -1,7 +1,7 @@
 import PyQt5
 from PyQt5.QtWidgets import QPushButton, QSpinBox
 from accwidgets.graph import ScrollingPlotWidget
-from demo.widgets.example_widget import ExampleWidget
+from demo.example_1_plot.widgets.main_widget import MainWidget
 
 
 def test_can_open_main_window(monkeypatch, mock_pyjapc, qtbot):
@@ -21,27 +21,22 @@ def test_can_open_main_window(monkeypatch, mock_pyjapc, qtbot):
 
     # No QMessageBox should open, so no RuntimeError should be thrown
     # If you expect a QMessageBox, then use 'with pytest.raises(RuntimeException):' to catch the exception
-    my_gui = ExampleWidget()
-    my_gui.show()
-    assert my_gui is not None
+    main_widget = MainWidget()
+    main_widget.show()
+    assert main_widget is not None
 
 
-def test_main_window_has_all_tabs(my_gui):
-    """ Make sure the example application has all the expected tabs in the right order. """
-    assert my_gui.count() == 3
-    assert my_gui.tabText(0) == "Scrolling Plot"
-    assert my_gui.tabText(1) == "Cyclic Plot"
-    assert my_gui.tabText(2) == "Image"
-
-
-def test_scrolling_plot_tab(my_gui, mock_pyjapc, qtbot):
-    """ Test the scrolling plot tab looks right and does what it's expected to do. """
+def test_plot_exists(main_widget, mock_pyjapc, qtbot):
 
     # Does it contain a ScrollingPlotWidget?
-    assert my_gui.scrolling_plot_tab.findChild(ScrollingPlotWidget) is not None
+    assert main_widget.findChild(ScrollingPlotWidget) is not None
+
+
+def test_spinbox_works(main_widget, mock_pyjapc, qtbot):
+    """ Test the scrolling plot tab looks right and does what it's expected to do. """
 
     # Does it contain a QSpinBox called 'amplitude_sin'?
-    ampl_spinbox = my_gui.scrolling_plot_tab.findChild(QSpinBox, "amplitude_sin")
+    ampl_spinbox = main_widget.findChild(QSpinBox, "amplitude_sin")
     assert ampl_spinbox is not None
 
     # Does it set the right value on the right device?
@@ -50,7 +45,7 @@ def test_scrolling_plot_tab(my_gui, mock_pyjapc, qtbot):
     assert mock_pyjapc.getParam("TEST_DEVICE/Settings#amplitude_sin") == 50
 
     # Does it contain a QSpinBox called 'period_sin'?
-    per_spinbox = my_gui.scrolling_plot_tab.findChild(QSpinBox, "period_sin")
+    per_spinbox = main_widget.findChild(QSpinBox, "period_sin")
     assert per_spinbox is not None
 
     # Does it set the right value on the right device?
