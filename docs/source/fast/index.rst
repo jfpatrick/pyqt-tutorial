@@ -42,5 +42,7 @@ Contents
     5-libraries
     6-dev-guidelines
 
-    99-advanced-topics
+    89-papc
+    90-advanced-xml
+
 
