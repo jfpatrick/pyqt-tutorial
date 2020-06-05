@@ -6,7 +6,7 @@ from PyQt5.QtGui import QIcon
 from PyQt5.QtWidgets import QApplication, QMessageBox, QWidget
 
 # Import the Presenter from the widgets folder
-from demo.example_1_plot.widgets.main_widget import MainWidget
+from demo.example_1_simple_form.widgets.main_widget import MainWidget
 from demo.constants import APPLICATION_NAME, AUTHOR, EMAIL
 
 

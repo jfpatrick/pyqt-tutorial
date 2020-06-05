@@ -6,10 +6,10 @@ import pyqtgraph as pg  # For typing
 from accwidgets.graph import TimeSpan, ScrollingPlotWidget
 
 # Import the models
-from demo.example_1_plot.models.models import JapcModel, DeviceTimingSource, SinglePointSource
+from demo.example_3_plot.models.models import JapcModel, DeviceTimingSource, SinglePointSource
 
 # Import the code generated from the view.ui file
-from demo.example_1_plot.resources.generated.ui_view import Ui_Form
+from demo.example_3_plot.resources.generated.ui_view import Ui_Form
 
 
 class MainWidget(QWidget, Ui_Form):

@@ -1,7 +1,7 @@
 import PyQt5
 from PyQt5.QtWidgets import QPushButton, QSpinBox
 from accwidgets.graph import ScrollingPlotWidget
-from demo.example_1_plot.widgets.main_widget import MainWidget
+from demo.example_3_plot.widgets.main_widget import MainWidget
 
 
 def test_can_open_main_window(monkeypatch, mock_pyjapc, qtbot):

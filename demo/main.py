@@ -6,8 +6,9 @@ from PyQt5.QtGui import QIcon
 from PyQt5.QtWidgets import QApplication, QMessageBox, QTabWidget
 
 # Import the Presenters from the widgets folder of all the modules
-from demo.example_1_plot.widgets.main_widget import MainWidget as Example1Widget
+from demo.example_1_simple_form.widgets.main_widget import MainWidget as Example1Widget
 from demo.example_2_image.widgets.main_widget import MainWidget as Example2Widget
+from demo.example_3_plot.widgets.main_widget import MainWidget as Example3Widget
 
 # Import the constants
 from demo.constants import APPLICATION_NAME, AUTHOR, EMAIL
@@ -31,10 +32,12 @@ def main():
         # Instantiate your GUIs (here all the widgets from the examples)
         widget_1 = Example1Widget()
         widget_2 = Example2Widget()
+        widget_3 = Example3Widget()
 
         # Add the widgets to the window as tabs
-        tabs.addTab(widget_1, QIcon(), "Example 1 - Plot")
+        tabs.addTab(widget_1, QIcon(), "Example 1 - Simple Form")
         tabs.addTab(widget_2, QIcon(), "Example 2 - Image")
+        tabs.addTab(widget_3, QIcon(), "Example 3 - Plot")
 
         # Set the window title
         tabs.setWindowTitle(APPLICATION_NAME)

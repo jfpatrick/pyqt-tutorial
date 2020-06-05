@@ -1,7 +1,7 @@
 import pytest
 import pyjapc
 
-from demo.example_1_plot.widgets.main_widget import MainWidget
+from demo.example_3_plot.widgets.main_widget import MainWidget
 from demo.papc_setup.papc_devices import setup_papc_devices
 
 
