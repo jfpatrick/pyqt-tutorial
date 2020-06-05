@@ -1,6 +1,5 @@
-
 .. index:: Testing and Linting
-.. _testing_linting
+.. _testing_linting:
 
 ===================
 Testing and Linting
@@ -12,7 +11,7 @@ Here we overview the tools available to automate these two tasks effectively wit
 
 
 .. index:: Linting
-.. _linting
+.. _linting:
 
 Linting
 =======
@@ -30,7 +29,7 @@ you can run them by typing::
 
 
 .. index:: Testing
-.. _testing
+.. _testing:
 
 Testing
 =======
@@ -49,8 +48,8 @@ If your application interacts with the control system, you will also have to moc
 
 
 .. index:: Unit Tests with pytest
-.. _unit_tests
-.. _pytest
+.. _unit_tests:
+.. _pytest:
 
 Simple unit tests - pytest
 --------------------------
@@ -89,7 +88,7 @@ setting up and tearing down tests, and to mock bigger components of your applica
 
 
 .. index:: Mocking the Control System API
-.. _mocking
+.. _mocking:
 
 Unit tests on the control system's API
 --------------------------------------
@@ -115,7 +114,7 @@ This can be done on different levels:
 
 
 .. index:: Mocking PyJAPC
-.. _mocking_pyjapc
+.. _mocking_pyjapc:
 
 Example: Mocking PyJAPC
 ---------------------------
@@ -158,9 +157,9 @@ replaced by the mock without having to modify any code.
 
 
 .. index:: Graphical Tests with ``pytest-qt``
-.. _graphical_tests
-.. _acceptance_tests
-.. _pytest_qt
+.. _graphical_tests:
+.. _acceptance_tests:
+.. _pytest_qt:
 
 Graphical acceptance tests
 --------------------------
@@ -195,7 +194,7 @@ Here is a simple example of a graphical test::
 
 .. index:: Continuous Integration
 .. index:: GitLab CI
-.. _gitlab_ci
+.. _gitlab_ci:
 
 Continuous Integration (CI)
 ============================
@@ -209,13 +208,13 @@ To learn more about the nature of such modifications, check out the `.gitlab-ci.
 :ref:`in the relevant page <4-project-structure:gitlab-ci_conf>`.
 
 .. index:: GitLab CI Troubleshooting
-.. _gitlab_ci_troubleshoot
+.. _gitlab_ci_troubleshoot:
 
 Troubleshooting
 ---------------
 
 .. index:: Abort()
-.. _qt_abort
+.. _qt_abort:
 
 Qt throws Abort() during the tests
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -224,7 +223,7 @@ Otherwise, make sure you're passing your Qt objects to ``qtbot`` with ``qtbot.ad
  before trying to perform any operation on it.
 
 .. index:: CI pipeline never starts
-.. _pipeline_hangs
+.. _pipeline_hangs:
 
 The pipeline hangs forever while trying to start the tests
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -233,7 +232,7 @@ Verify which part of your application is trying to contact the control system an
 See the above paragraph on testing control system APIs.
 
 .. index:: "Failed to connect to all InCA servers"
-.. _failed_to_connect
+.. _failed_to_connect:
 
 The pipeline fails with an error saying "Failed to connect to all InCA servers"
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -248,6 +247,9 @@ See the above paragraph on testing control system APIs.
 Tips and Tricks
 ---------------
 
+.. index:: Add coverage badge to your repo
+.. _add_coverage_badge:
+
 Add coverage badge
 ~~~~~~~~~~~~~~~~~~~
 In GitLab's side bar, press ``Settings > General > Badges``. The fill the fields as follows::
@@ -258,6 +260,21 @@ In GitLab's side bar, press ``Settings > General > Badges``. The fill the fields
 
 The next time a pipeline runs on master, the number should be updated.
 
+
+.. index:: Make screenshots during the tests
+.. _test_screenshots:
+
 Make screenshot during the tests
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 *TODO Check Acc-Py documentation*
+
+
+
+
+.. index:: Testing and Linting FAQ
+.. _testing_faq:
+
+FAQ
+===
+
+*TODO*

@@ -1,6 +1,6 @@
 .. index:: Testing with ``papc``
 .. index:: ``papc``
-.. _papc
+.. _papc:
 
 =================
 Testing with papc
@@ -19,7 +19,7 @@ expert apps in simulated mode on non TN-enabled machines.
     contact Acc-Py for support.
 
 .. index:: How ``papc`` works
-.. _papc_how_it_works
+.. _papc_how_it_works:
 
 How it works
 ============
@@ -158,7 +158,7 @@ If you are using this setup for tests, remember to put all the setup code in a `
 environment is setup from scratch for every test. See the page on testing for an example of how to properly do it.
 
 .. index:: Troubleshooting ``papc``
-.. _papc_troubleshooting
+.. _papc_troubleshooting:
 
 Troubleshooting
 ===============
@@ -172,3 +172,12 @@ Troubleshooting
    to make ``pytest`` reuse the ``papc`` instance instead of creating new ones.
    Pay strong attention to avoid side effects.
 
+
+
+.. index:: papc FAQ
+.. _papc_faq:
+
+FAQ
+===
+
+*TODO*

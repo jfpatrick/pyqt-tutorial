@@ -1,5 +1,5 @@
 .. index:: Acc-Py
-.. _acc-py
+.. _acc-py:
 
 ========================
 The environment: Acc-Py
@@ -12,12 +12,17 @@ BE/CO maintains a shared Python distribution called **Acc-Py**. It's an Anaconda
 comes with a set of packages and a command-line tool (called ``acc-py``) for small operations like project creation,
 CI setup, documentation, project release, etc.  It also comes with its own package repository.
 
+.. note:: Acc-Py documentation is available on Confluence at this link:
+    `https://wikis.cern.ch/display/ACCPY/Accelerating+Python+Home`_. More technical documentation is also
+    available on ReadTheDocs here:
+    `https://acc-py.web.cern.ch/gitlab/acc-co/devops/python/acc-py-devtools/docs/stable/`_.
+
 .. note:: Acc-Py is accessible from all machines on the TN network. At the time of writing (May 2020) it is not
     accessible from GPN, but this issue is currently being fixed and a future release will probably be accessible
     from the outside as well **(PLEASE UPDATE THIS SECTION)**.
 
 .. index:: Acc-Py Features
-.. _acc-py_features
+.. _acc-py_features:
 
 What does it provide?
 =====================
@@ -41,7 +46,7 @@ At the time of writing (May 2020), the main features of the Acc-Py distribution 
         - and more.
 
 .. index:: Activate Acc-Py
-.. _acc-py_usage
+.. _acc-py_usage:
 
 How do I use it?
 ================
@@ -60,7 +65,7 @@ Acc-Py. At this point, you can already start developing a simple script that use
 or other libraries.
 
 .. index:: Virtualenvs
-.. _acc-py_virtualenv
+.. _acc-py_virtualenv:
 
 Can I install/remove packages?
 ==============================
@@ -83,7 +88,7 @@ uniformity among all CERN machines without having to stick to older Python versi
 
 .. index:: init project
 .. index:: Release
-.. _acc-py_release
+.. _acc-py_release:
 
 Can I release my project?
 =========================
@@ -114,7 +119,7 @@ Once done, the user only has to edit the ``setup.py`` files adding its project d
         you issued it.
 
 .. index:: Other Features of Acc-Py
-.. _acc-py_other_features
+.. _acc-py_other_features:
 
 Other features
 ==============
@@ -142,7 +147,7 @@ And read through the help message. If you want to know more about this tool and 
 `Acc-Py documentation <https://wikis.cern.ch/display/ACCPY/Accelerating+Python+Home>`_.
 
 .. index:: Acc-Py-PyQt
-.. _acc-py-pyqt
+.. _acc-py-pyqt:
 
 What about PyQt5?
 =================
@@ -170,7 +175,7 @@ check out `the official documentation <https://wikis.cern.ch/display/ACCPY/GUI+T
 
 
 .. index:: Acc-Py FAQ
-.. _acc-py_faq
+.. _acc-py_faq:
 FAQ
 ===
 

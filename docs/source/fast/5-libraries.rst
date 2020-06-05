@@ -1,12 +1,12 @@
 .. index:: Libraries
-.. _libraries
+.. _libraries:
 
 =========
 Libraries
 =========
 
 .. index:: GUI Libraries
-.. _gui_libraries
+.. _gui_libraries:
 
 GUI Libraries
 =============
@@ -15,7 +15,7 @@ The Acc-Py team provides and maintain a lot of Python libraries. Here is a non-e
 important ones related to PyQt5 (May 2020):
 
 .. index:: ComRAD
-.. _comrad
+.. _comrad:
 
 ComRAD
 ------
@@ -38,7 +38,7 @@ to learn more about this tool.
     ** PLEASE UPDATE THIS SECTION **
 
 .. index:: accwidgets
-.. _accwidgets
+.. _accwidgets:
 
 accwidgets
 ----------
@@ -58,7 +58,7 @@ Many more widgets are likely to be added to this package in the future, so alway
 
 
 .. index:: Control System Libraries
-.. _control_system_libraries
+.. _control_system_libraries:
 
 Control System Libraries
 ========================
@@ -82,7 +82,7 @@ etc.
 
 
 .. index:: libraries FAQ
-.. libraries_faq
+.. _libraries_faq:
 
 FAQ
 ===

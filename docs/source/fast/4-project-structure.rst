@@ -1,5 +1,5 @@
 .. index:: Project Structure
-.. _project_structure
+.. _project_structure:
 
 =================
 Project Structure
@@ -27,7 +27,7 @@ We are going to cover each of these files one by one.
 
 
 .. index:: .gitignore
-.. _gitignore
+.. _gitignore:
 
 .gitignore
 ==========
@@ -39,7 +39,7 @@ If you have doubts about this file, check
 
 
 .. index:: .gitlab-ci.yml
-.. _gitlab-ci_conf
+.. _gitlab-ci_conf:
 
 .gitlab-ci.yml
 ==============
@@ -61,7 +61,7 @@ You can  modify it to add more tasks, deploy automatically, do linting, or anyth
 
 
 .. index:: activate.sh
-.. _activate.sh
+.. _activate.sh:
 
 activate.sh
 ===========
@@ -84,7 +84,7 @@ in your shell.
 
 
 .. index:: README.md
-.. _readme
+.. _readme:
 
 README.md
 =========
@@ -98,7 +98,7 @@ your project is, how to run it, who's the author/maintainer and any precautions 
 
 
 .. index:: setup.py
-.. _setup.py
+.. _setup.py:
 
 setup.py
 ========
@@ -121,7 +121,7 @@ and more.
 
 
 .. index:: project_name/
-.. _project_folder
+.. _project_folder:
 
 <project_name>/
 ===============
@@ -134,7 +134,7 @@ with your code. When importing from the various scripts, this folder's name is t
 
 
 .. index:: __init__.py
-.. ___init__py.py
+.. _init.py:
 
 <project_name>/__init__.py
 ==========================
@@ -162,7 +162,7 @@ them through Qt Designer.
 
 
 .. index:: pyqt5ac.yml
-.. _pyqt5ac.yml
+.. _pyqt5ac.yml:
 
 <project_name>/pyqt5ac.yml
 ==========================
@@ -174,7 +174,7 @@ It doesn't need to be edited, unless you change the path of your XML or generate
 
 
 .. index:: main.py
-.. _main.py
+.. _main.py:
 
 <project_name>/main.py
 ======================
@@ -187,7 +187,7 @@ loaded here.
 
 
 .. index:: constants.py
-.. _contants.py
+.. _contants.py:
 
 <project_name>/constants.py
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -202,7 +202,7 @@ Feed free to add any other constants that your code might require.
 
 
 .. index:: widgets/
-.. _widgets_folder
+.. _widgets_folder:
 
 <project_name>/widgets/
 =======================
@@ -214,7 +214,7 @@ In the demo application, ``ExampleWidget`` is the Presenter and lives in there, 
 
 
 .. index:: resources/
-.. _resources_folder
+.. _resources_folder:
 
 <project_name>/resources/
 =========================
@@ -256,7 +256,7 @@ You can see this happening in the ``ExampleWidget`` class::
 
 
 .. index:: models/
-.. _models>folder
+.. _models_folder:
 
 <project_name>/models/
 ======================
@@ -273,7 +273,7 @@ compatible with PyQt's signals and slots pattern.
 
 
 .. index:: papc_setup/
-.. _papc_setup
+.. _papc_setup:
 
 <project_name>/models/papc_setup/
 =================================
@@ -288,7 +288,7 @@ This also allows control system apps to run in a sandbox also on non-TN machines
 
 
 .. index:: tests/
-.. _tests_folder
+.. _tests_folder:
 
 tests/
 ======
@@ -311,7 +311,7 @@ To see the coverage report, type::
 
 
 .. index:: docs/
-.. _docs_folder
+.. _docs_folder:
 
 docs/
 =====
@@ -326,7 +326,7 @@ to `Sphinx's documentation <https://www.sphinx-doc.org/en/master/>`_.
 
 
 .. index:: Project Structure FAQ
-.. project_structure_faq
+.. _project_structure_faq:
 
 FAQ
 ===

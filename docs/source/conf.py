@@ -64,3 +64,9 @@ autosummary_imported_members = True
 
 autosectionlabel_prefix_document = True
 autosectionlabel_maxdepth = 10
+
+
+# -- Substitutions
+rst_epilog = '''
+.. |accpy| replace:: `Acc-Py <https://wikis.cern.ch/display/ACCPY/Accelerating+Python+Home>`__
+'''

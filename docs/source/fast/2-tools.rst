@@ -1,12 +1,12 @@
 .. index:: Development Tools
-.. _tools
+.. _tools:
 
 =================
 Development Tools
 =================
 
 .. index:: PyCharm
-.. _pycharm
+.. _pycharm:
 
 PyCharm
 =======
@@ -35,7 +35,7 @@ Remember that adding a path to a folder after the command makes PyCharm load tha
 
 .. index:: Qt Designer
 .. index:: designer
-.. _qtdesigner
+.. _qtdesigner:
 
 Qt Designer
 ===========
@@ -60,7 +60,7 @@ Refer to your library's documentation to know which paths to add to this variabl
     for hints.
 
 .. index:: Development Tools FAQ
-.. tools_faq
+.. _tools_faq:
 
 FAQ
 ===

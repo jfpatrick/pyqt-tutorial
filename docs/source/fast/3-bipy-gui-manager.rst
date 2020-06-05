@@ -1,5 +1,5 @@
 .. index:: Setup a New Project
-.. _setup_new_project
+.. _setup_new_project:
 
 =================
 Setup New Project
@@ -15,7 +15,7 @@ eases the process of setting up a proper project structure.
 
 .. index:: BI Python Expert GUI Manager
 .. index:: bipy-gui-manager
-.. _bipy-gui-manager
+.. _bipy-gui-manager:
 
 BI Python Expert GUI Manager (bipy-gui-manager)
 ===============================================
@@ -55,7 +55,7 @@ In the next section we are going to review the project structure, so skip ahead 
 
 
 .. index:: Aliasing and linking ``bipy-gui-manager``
-.. _bipy-gui-manager_aliasing
+.. _bipy-gui-manager_aliasing:
 
 How to avoid using the full path?
 =================================
@@ -84,7 +84,7 @@ having to type the full path. To do so, use one of the following strategies:
             sudo ln -s /user/bdisoft/development/python/gui/bipy-gui-manager /usr/local/bin/bipy-gui-manager
 
 .. index:: bipy-gui-manager Advanced Usage
-.. _bipy-gui-manager_advanced
+.. _bipy-gui-manager_advanced:
 
 Advanced Usage
 ==============
@@ -100,7 +100,7 @@ in the console for an overview of the main subcommands, or::
 for a complete description of create-project's CLI interface.
 
 .. index:: bipy-gui-manager Contacts
-.. _bipy-gui-manager_contacts
+.. _bipy-gui-manager_contacts:
 
 Contacts
 ========
@@ -108,7 +108,7 @@ For questions or bug reports about ``bipy-gui-manager``, contact Sara Zanzottera
 
 
 .. index:: bipy-gui-manager FAQ
-.. bipy-gui-manager_faq
+.. bipy-gui-manager_faq:
 
 FAQ
 ===

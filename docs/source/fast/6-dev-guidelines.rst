@@ -1,5 +1,5 @@
 .. index:: Development Guidelines
-.. _dev_guidelines
+.. _dev_guidelines:
 
 ======================
 Development Guidelines
@@ -7,7 +7,7 @@ Development Guidelines
 
 
 .. index:: GUI Design Strategies
-.. _gui_design
+.. _gui_design:
 
 GUI Design
 ==========
@@ -21,7 +21,7 @@ is the more sensible approach for your specific case.
 
 .. index:: Qt Designer files
 .. index:: .ui files
-.. _ui_files
+.. _ui_files:
 
 Design with Qt Designer (using ``.ui`` files)
 -----------------------------------------
@@ -46,7 +46,7 @@ These files cannot be loaded directly in a PyQt application (unlike QML files), 
 
 .. index:: Using ``.ui`` files
 .. index:: ``.ui`` files usage
-.. _ui_files_usage
+.. _ui_files_usage:
 
 Using the ``.ui`` files in code
 -------------------------------
@@ -82,7 +82,7 @@ The loading is done into the Presenter, that is, into any file in the ``widgets`
 
 
 .. index:: Design GUI in code
-.. _gui_py_files
+.. _gui_py_files:
 
 Design in code
 --------------
@@ -100,7 +100,7 @@ Which means: **don't write your entire GUI as a single file**, unless is nothing
 
 .. index:: Resource Files (``.qrc``)
 .. index:: ``.qrc`` files
-.. _qrc_files
+.. _qrc_files:
 
 Resource files (``.qrc``)
 -------------------------
@@ -124,3 +124,14 @@ If you are using Qt Designer, the procedure goes as follow:
 
  * You can now launch the application and make sure it runs. After the first run,
    you should see a file called ``resources_rc.py`` among your generated ``ui_*.py`` files.
+
+
+
+
+.. index:: Development Guidelines FAQ
+.. _dev_guidelines_faq:
+
+FAQ
+===
+
+*TODO*

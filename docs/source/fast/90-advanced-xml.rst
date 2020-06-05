@@ -1,12 +1,12 @@
 .. index:: Advanced Topics on XML Files (``.ui``, ``.qrc``)
-.. _advanced_xml
+.. _advanced_xml:
 
 ================================================
 Advanced Topics on XML Files (``.ui``, ``.qrc``)
 ================================================
 
 .. index:: Compiling ``.ui`` files
-.. _adv_compile_ui
+.. _adv_compile_ui:
 
 Compiling .ui files
 ===================
@@ -22,7 +22,7 @@ is happening behind the scenes.
 
 
 .. index:: Automatic ``.ui`` Recompilation with ``pyqt5ac``
-.. _pyqt5ac_ui
+.. _pyqt5ac_ui:
 
 Automatic ``.ui`` Recompilation with ``pyqt5ac``
 ------------------------------------------------
@@ -42,7 +42,7 @@ To know more about how to modify or deubg such file, please refer to the
 
 .. index:: Manual compilation of ``.ui`` files
 .. index:: ``pyuic5``
-.. _pyuic5
+.. _pyuic5:
 
 Manual compilation of ``.ui`` files
 -----------------------------------
@@ -58,7 +58,7 @@ definition of your GUI.
 
 
 .. index:: Writing Resource files (``.qrc``)
-.. _writing_qrc
+.. _writing_qrc:
 
 Writing Resource files (``.qrc``)
 ---------------------------------
@@ -69,7 +69,7 @@ to learn more about how to write manually a resource file.
 
 .. index:: Manual compilation of ``.ui`` and ``.qrc`` files
 .. index:: ``pyrcc5``
-.. _pyrcc5
+.. _pyrcc5:
 
 Manual compilation of ``.ui`` and ``.qrc`` files
 ------------------------------------------------
@@ -84,7 +84,7 @@ and then recompile the ``.ui`` files with the ``--from-imports`` flag::
 
 
 .. index:: Use ComRAD as a debug tool
-.. _comrad_for_live_preview
+.. _comrad_for_live_preview:
 
 Use ComRAD as a debug tool
 ~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -93,3 +93,14 @@ a bit hard to figure out how does it behave in complex scenarios. In order to tr
 into ``.py`` files every time, you can try to load it in
 `ComRAD <https://acc-py.web.cern.ch/gitlab/acc-co/accsoft/gui/rad/accsoft-gui-rad-comrad/docs/stable/index.html>`_
 for a live preview with some mock data.
+
+
+
+
+.. index:: Qt Designer Advanced FAQ
+.. _xml_faq:
+
+FAQ
+===
+
+*TODO*
