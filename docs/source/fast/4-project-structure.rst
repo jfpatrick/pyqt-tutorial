@@ -6,22 +6,31 @@ Project Structure
 =================
 
 All BI Expert GUIs should try to use a common project structure. This is also the default
-structure of projects created with ``bipy-gui-manager``.
+structure of projects created with `BI Python Expert GUI Manager <https://gitlab.cern.ch/bisw-python/bipy-gui-manager>`_
+(``bipy-gui-manager``, see the `relevant page <3-bipy-gui-manager.html>`).
 
 You can find the project template in
 `this GitLab repo <https://gitlab.cern.ch/bisw-python/be-bi-pyqt-template>`_.
 
 The template provides:
 
- * A sane folder structure for your code, based on the **MVP architecture**,
- * A test setup ready for unit tests and GUI tests (based on ``pytest-qt``),
- * A minimal simulation environment for your tests (based on ``papc``),
-   that can be extended to simulate your real data sources (FESA, NXCALS, ...)
- * A ``setup.py`` to customize for quick packaging & release, with entry points,
- * A ``.gitignore`` for Python artifacts,
- * A ``.gitlab-ci.yml`` supporting GUI testing out of the box and coverage reports,
+ * A sane folder structure for your code, based on the **MVP architecture**
+   (see on `Wikipedia <https://en.wikipedia.org/wiki/Model%E2%80%93view%E2%80%93presenter>`_),
+
+ * A test setup ready for unit tests and GUI tests (based on ``pytest-qt``, see the
+   `testing section <7-testing.html#pytest_qt>`_),
+
+ * A minimal simulation environment for your tests (based on ``papc``, see the
+   `papc section <89-papc.html>`_), that can be extended to simulate your real data sources (FESA, NXCALS, ...)
+
+ * A ``setup.py`` to customize for quick packaging & release, with entry points (see :ref:`below <setup.py>`_),
+
+ * A ``.gitignore`` for Python artifacts (see :ref:`below <gitignore>`_),
+
+ * A ``.gitlab-ci.yml`` supporting GUI testing out of the box and coverage reports (see :ref:`below <gitlab-ci-yml>`_),
+
  * A small ``activate.sh`` activation script to activate both your virtualenv and Acc-Py,
-   and sets up some env vars for Qt Designer.
+   and sets up some env vars for Qt Designer (see :ref:`below <activate.sh>`_).
 
 We are going to cover each of these files one by one.
 
@@ -43,18 +52,21 @@ If you have doubts about this file, check
 
 .gitlab-ci.yml
 ==============
-This file configures GitLab CI to run your tests each time you push your code
-to the repository.
+This file configures GitLab CI, the continuous integration pipeline of GitLab.
 
-It also automatically generates a documentation page for you at this address:
-https://acc-py.web.cern.ch/gitlab/<bisw-python_or_your_username>/<project_name>/docs/master/index.html
+In the form provided by ``bipy-gui-manager``, it instructs the CI to run your tests
+each time you push your code to the repository, and automatically generates a documentation page for you at this
+address:
+https://acc-py.web.cern.ch/gitlab/[bisw-python_or_your_username]/[project_name]
 
-It differs a lot from the default version obtained by executing ``acc-py init-ci``, because it has been configured to:
+The one provided by ``bipy-gui-manager`` differs a lot from the default version obtained by executing
+``acc-py init-ci``, because it has been configured to:
 
- * Run headless GUI tests with ``pytest-qt``
- * Provide a coverage report that you can use as a repository badge.
- * Do not deploy automatically on the CERN Python repository.
- * Generate the documentation.
+ * Run headless GUI tests with ``pytest-qt`` (check the `testing page <7-testing#pytest-qt>`_ to learn more)
+ * Provide a coverage report that you can use as a repository badge
+ * Do not deploy automatically on the `CERN Python repository <http://acc-py-repo:8081/>`_
+ * Generate the documentation, accessible at
+   https://acc-py.web.cern.ch/gitlab/[bisw-python_or_your_username]/[project_name]
 
 You can  modify it to add more tasks, deploy automatically, do linting, or anything else. For more information, check
 `Acc-Py documentation <https://wikis.cern.ch/display/ACCPY/GUI+Testing>`_ or Google the file name.
@@ -65,7 +77,7 @@ You can  modify it to add more tasks, deploy automatically, do linting, or anyth
 
 activate.sh
 ===========
-Small bash script sourcing, in order, Acc-Py-PyQt and your virtualenv (assuming it's called venv and lives in the
+Small bash script sourcing, in order, Acc-Py-PyQt and your virtualenv (assuming it's called ``venv`` and lives in the
 current directory). This ensures that the overall environment is setup correctly.
 
 .. warning:: You should source this script **every time** you start working on your project.
@@ -74,9 +86,9 @@ current directory). This ensures that the overall environment is setup correctly
         source activate.sh
 
 It also sets the ``PYQTDESIGNERPATH`` in case you want to use Qt Designer with the ``accwidget``'s
-plugin. See the Libraries sections (under :ref:`accwidgets`) for a recap on this specific env var.
+plugin. See the `Libraries <5-libraries#accwidgets>`_ sections for a recap on this specific env var.
 
-It also put Acc-Py shared PyCharm instance in your ``PATH``. In this was you can launch PyCharm by typing::
+It also put Acc-Py shared PyCharm instance in your ``PATH``. In this way you can launch PyCharm by typing::
 
     pycharm.sh
 
@@ -88,13 +100,24 @@ in your shell.
 
 README.md
 =========
-A simple Markdown based README file. It's recommended to add some information to it, including at the minimum what
+A simple Markdown based ``README`` file. ``bipy-gui-manager`` already adds some basic informations to it, but it's
+recommended that you review it and add more meaningful information, including at the minimum what
 your project is, how to run it, who's the author/maintainer and any precautions to take when running/debugging
 (i.e. is this GUI operational?).
 
-.. note:: ``bipy-gui-manager`` will create for you a standard ``README.md`` with some basic information.
-    You're still encouraged to expand it with a meaningful description of your project's
-    goals and features.
+
+.. index:: MANIFEST.in
+.. _manifest:
+
+MANIFEST.in
+===========
+This file is used to package assets (i.e. files that do not end with ``.py``) in the release.
+
+In the version provided by ``bipy-gui-manager``, you can see for example, how the file ``pyqt5ac.yml`` , which is
+needed at runtime, is packaged. Any file living into the project folder can be packaged this way.
+
+See the `MANIFEST.in specification <https://packaging.python.org/guides/using-manifest-in/>`_
+to know more about this file.
 
 
 .. index:: setup.py
@@ -115,9 +138,44 @@ It gathers a few important information, namely:
 
 and more.
 
-.. note:: ``bipy-gui-manager`` partially populates this file with proper values, but you're always free to modify it.
+.. note:: ``bipy-gui-manager`` partially populates this file with proper values, but you' should always review it.
     Notably, it creates an entry point called ``<project_name>`` (replace with the actual project name!) that can be
     used to launch your application directly, without invoking explicitly the Python interpreter.
+
+
+.. index:: Entry Points
+.. _entry_points:
+
+Entry points
+------------
+As explained above, the autogenerated ``setup.py`` contains a predefined entry point for your application.
+
+Many people use to invoke Python scripts by typing::
+
+    python my_script.py
+
+Such call will trigger the Python interpreter to go through the file and execute it from top to bottom.
+Although not wrong, this method does not allow you to tell the interpreter which function to start from, and is
+sensitive to changes in the file name or the project structure. It also makes imports management much harder.
+
+The solution are **entry points**. An entry point is a bash command that launches your application.
+In ``setup.py``, they are at the very bottom of the file and look like the following::
+
+    entry_points={
+        'console_scripts': [
+            # MODIFY: remove this line and add a pointer to the startup function of your app.
+            # This means: 'my-project' launches "my_project/main.py:main()"
+            'my-project=my_project.main:main',
+        ],
+    },
+
+Indeed, typing ``my-project`` in your shell would start executing from the ``main()`` function of the
+``main.py`` file of the ``my_project`` module (note the module name is the module name, not really ``my_project``).
+
+.. note:: This technique is **highly recommended** and in fact practically mandatory while working with packaged
+    Python code. See the
+    `official Python documentation on entry points <https://packaging.python.org/specifications/entry-points/>`_ or
+    have a tour on Google to find out more about the topic.
 
 
 .. index:: project_name/
@@ -125,8 +183,8 @@ and more.
 
 <project_name>/
 ===============
-This is where your project's code lives. All the files included in this folder will be packaged and distributed
-with your code. When importing from the various scripts, this folder's name is the root of all the imports.
+This is where your project's code lives. All the Python files included in this folder will be packaged and distributed
+with your code. When importing from a Python script, this folder's name is the root of all the imports.
 
 .. note:: While top-level project names are recommended to use dashes as separators, modules must use underscores to
     comply with Python syntax. Therefore, if your project was called ``my-test-project``, this folder will be called
@@ -138,16 +196,20 @@ with your code. When importing from the various scripts, this folder's name is t
 
 <project_name>/__init__.py
 ==========================
-.. note:: Usually, ``__init__.py`` files are empty (if you're unsure why, check out the Python documentation first).
+.. note:: Usually, ``__init__.py`` files are empty (if you're unsure why, check out the
+    `Python documentation <https://docs.python.org/3/tutorial/modules.html#packages>`_ first).
     However this specific ``__init__.py`` file contains three lines of code that do not need to be modified,
     but are explained here for completeness.
 
-    If you're a beginner, feel free to ignore the content of this file.
+.. note:: The content of this file is strictly related with the content of ``<project_name>/resources``,
+    so you might want to review this paragraph once you read it.
 
-The content of this file is strictly related with the content of ``<project_name>/resources``, so you might want to
-review this paragraph later.
+The ``__init__.py`` file contains one line of code that invokes ``pyqt5ac``, a small tool that performs the
+automatic recompilation of Qt Designer files after they are edited. See
+`its project page <https://github.com/addisonElliott/pyqt5ac>`_ and, if you're interested, the
+`relevant section <90-advanced-xml.html#pyqt5ac_ui>`_ later on in the guide.
 
-It basically invokes ``pyqt5ac`` to do the following:
+In short, that single line does the following:
 
      * Verify whether your ``.ui`` and ``.qrc`` files (Qt Designer files) have been compiled to Python code,
        so that their counterparts exist in the ``<project_name>/resources/generated/`` folder.
@@ -158,7 +220,10 @@ It basically invokes ``pyqt5ac`` to do the following:
 
 This is critical to ensure that the XML files and their corresponding Python translations are always in sync, and lifts
 from the user the burden of learning how to use ``pyuic5`` and ``pyrcc5`` to compile their XMLs every time they edit
-them through Qt Designer.
+their views through Qt Designer.
+
+If for any reason you prefer to use these tools instead of automatically compiling the files, delete all the content of
+this file and see the `relevant section <90-advanced-xml.html#pyqt5ac_ui>`_ later on in the guide.
 
 
 .. index:: pyqt5ac.yml
@@ -166,11 +231,9 @@ them through Qt Designer.
 
 <project_name>/pyqt5ac.yml
 ==========================
-.. note:: If you're a beginner, feel free to ignore the content of this file.
-
-This file is the configuration file for ``pyqt5ac`` (see above). It tells where are your XML files, where to put
+This is the configuration file for ``pyqt5ac`` (see above). It tells to the tool where are your XML files, where to put
 the generated Python files, and a few options to pass to ``pyuic5`` and ``pyrcc5`` at compile time.
-It doesn't need to be edited, unless you change the path of your XML or generated files (not recommended).
+It doesn't need to be edited, unless you have to change the path of your XML or generated files.
 
 
 .. index:: main.py
@@ -179,18 +242,21 @@ It doesn't need to be edited, unless you change the path of your XML or generate
 <project_name>/main.py
 ======================
 The application's entry point. You can edit the ``main()`` function to load your GUI, as specified in the comments in
-the file itself, but this file should contain no more than the small function that starts the event loop (and at most
+the file itself, but this file should contain no more than the the code required to start the event loop (and at most
 do some error handling). The rest of the logic will go in the other folders.
 
-In the demo application, ``ExampleWidget`` (from ``<project_name>/widgets/example_widget.py``) is instantiated and 
+In the template application, ``MainWidget`` (from ``<project_name>/widgets/main_widget.py``) is instantiated and
 loaded here.
+
+See the `Complete Tutorial <../complete/index.html>`_ for a more detailed description of the content of this
+file and its role.
 
 
 .. index:: constants.py
 .. _contants.py:
 
 <project_name>/constants.py
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+===========================
 This simple file contains a few constants that can be reused in your code, like the project's name, the author name and
 their contact information.
 
@@ -198,7 +264,7 @@ Feed free to add any other constants that your code might require.
 
 .. warning:: There values are supposed to be **constant**. They are not supposed to work as global variables or
     anything like that. Expect nasty bugs if you try to modify these values at runtime, as PyQt is inherently
-    multithreaded.
+    multi-threaded.
 
 
 .. index:: widgets/
@@ -210,7 +276,10 @@ This contains the components of your application. In an MVP model, these are the
 (see ``<project_name>/resources``) and wire them to the Models (see ``<project_name>/models``), acting as an 
 intermediary when required.
 
-In the demo application, ``ExampleWidget`` is the Presenter and lives in there, in ``example_widget.py``.
+In the demo application, ``MainWidget`` is the Presenter and lives in there, in ``main_widget.py``.
+
+See the `Complete Tutorial <../complete/index.html>`_ for a more detailed description of the content of this
+folder and its role.
 
 
 .. index:: resources/
@@ -219,12 +288,15 @@ In the demo application, ``ExampleWidget`` is the Presenter and lives in there, 
 <project_name>/resources/
 =========================
 This folder contains multiple entities, all related to the static GUI's structure definition.
-These represent the View from an MVP perspective. They are:
+These represent the View from an MVP perspective, and they are:
 
     * ``.ui`` files. These are generated by Qt Designer and are XML files describing your GUI's layout, with no logic.
+      These files should be modified only through Qt Designer.
+      In many application, this is the only type of file that will be present in the folder.
 
     * The ``images/`` folder containing static resources (PNG, GIF, etc...) and ``.qrc`` files. These files are
       Qt's Resource Files and are used to load static files, like images and icons, into the GUI.
+      These files should be modified only through Qt Designer.
 
     * The ``generated/`` folder (will appear after you first run the app), that contains generated code of two kinds:
 
@@ -239,13 +311,13 @@ These represent the View from an MVP perspective. They are:
 
             They can also be updated manually using ``pyuic5`` and ``pyrcc5`` if you're more familiar with these tools.
             In this case, you might want to erase the content of `<project_name>/__init__.py` and remove ``pyqt5ac``
-            from the core dependencies, and document this operation.
+            from the core dependencies, and document this operation. See the
+            `relevant section <90-advanced-xml.html#pyqt5ac_ui>`_ of this tutorial for more info on this process.
 
-In this folder, you should modify the ``.ui`` and ``.qrc`` files only with Qt Designer (unless you really know
-what you're doing) and load the Views into the Presenters (``widgets/`` folder) by importing the
-``ui_ <view_name> .py`` files from the generated folder.
+You can load the Views into the Presenters (``widgets/`` folder) by importing the ``ui_ <view_name> .py`` files
+from the ``generated`` folder.
 
-You can see this happening in the ``ExampleWidget`` class::
+You can see this happening in the ``MainWidget`` class::
 
     # Import the code generated from the example_widget.ui file
     from be_bi_pyqt_template.resources.generated.ui_example_widget import Ui_TabWidget
@@ -254,6 +326,9 @@ You can see this happening in the ``ExampleWidget`` class::
         ...
 
 
+See the `Complete Tutorial <../complete/index.html>`_ for a more detailed description of the content of this
+folder and its role.
+
 
 .. index:: models/
 .. _models_folder:
@@ -261,15 +336,18 @@ You can see this happening in the ``ExampleWidget`` class::
 <project_name>/models/
 ======================
 This folder contains the Models of your application. The Model manages any object connecting to the control system,
-like PyJAPC instances, NXCALS connections, etc. Models should send their data to the Views by emitting *signals* that
-match corresponding *slots* in the View or Presenter.
+like PyJAPC instances, NXCALS connections, etc., or store state. Models should send their data to the Views by
+emitting *signals* that match corresponding *slots* in the View or Presenter.
 
-In the demo application, this folder contains a ``data_sources.py`` file that hosts all the Model classes.
-You are encouraged to create as many files as you wish. In this file, the ``ExampleModel`` class does mostly PyJapc SET
+In the template application, this folder contains a ``models.py`` file that hosts all the Model classes.
+You are encouraged to create as many files as you wish. In this file, the ``SpinBoxModel`` class does mostly PyJapc SET
 operations, while the plots' models retrieve data.
 
 No direct operation on the GUI is done here: this classes just translate the raw data into a format that is
 compatible with PyQt's signals and slots pattern.
+
+See the `Complete Tutorial <../complete/index.html>`_ for a more detailed description of the content of this
+folder and its role.
 
 
 .. index:: papc_setup/
@@ -284,7 +362,8 @@ it's receiving simulated data instead.
 This also allows control system apps to run in a sandbox also on non-TN machines, without the need of any modification.
 
 ``papc`` is primarily an option for creating meaningful and thorough GUI tests. Read more about it on the
-`papc documentation <https://acc-py.web.cern.ch/gitlab/pelson/papc/docs/stable/>`_.
+`papc documentation <https://acc-py.web.cern.ch/gitlab/pelson/papc/docs/stable/>`_ and in the
+`dedicated section <89-papc.htnl>`_ of this tutorial.
 
 
 .. index:: tests/
@@ -295,7 +374,7 @@ tests/
 This folder contains the automated tests for your app. It already contains some basic tests to ensure your setup is
 correct, and they will be run on GitLab CI every time you push code to your repository.
 
-In the case of the demo code, they tests the demo application, making sure the SET command have an actual effect on
+In the case of the template application, they tests the app itself, making sure the SET command have an actual effect on
 the simulated device, and other things. You can run your tests locally by executing::
 
     python -m pytest
@@ -308,6 +387,9 @@ To see the coverage report, type::
     GitLab CI. To see the stacktrace, re-run the tests as::
 
         python -m pytest --vv --log-cli-level=DEBUG
+
+
+Learn more about testing in the `dedicated testing section <7-testing.html>`_ of this tutorial.
 
 
 .. index:: docs/

@@ -26,12 +26,24 @@ If you have any other PyCharm installation on your ``PATH`` already, you can als
 
 to launch it.
 
-Remember that adding a path to a folder after the command makes PyCharm load that folder as a starting project.
+Remember that adding a path after the command makes PyCharm load that folder as a starting project.
 
 .. warning::
     At the time of writing (May 2020) PyCharm 2019 presents one serious bug with the Open Project folder explorer,
     which makes it hang for several minutes every time it tries to access an AFS directory (like most user's homes).
-    Therefore it's important to avoid using it by launching PyCharm from the relevant directory directly.
+    Therefore it's important to launch PyCharm from the relevant directory directly.
+
+    For example, if my project is under ``/afs/cern.ch/user/m/myusername/projects/python/my_project`` it can be opened
+    by executing::
+
+        /acc/local/share/python/pycharm/pycharm-community-2019.2.3/bin/pycharm.sh /afs/cern.ch/user/m/myusername/projects/python/my_project &
+
+    (The `&` detaches the process from the console).
+
+.. note:: PyCharm is not mandatory to develop Python application. If you're comfortable with other editors (VSCode,
+    Eclipse, Emacs, ...) feel free to use them.
+
+
 
 .. index:: Qt Designer
 .. index:: designer

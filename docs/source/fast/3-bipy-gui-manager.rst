@@ -8,9 +8,9 @@ Setup New Project
 In principle, once you setup your Acc-Py project, you can start developing your PyQt5 application right away.
 
 However, for consistency and maintainability, in BI we agreed on a common project structure that every PyQt5 project
-should abide, as far as possible. A small tool called
+should abide, as far as reasonable. A small tool called
 `BI Python Expert GUI Manager <https://gitlab.cern.ch/bisw-python/bipy-gui-manager>`_
-eases the process of setting up a proper project structure.
+guides you the process of setting up a proper project structure.
 
 
 .. index:: BI Python Expert GUI Manager
@@ -20,8 +20,9 @@ eases the process of setting up a proper project structure.
 BI Python Expert GUI Manager (bipy-gui-manager)
 ===============================================
 
-``bipy-gui-manager`` is a small Python utility to create a project stub (think of it as a Java archetype) for an
-Expert GUI PyQt5 application. It's specifically tuned for BI Expert GUIs.
+`bipy-gui-manager` is a small Python utility to create a project stub (think of it as a Java archetype)
+for an Expert GUI PyQt5 application.
+It's specifically tuned for BI Expert GUIs.
 
 How do I use it?
 ================
@@ -39,17 +40,12 @@ with this tutorial.
     frame with a dummy application in the center, like this:
 
     .. raw:: html
-
-        <img width="300px" src="../_static/application-template.png" style="margin:auto;"/>
-
+        <div style="padding:auto; text-align:center;">
+            <img width="300px" src="../_static/application-template.gif" />
+        </div>
 
     or a smaller window with an error. In the latter case, please report the error
     to the maintainers.
-
-    To obtain an empty template (without the demo application), type::
-
-        bipy-gui-manager create-project --no-demo
-
 
 In the next section we are going to review the project structure, so skip ahead if you're interested.
 
@@ -93,7 +89,7 @@ Advanced Usage
 
     bipy-gui-manager--help
 
-in the console for an overview of the main subcommands, or::
+in the console for an overview of the main sub-commands, or::
 
     bipy-gui-manager create-project --help
 

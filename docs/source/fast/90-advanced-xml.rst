@@ -36,7 +36,7 @@ In the template, the code performing this operation is the main module's ``__ini
 In turn, this line tells ``pyqt5ac`` to look for instructions into the ``pyqt5ac.yml`` file, hosted in the same
 directory.
 
-To know more about how to modify or deubg such file, please refer to the
+To know more about how to modify or debug such file, please refer to the
 `pyqt5ac documentation <https://github.com/addisonElliott/pyqt5ac>`_.
 
 

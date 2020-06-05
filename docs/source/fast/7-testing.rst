@@ -157,8 +157,8 @@ replaced by the mock without having to modify any code.
 
 
 .. index:: Graphical Tests with ``pytest-qt``
-.. _graphical_tests:
-.. _acceptance_tests:
+.. index:: Acceptance Tests with ``pytest-qt``
+.. index:: ``pytest-qt``
 .. _pytest_qt:
 
 Graphical acceptance tests
