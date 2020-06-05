@@ -205,7 +205,7 @@ linting, producing coverage reports, and many more.
 
 It is mostly setup already by the Acc-Py team, and some extra customizations are added by ``bipy-gui-manager``.
 To learn more about the nature of such modifications, check out the `.gitlab-ci.yml` file description
-:ref:`in the relevant page <4-project-structure:gitlab-ci_conf>`.
+`in the relevant page <4-project-structure.html#gitlab-ci-yml>`_.
 
 .. index:: GitLab CI Troubleshooting
 .. _gitlab_ci_troubleshoot:

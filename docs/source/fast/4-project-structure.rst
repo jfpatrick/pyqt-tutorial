@@ -39,7 +39,7 @@ If you have doubts about this file, check
 
 
 .. index:: .gitlab-ci.yml
-.. _gitlab-ci_conf:
+.. _gitlab-ci-yml:
 
 .gitlab-ci.yml
 ==============
