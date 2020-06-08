@@ -6,9 +6,9 @@
 Testing with papc
 =================
 
-papc is a pure Python library that is designed to mimic ``PyJAPC`` devices for simulation and testing purposes.
+``papc`` is a pure Python library that is designed to mimic PyJAPC devices for simulation and testing purposes.
 
-It provides the same exact API provided by ``PyJAPC`` and, as such, ``PyJAPC`` instances can be monkey-patched
+It provides the same exact API provided by PyJAPC and, as such, PyJAPC instances can be monkey-patched
 (i.e. replaced at runtime) with ``papc`` object that do not really connect to the control system, but mimic it
 to a great degree.
 
@@ -23,7 +23,7 @@ expert apps in simulated mode on non TN-enabled machines.
 
 How it works
 ============
-``papc`` offers a ``PyJAPC`` compatible interface, that you can use to connect your application to the simulated
+``papc`` offers a PyJAPC compatible interface, that you can use to connect your application to the simulated
 devices. Such interface can be created with the help of the ``SimulatedPyJapc`` object::
 
     from papc.interfaces.pyjapc import SimulatedPyJapc
@@ -155,22 +155,30 @@ At this point, the application is sandboxed and should be able to start also on 
 the control system.
 
 If you are using this setup for tests, remember to put all the setup code in a ``pytest``'s fixture, so that the simulation
-environment is setup from scratch for every test. See the page on testing for an example of how to properly do it.
+environment is setup from scratch for every test. See the `testing page <7-testing.html>`_
+ for an example of how to properly do it.
 
 .. index:: Troubleshooting ``papc``
 .. _papc_troubleshooting:
 
 Troubleshooting
 ===============
- * **The tests seems to run fine on my machine, but hang on the CI.**
-   Make sure the monkey-patching process is really done for each test. Add ``autouse=True`` to the fixture's
-   decorator to make absolutely sure this is always done.
 
- * **The tests seems to get slower and slower after the first 5-6 tests.**
-   **Last tests are slower even if I randomize the order of execution.**
-   ``papc`` seems to have trouble being garbage collected at times. Add ``scope="session"`` to the fixture's decorator
-   to make ``pytest`` reuse the ``papc`` instance instead of creating new ones.
-   Pay strong attention to avoid side effects.
+The tests seems to run fine on my machine, but hang on the CI
+-------------------------------------------------------------
+Make sure the monkey-patching process is really done for each test. Add ``autouse=True`` to the fixture's
+decorator to make absolutely sure this is always done.
+
+The tests seems to get slower and slower after the first 5-6 tests
+------------------------------------------------------------------
+First, make sure the last tests are slower even if you randomize the order of execution with `--random-order`.
+This flag might cause your tests to break if they are not isolated properly, i.e. they influence each other.
+If your test cannot be run in random order, please review them and make them independent.
+
+If the issue persists, it might be a ``papc`` problem.
+``papc`` seems to have trouble being garbage collected at times. Add ``scope="session"`` to the fixture's decorator
+to make ``pytest`` reuse the ``papc`` instance instead of creating new ones.
+Pay strong attention to avoid side effects.
 
 
 

@@ -56,8 +56,7 @@ This file configures GitLab CI, the continuous integration pipeline of GitLab.
 
 In the form provided by ``bipy-gui-manager``, it instructs the CI to run your tests
 each time you push your code to the repository, and automatically generates a documentation page for you at this
-address:
-https://acc-py.web.cern.ch/gitlab/[bisw-python_or_your_username]/[project_name]
+address: `<https://acc-py.web.cern.ch/gitlab/[bisw-python_or_your_username]/[project_name]>`_
 
 The one provided by ``bipy-gui-manager`` differs a lot from the default version obtained by executing
 ``acc-py init-ci``, because it has been configured to:
@@ -66,7 +65,7 @@ The one provided by ``bipy-gui-manager`` differs a lot from the default version 
  * Provide a coverage report that you can use as a repository badge
  * Do not deploy automatically on the `CERN Python repository <http://acc-py-repo:8081/>`_
  * Generate the documentation, accessible at
-   https://acc-py.web.cern.ch/gitlab/[bisw-python_or_your_username]/[project_name]
+   `<https://acc-py.web.cern.ch/gitlab/[bisw-python_or_your_username]/[project_name]>`_
 
 You can  modify it to add more tasks, deploy automatically, do linting, or anything else. For more information, check
 `Acc-Py documentation <https://wikis.cern.ch/display/ACCPY/GUI+Testing>`_ or Google the file name.
@@ -310,7 +309,7 @@ These represent the View from an MVP perspective, and they are:
             the Qt Designer (see ``<project_name>/__init__.py``).
 
             They can also be updated manually using ``pyuic5`` and ``pyrcc5`` if you're more familiar with these tools.
-            In this case, you might want to erase the content of `<project_name>/__init__.py` and remove ``pyqt5ac``
+            In this case, you might want to erase the content of ``<project_name>/__init__.py`` and remove ``pyqt5ac``
             from the core dependencies, and document this operation. See the
             `relevant section <90-advanced-xml.html#pyqt5ac_ui>`_ of this tutorial for more info on this process.
 

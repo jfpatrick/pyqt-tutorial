@@ -21,7 +21,7 @@ If in doubt, use the Qt Designer.
 .. _ui_files:
 
 Design with Qt Designer (using ``.ui`` files)
-----------------------------------------------
+=============================================
 The Qt Designer version shipped with Acc-Py is basically identical to any vanilla Qt Designer, so any good
 `tutorial <https://relentlesscoding.com/2017/08/25/tutorial-rapid-gui-development-with-qt-designer-and-pyqt/#installation>`_
 on the Internet should be good to help you get started.
@@ -42,7 +42,7 @@ it works, or you need to compile manually for any reason, check `this page <90-a
 .. _ui_files_usage:
 
 Using the ``.ui`` files in code
--------------------------------
+===============================
 Once you created your interface, you can load it into your application.
 
 The loading is done into the Presenter, that is, into any file in the ``widgets`` folder::
@@ -79,7 +79,7 @@ The loading is done into the Presenter, that is, into any file in the ``widgets`
 .. _gui_py_files:
 
 Design in code
---------------
+==============
 If you have very specific use cases, or your application is made mostly of reusable widgets that don't come from
 ``accwidgets`` (thus not available in Qt Designer), you might want to build up you interface directly in code.
 From this regard, there are no limitations in what you can do: just follow some good tutorial on how to deal with
@@ -100,7 +100,7 @@ Which means: **don't write your entire GUI as a single file**, unless is nothing
 .. _qrc_files:
 
 Resource files (``.qrc``)
--------------------------
+=========================
 If you're adding static resources to your interface (like images) you have to use a **resource file (.qrc)**.
 
 If you are using Qt Designer, the procedure goes as follow:

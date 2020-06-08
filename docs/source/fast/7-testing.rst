@@ -20,7 +20,7 @@ Linting
 
 Linting is the process of automatically checking your Python code for typos, bugs and code smells.
 
-It is ususally done through linters like `mypy` or `flake`. Both of these tools are already configured by Acc-Py:
+It is usually done through linters like ``mypy`` or ``flake``. Both of these tools are already configured by Acc-Py:
 you can run them by typing::
 
     acc-py check
@@ -54,15 +54,18 @@ If your application interacts with the control system, you will also have to moc
 Simple unit tests - pytest
 --------------------------
 These can be performed on all the functions that do not belong to any PyQt widget or PyQt's ``QObject``, and don't talk
-to the control system. It boils down to regular Python testing, for which there are multiple tutorials available on
-the Internet.
+to the control system. It boils down to regular Python testing, for which there are multiple
+`resources <https://docs.pytest.org/en/latest/talks.html>`_ available on the Internet.
 
-.. note:: ``pytest`` is already setup with Acc-Py: so it's enough to place your unit tests in the ``tests/``
-    folder and then call::
+.. note:: ``pytest`` is already setup with Acc-Py, so no installation or setup is required. You only have to
+    remember to add it to your dependencies in ``setup.py``. Once done, it's enough to place your unit tests
+    in the ``tests/`` folder and type::
 
         python -m pytest
 
-.. note:: All Python files containing tests must start with the prefix ``test_`` in order to be found by ``pytest``
+    to execute them.
+
+.. warning:: All Python files containing tests must start with the prefix ``test_`` in order to be found by ``pytest``
     and executed. For example ``test_my_app.py`` will be found and run, ``TestMyApp.py`` won't.
 
 ``pytest`` has a number of interesting options and plugins. The most interesting ones for unit tests are the following:
@@ -74,7 +77,7 @@ the Internet.
       (in the example, ``DEBUG``).
 
  * **pytest-cov**: package that provides a coverage report of your tests. Add ``pytest-cov`` to your ``setup.py``
-   and the flag ``--cov=my_app`` to the ``pytest`` call. See the
+   and the flag ``--cov=<project_name>`` to the ``pytest`` call. See the
    `docs <https://pytest-cov.readthedocs.io/en/latest/readme.html>`_.
 
  * **pytest-random-order**: package that randomizes your tests, to ensure they don't influence each other.
@@ -82,9 +85,9 @@ the Internet.
    See the `docs <https://github.com/jbasko/pytest-random-order/blob/master/README.rst>`_.
 
 Remember to read the `pytest documentation <https://docs.pytest.org/en/latest/contents.html>`_ or a good
-`tutorial <https://realpython.com/pytest-python-testing/>`_ before starting and to leverage its features, like
-`fixtures <https://docs.pytest.org/en/latest/fixture.html>`_, to avoid duplicating code,
-setting up and tearing down tests, and to mock bigger components of your application.
+`tutorial <https://realpython.com/pytest-python-testing/>`_ before starting, and to leverage its features, like
+`fixtures <https://docs.pytest.org/en/latest/fixture.html>`_, to keep your code tidy,
+setup and tear down tests, and mock bigger components of your application.
 
 
 .. index:: Mocking the Control System API
@@ -100,17 +103,18 @@ Testing can be done successfully (and meaningfully) by
 `mocking the control system's API <https://en.wikipedia.org/wiki/Mock_object>`_.
 This can be done on different levels:
 
- * With a ``Mock`` object from the ``unittest`` package: Useful for somebody who just want to be able to instantiate a
-   class that connects to the control system, but does not need to get/set any data from them for the test.
+ * With a ``Mock`` object from the ``unittest`` package: use this if you just want to be able to instantiate a
+   class that internally connects to the control system, but does not need to get/set any data from them for the test.
    See the `documentation <https://docs.python.org/3.6/library/unittest.mock.html>`_ for examples and more information.
 
- * With a ``MagicMock`` object from the ``unittest`` package: Useful for somebody who wants to be able to get/set
-   data on the control system, but needs only to make sure the get/set is done with the correct data,
+ * With a ``MagicMock`` object from the ``unittest`` package: use this if you want to be able to get/set
+   data on the control system, but you need only to make sure the get/set is done with the correct data,
    not that it actually has the desired effect on the device. See the
    `documentation <https://docs.python.org/3.6/library/unittest.mock.html>`_ for examples and more information.
 
- * With ``papc``: For more complex use cases where you need a full-blown simulation of your target devices
-   in the control system. Requires more work than the previous two. See the :doc:`dedicated page <89-papc>`.
+ * With ``papc``: use this for more complex use cases where you need a full-blown simulation of your target devices
+   in the control system (like testing the overall application behavior to a sequence of device states).
+   Requires more work than the previous two. See the :doc:`dedicated page <89-papc>`.
 
 
 .. index:: Mocking PyJAPC
@@ -146,14 +150,15 @@ This fixture will monkey-patch PyJAPC objects by replacing them with a mock of y
         # Now this function will not actually set anything, but it will not fail.
         my_app.function_setting_values_to_some_device("some value")
 
+
+Passing such fixture as an argument to your test, your application's ``pyjapc.PyJapc`` class will be automagically
+replaced by the mock without having to modify any code in the target app.
+
 The same thing can be done with functions, object's functions, etc.
 See the `documentation <https://docs.pytest.org/en/latest/monkeypatch.html>`_
 for more examples of monkey-patching that might work better for your use-case,
 and the ``Mock()`` and ``MagicMock()`` `documentation <https://docs.python.org/3.6/library/unittest.mock.html>`_
-for examples.
-
-Passing such fixture as an argument to your test, your application's ``pyjapc.PyJapc`` class will be automagically
-replaced by the mock without having to modify any code.
+for more examples.
 
 
 .. index:: Graphical Tests with ``pytest-qt``
@@ -200,8 +205,8 @@ Continuous Integration (CI)
 ============================
 
 GitLab CI is a powerful tool to ensure the code you publish on GitLab works as expected.
-It's a pipeline that sets up a virtual machine and runs a number of operations on your code, namely running tests,
-linting, producing coverage reports, and many more.
+It's a pipeline that runs a number of operations on your code, namely running tests in an isolated container,
+do linting, producing coverage reports, and many more.
 
 It is mostly setup already by the Acc-Py team, and some extra customizations are added by ``bipy-gui-manager``.
 To learn more about the nature of such modifications, check out the `.gitlab-ci.yml` file description
@@ -210,8 +215,8 @@ To learn more about the nature of such modifications, check out the `.gitlab-ci.
 .. index:: GitLab CI Troubleshooting
 .. _gitlab_ci_troubleshoot:
 
-Troubleshooting
----------------
+GitLab CI Troubleshooting
+-------------------------
 
 .. index:: Abort()
 .. _qt_abort:
@@ -220,7 +225,7 @@ Qt throws Abort() during the tests
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 If you installed ``pytest-xvfb`` on your GitLab CI image, please remove it and try again.
 Otherwise, make sure you're passing your Qt objects to ``qtbot`` with ``qtbot.addWidget(my_widget)``
- before trying to perform any operation on it.
+before trying to perform any operation on it.
 
 .. index:: CI pipeline never starts
 .. _pipeline_hangs:

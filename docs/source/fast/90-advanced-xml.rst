@@ -14,11 +14,8 @@ Qt Designer's ``.ui`` files cannot be used directly by a PyQt application: they 
 code, and then imported properly.
 
 The base template provided by ``bipy-gui-manager`` is already setup tp recompile your ``.ui`` files every time they
-get modified: in fact most used do not have to care about these steps at all. Here is however an overview of what
-is happening behind the scenes.
-
-.. warning:: Never edit the generated files, and keep the ``.ui`` files as your primary reference. Also pushing them
-    to GitLab is discouraged.
+get modified: in fact most users do not have to care about these steps at all. This is simply an overview of what
+is happening behind the scenes, in case you need to debug or modify this process.
 
 
 .. index:: Automatic ``.ui`` Recompilation with ``pyqt5ac``
@@ -53,8 +50,10 @@ This is done in the console by issuing the following command::
     pyuic5 my_interface.ui -o my_interface_ui.py
 
 This will generate a Python file containing a single, large class named  ``Ui_<something>``  with the complete
-definition of your GUI.
+definition of your GUI, in the same folder where you are running the command.
 
+.. warning:: Never edit the generated files, and keep the ``.ui`` files as your primary reference. Also pushing them
+    to GitLab is discouraged.
 
 
 .. index:: Writing Resource files (``.qrc``)
