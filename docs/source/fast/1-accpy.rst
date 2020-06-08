@@ -13,7 +13,7 @@ comes with a set of packages and a command-line tool (called ``acc-py``) for sma
 CI setup, documentation, project release, etc.  It also comes with its own package repository.
 
 .. note:: Acc-Py documentation is available on Confluence
-    `at this link https://wikis.cern.ch/display/ACCPY/Accelerating+Python+Home`_.
+    `at this link <https://wikis.cern.ch/display/ACCPY/Accelerating+Python+Home>`_.
     More technical documentation is also available on ReadTheDocs
     `here <https://acc-py.web.cern.ch/gitlab/acc-co/devops/python/acc-py-devtools/docs/stable/>`_.
 
@@ -32,7 +32,7 @@ the official documentation (`here <https://wikis.cern.ch/display/ACCPY/Accelerat
 
 At the time of writing (May 2020), the main features of the Acc-Py distribution are:
 
-    * **The package repository**. The `Acc-Py repository <http://acc-py-repo:8081>` acts at the same time as a
+    * **The package repository**. The `Acc-Py repository <http://acc-py-repo:8081>`_ acts at the same time as a
       package manager for CERN specific Python packages, and as a proxy to the central PyPi servers.
       Regular CERN releases target this repository.
 
@@ -56,7 +56,7 @@ How do I use it?
 
 First of all, you should activate Acc-Py. Open a terminal and type::
 
-	source /acc/local/share/python/acc-py/setup.sh
+	source /acc/local/share/python/acc-py-pyqt/setup.sh
 
 This will activate the environment. Such script will not simply point your shell to a specific Python executable, but
 in fact is pointing you to a full-fledged distribution. You can check that by typing::
@@ -66,6 +66,7 @@ in fact is pointing you to a full-fledged distribution. You can check that by ty
 This gives you the list of all the packages which are automatically available from any Python script running into
 Acc-Py. At this point, you can already start developing a simple script that uses, for example, ``numpy``, ``pyjapc``
 or other libraries.
+
 
 .. index:: Virtualenvs
 .. _acc-py_virtualenv:
@@ -89,33 +90,6 @@ This setup gives you the freedom of a plain local Python install, but it comes a
 repository <http://acc-py-repo:8081>`_, so saving you a few configuration steps.
 In addition, the Python version is constantly updated, ensuring uniformity among all CERN machines without having
 to stick to older Python versions.
-
-
-.. index:: Acc-Py-PyQt
-.. _acc-py-pyqt:
-
-What about PyQt5?
-=================
-
-If you scroll carefully through the package list of Acc-Py (reminder: type ``pip freeze`` after activating Acc-Py) you
-will notice the lack of PyQt5 related packages. Indeed, PyQt5 is not available in Acc-Py.
-
-So, how do we use PyQt5 on Acc-Py?
-
-PyQt5 is a library that requires some special setup.
-Therefore, it has been made available in a separate distribution called informally **Acc-Py-PyQt**.
-
-From the user's perspective there is no difference among the two, except for the activation script. To activate
-Acc-Py-PyQt, type::
-
-	source /acc/local/share/python/acc-py-pyqt/setup.sh
-
-Now, typing ``pip freeze`` should return you a very similar list of packages, plus PyQt5 and its dependencies.
-Acc-Py-PyQt also gives you access to another batch of executables required for PyQt5 development, namely ``designer``,
-``pyuic5``, ``pyrcc5``, etc., which should now be on your ``PATH``.
-
-All the rest (package repository, ``acc-py`` commands) are available in this distribution exactly as they are in the
-regular Acc-Py.
 
 
 .. index:: init project
