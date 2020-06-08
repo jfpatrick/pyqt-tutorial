@@ -109,20 +109,20 @@ If you are using Qt Designer, the procedure goes as follow:
 
     .. raw:: html
 
-             <img width="300px" src="../_static/qrc_files/step-1.png" />
+             <img src="../_static/qrc_files/step-1.png" />
 
  * In the Property Editor, go to the ``pixmap`` property and click on the ``...`` button.
 
     .. raw:: html
 
-             <img width="300px" src="../_static/qrc_files/step-2.png" />
+             <img src="../_static/qrc_files/step-2.png" />
 
 
  * Clicking on the wrench icon on the ``Select Resource`` dialog that opens up.
 
     .. raw:: html
 
-             <img width="300px" src="../_static/qrc_files/step-3.png" />
+             <img src="../_static/qrc_files/step-3.png" />
 
 
  * This will open a new ``Edit Resources`` dialog. Use the buttons on the bottom left corner to create a new
@@ -130,7 +130,7 @@ If you are using Qt Designer, the procedure goes as follow:
 
     .. raw:: html
 
-             <img width="300px" src="../_static/qrc_files/step-4.png" />
+             <img src="../_static/qrc_files/step-4.png" />
 
 
  * In the same dialog, use the first button in the bottom center to add a prefix (a namespace) for your images,
@@ -138,21 +138,21 @@ If you are using Qt Designer, the procedure goes as follow:
 
     .. raw:: html
 
-             <img width="300px" src="../_static/qrc_files/step-5.png" />
+             <img src="../_static/qrc_files/step-5.png" />
 
 
  * In the same dialog, use the second button in the bottom center to add a file under the selected prefix.
 
     .. raw:: html
 
-             <img width="300px" src="../_static/qrc_files/step-6.png" />
+             <img src="../_static/qrc_files/step-6.png" />
 
 
  * Save your changes.
 
     .. raw:: html
 
-             <img width="300px" src="../_static/qrc_files/step-7.png" />
+             <img src="../_static/qrc_files/step-7.png" />
 
 
  * Back to the ``Select Resource`` dialog you will now be able to select your image.
@@ -160,14 +160,14 @@ If you are using Qt Designer, the procedure goes as follow:
 
     .. raw:: html
 
-             <img width="300px" src="../_static/qrc_files/step-8.png" />
+             <img src="../_static/qrc_files/step-8.png" />
 
  * The label should now contain your image. If you want the image to fit the label size, select the ``scaledContent``
    property just below ``pixmap``. Save your ``.ui`` file.
 
     .. raw:: html
 
-             <img width="300px" src="../_static/qrc_files/step-8.png" />
+             <img src="../_static/qrc_files/step-9.png" />
 
  * If your Designer files are compiled automatically, your ``.qrc`` file will be automatically detected and compiled
    as soon as you start your application. If not, check out `the advanced topics page <90-advanced-xml.html>`_
@@ -178,7 +178,7 @@ If you are using Qt Designer, the procedure goes as follow:
 
     .. raw:: html
 
-             <img width="300px" src="../_static/qrc_files/step-9.png" />
+             <img src="../_static/qrc_files/step-10.png" />
 
 
 
