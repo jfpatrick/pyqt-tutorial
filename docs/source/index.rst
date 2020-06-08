@@ -34,3 +34,15 @@ Any form of contribution is welcome!
 Please report issues and make PR on the
 `GitLab repository <https://gitlab.cern.ch/szanzott/pyqt-mega-tutorial-for-be-bi>`_,
 or contact Sara Zanzottera or Steen Jensen.
+
+Contents
+========
+.. toctree::
+    :maxdepth: 1
+    :hidden:
+
+    self
+    fast/index
+    complete/index
+    genindex
+

@@ -40,7 +40,7 @@ Contents
     3-bipy-gui-manager
     4-project-structure
     5-libraries
-    6-dev-guidelines
+    6-gui-design-guidelines
     7-testing
 
     89-papc

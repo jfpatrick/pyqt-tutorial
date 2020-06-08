@@ -1,16 +1,10 @@
-.. index:: Development Guidelines
-.. _dev_guidelines:
-
-======================
-Development Guidelines
-======================
-
-
 .. index:: GUI Design Strategies
 .. _gui_design:
 
-GUI Design
-==========
+=====================
+GUI Design Guidelines
+=====================
+
 PyQt5 allows for two strategies for designing GUIs: either with the Qt Designer, which generates XML ``.ui`` files,
 or through code, in ``.py`` files.
 
