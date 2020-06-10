@@ -197,25 +197,10 @@ Here is a simple example of a graphical test::
 
 
 
-.. index:: Continuous Integration
-.. index:: GitLab CI
-.. _gitlab_ci:
+.. index:: Troubleshooting Tests
+.. _troubleshoot_tests:
 
-Continuous Integration (CI)
-============================
-
-GitLab CI is a powerful tool to ensure the code you publish on GitLab works as expected.
-It's a pipeline that runs a number of operations on your code, namely running tests in an isolated container,
-do linting, producing coverage reports, and many more.
-
-It is mostly setup already by the Acc-Py team, and some extra customizations are added by ``bipy-gui-manager``.
-To learn more about the nature of such modifications, check out the `.gitlab-ci.yml` file description
-`in the relevant page <4-project-structure.html#gitlab-ci-yml>`_.
-
-.. index:: GitLab CI Troubleshooting
-.. _gitlab_ci_troubleshoot:
-
-GitLab CI Troubleshooting
+Troubleshooting
 -------------------------
 
 .. index:: Abort()
@@ -223,16 +208,17 @@ GitLab CI Troubleshooting
 
 Qt throws Abort() during the tests
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-If you installed ``pytest-xvfb`` on your GitLab CI image, please remove it and try again.
+If you installed ``pytest-xvfb``, please remove it and try again.
 Otherwise, make sure you're passing your Qt objects to ``qtbot`` with ``qtbot.addWidget(my_widget)``
 before trying to perform any operation on it.
 
-.. index:: CI pipeline never starts
-.. _pipeline_hangs:
+.. index:: Tests never start
+.. _tests_hang:
 
-The pipeline hangs forever while trying to start the tests
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-It might be trying to communicate with the control system: GitLab CI is *not* TN-trusted, so it will fail.
+The tests hang forever while trying to start
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+It might be trying to communicate with the control system. This error is likely to happen in GitLab CI
+because its runners are *not* TN-trusted, so it will fail.
 Verify which part of your application is trying to contact the control system and mock it in a meaningful way.
 See the above paragraph on testing control system APIs.
 
@@ -248,6 +234,22 @@ Full error is::
 
 Same as above: your app is probably trying to contact the control system. Mock the relative function/object.
 See the above paragraph on testing control system APIs.
+
+
+.. index:: Continuous Integration
+.. index:: GitLab CI
+.. _gitlab_ci:
+
+Continuous Integration (CI)
+============================
+
+GitLab CI is a powerful tool to ensure the code you publish on GitLab works as expected.
+It's a pipeline that runs a number of operations on your code, namely running tests in an isolated container,
+do linting, producing coverage reports, and many more.
+
+It is mostly setup already by the Acc-Py team, and some extra customizations are added by ``bipy-gui-manager``.
+To learn more about the nature of such modifications, check out the `.gitlab-ci.yml` file description
+`in the relevant page <2-project-structure.html#gitlab-ci-yml>`_.
 
 Tips and Tricks
 ---------------

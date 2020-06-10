@@ -12,6 +12,9 @@ BE/CO maintains a shared Python distribution called **Acc-Py**. It's an Anaconda
 comes with a set of packages and a command-line tool (called ``acc-py``) for small operations like project creation,
 CI setup, documentation, project release, etc.  It also comes with its own package repository.
 
+BE/BI's project template is based on Acc-Py base template, but adds a great deal of features over it.
+Nonetheless it is useful to know what features Acc-Py offers too.
+
 .. note:: Acc-Py documentation is available on Confluence
     `at this link <https://wikis.cern.ch/display/ACCPY/Accelerating+Python+Home>`_.
     More technical documentation is also available on ReadTheDocs
@@ -139,7 +142,7 @@ Acc-Py can do a lot more. Notable features are:
       setting up an automated testing pipeline. In short, it will tell GitLab to run all your tests every time you
       upload new code and inform you whether any of those tests failed. It will also devrelease your project every time
       you create a new tag on GitLab.
-      See the `description of GitLab CI config file <4-project-structure#gitlab-ci-yml>`_.
+      See the `description of GitLab CI config file <2-project-structure#gitlab-ci-yml>`_.
 
     * *Automatic Documentation*. Typing ``acc-py init-docs`` creates a basic Sphinx setup that autogenerates an API
       description based on your code and your in-code comments. Such documentation will be visible directly at

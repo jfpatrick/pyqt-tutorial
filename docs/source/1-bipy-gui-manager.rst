@@ -5,12 +5,10 @@
 Setup New Project
 =================
 
-In principle, once you setup your Acc-Py project, you can start developing your PyQt5 application right away.
+In BE/BI we agreed on a common project structure that every PyQt5 project should follow.
 
-However, for consistency and maintainability, in BI we agreed on a common project structure that every PyQt5 project
-should abide, as far as reasonable. A small tool called
+You can have such structure setup for you using the
 `BI Python Expert GUI Manager <https://gitlab.cern.ch/bisw-python/bipy-gui-manager>`_
-guides you the process of setting up a proper project structure.
 
 
 .. index:: BI Python Expert GUI Manager
@@ -20,7 +18,7 @@ guides you the process of setting up a proper project structure.
 BI Python Expert GUI Manager (bipy-gui-manager)
 ===============================================
 
-`bipy-gui-manager` is a small Python utility to create a project stub (think of it as a Java archetype)
+`bipy-gui-manager` is a small Python utility to create a project template (think of it as a Java archetype)
 for an Expert GUI PyQt5 application.
 It's specifically tuned for BI Expert GUIs.
 

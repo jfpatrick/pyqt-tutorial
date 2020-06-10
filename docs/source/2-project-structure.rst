@@ -7,7 +7,7 @@ Project Structure
 
 All BI Expert GUIs should try to use a common project structure. This is also the default
 structure of projects created with `BI Python Expert GUI Manager <https://gitlab.cern.ch/bisw-python/bipy-gui-manager>`_
-(``bipy-gui-manager``, see the `relevant page <3-bipy-gui-manager.html>`).
+(``bipy-gui-manager``, see the `relevant page <1-bipy-gui-manager.html>`).
 
 You can find the project template in
 `this GitLab repo <https://gitlab.cern.ch/bisw-python/be-bi-pyqt-template>`_.

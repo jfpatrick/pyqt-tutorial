@@ -1,16 +1,20 @@
 .. index:: Home
 .. _home
 
-==============
-PyQt5 Tutorial
-==============
+====================
+BE/BI PyQt5 Tutorial
+====================
 
 Welcome to the PyQt5 Tutorial for BE/BI!
 
 We will cover the current infrastructure for PyQt development at CERN, with special focus on the tools
 provided by BE/CO and the best practices we defined for BE/BI Expert GUIs.
 
-This tutorial assumes a decent knowledge of Python, and in general will not dive too much into pure
+.. note:: Remember that `the Acc-Py documentation <https://wikis.cern.ch/display/ACCPY/Accelerating+Python+Home>`_ is
+    always the only official resource regarding Acc-Py features.
+    If you have any trouble, please refer to their documentation first to make sure this page is not outdated.
+
+This tutorial assumes at least a basic knowledge of Python, and in general will not dive too much into pure
 Python details. In some cases, the tutorial will help beginners by offering links to external
 resources that cover that specific topic.
 However, please stop and do a bit of research if some concept confuses you.
@@ -18,6 +22,35 @@ However, please stop and do a bit of research if some concept confuses you.
 All the pages are equipped with videos, runnable code and descriptions.
 They mostly cover the same content, i.e. the videos cover the same materials as their host page,
 and they both refer to the same code.
+
+Quick Test
+----------
+If you have no idea what an ``__init__.py`` file does, please follow a good Python tutorial first (LINKS HERE).
+
+If you know that, but you have no idea what a ``myform.ui`` file might be, then you might want to follow
+a PyQt tutorial first. You can find some links below the Table of Contents.
+
+
+..  Example Video
+    .. raw:: html
+    <video controls src="_static/sample-video.mp4" type='video/mp4' width="700px"></video>
+
+
+
+.. toctree::
+    :maxdepth: 1
+
+    1-bipy-gui-manager
+    2-project-structure
+    3-tools
+    5-libraries
+    6-gui-design-guidelines
+    7-testing
+    89-papc
+    90-advanced-xml
+
+    genindex
+
 
 
 .. index:: External Tutorials
@@ -135,14 +168,3 @@ Any form of contribution is welcome!
 Please report issues or ideas and make PR on the
 `GitLab repository <https://gitlab.cern.ch/szanzott/pyqt-mega-tutorial-for-be-bi>`_,
 or contact Sara Zanzottera or Steen Jensen.
-
-
-.. toctree::
-    :maxdepth: 1
-    :hidden:
-
-    self
-    fast/index
-    complete/index
-    genindex
-

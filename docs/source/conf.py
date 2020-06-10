@@ -1,7 +1,7 @@
 import datetime
 import pkg_resources
 
-project = "PyQt5 Mega Tutorial"
+project = "BE/BI PyQt5 Tutorial"
 author = "Sara Zanzottera (BE-BI-SW)"
 version = "0.0.1"
 
@@ -38,7 +38,7 @@ exclude_patterns = []
 # a list of builtin themes.
 #
 html_theme = "acc_py"
-html_title = "The BE/BI PyQt5 Mega Tutorial"
+html_title = "The BE/BI PyQt5 Tutorial"
 html_short_title = "PyQt5 Tutorial"
 html_logo = '../images/pyqt-logo-inverted-smaller.png'
 html_favicon = '../images/pyqt-logo.png'
@@ -64,9 +64,3 @@ autosummary_imported_members = True
 
 autosectionlabel_prefix_document = True
 autosectionlabel_maxdepth = 10
-
-
-# -- Substitutions
-rst_epilog = '''
-.. |accpy| replace:: `Acc-Py <https://wikis.cern.ch/display/ACCPY/Accelerating+Python+Home>`__
-'''
