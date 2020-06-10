@@ -33,16 +33,16 @@ The script will guide you through the configuration of a new project. The script
 of what's going on and the next steps after the install, so feel free to go ahead and try it out before proceeding
 with this tutorial.
 
-.. note:: After running ``bipy-gui-manager`` you already have a running application. To start it, type in the console
-    the name of your project (the one you gave to ``bipy-gui-manager`` while creating the project). You should see the
-    frame with a dummy application in the center, like this:
+After running ``bipy-gui-manager`` you already have a running application. To start it, type in the console
+the name of your project (the one you gave to ``bipy-gui-manager`` while creating the project). You should see the
+frame with a dummy application in the center, like this:
 
-    .. raw:: html
+.. raw:: html
 
-             <img width="300px" src="../_static/application-template.gif" />
+         <img width="300px" src="../_static/application-template.gif" />
 
-    or a smaller window with an error. In the latter case, please report the error
-    to the maintainers.
+or a smaller window with an error. In the latter case, please report the error
+to the maintainers.
 
 In the next section we are going to review the project structure, so skip ahead if you're interested.
 

@@ -10,10 +10,6 @@ Welcome to the PyQt5 Tutorial for BE/BI!
 We will cover the current infrastructure for PyQt development at CERN, with special focus on the tools
 provided by BE/CO and the best practices we defined for BE/BI Expert GUIs.
 
-.. note:: Remember that `the Acc-Py documentation <https://wikis.cern.ch/display/ACCPY/Accelerating+Python+Home>`_ is
-    always the only official resource regarding Acc-Py features.
-    If you have any trouble, please refer to their documentation first to make sure this page is not outdated.
-
 This tutorial assumes at least a basic knowledge of Python, and in general will not dive too much into pure
 Python details. In some cases, the tutorial will help beginners by offering links to external
 resources that cover that specific topic.
@@ -24,7 +20,7 @@ They mostly cover the same content, i.e. the videos cover the same materials as 
 and they both refer to the same code.
 
 Quick Test
-----------
+==========
 If you have no idea what an ``__init__.py`` file does, please follow a good Python tutorial first (LINKS HERE).
 
 If you know that, but you have no idea what a ``myform.ui`` file might be, then you might want to follow
@@ -36,7 +32,8 @@ a PyQt tutorial first. You can find some links below the Table of Contents.
     <video controls src="_static/sample-video.mp4" type='video/mp4' width="700px"></video>
 
 
-
+Table of Contents
+=================
 .. toctree::
     :maxdepth: 1
 
@@ -46,6 +43,7 @@ a PyQt tutorial first. You can find some links below the Table of Contents.
     5-libraries
     6-gui-design-guidelines
     7-testing
+    80-accpy
     89-papc
     90-advanced-xml
 

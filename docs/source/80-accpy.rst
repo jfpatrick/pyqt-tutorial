@@ -12,17 +12,19 @@ BE/CO maintains a shared Python distribution called **Acc-Py**. It's an Anaconda
 comes with a set of packages and a command-line tool (called ``acc-py``) for small operations like project creation,
 CI setup, documentation, project release, etc.  It also comes with its own package repository.
 
-BE/BI's project template is based on Acc-Py base template, but adds a great deal of features over it.
+BE/BI's project template is based on Acc-Py, but adds a great deal of features over it.
 Nonetheless it is useful to know what features Acc-Py offers too.
 
-.. note:: Acc-Py documentation is available on Confluence
-    `at this link <https://wikis.cern.ch/display/ACCPY/Accelerating+Python+Home>`_.
-    More technical documentation is also available on ReadTheDocs
-    `here <https://acc-py.web.cern.ch/gitlab/acc-co/devops/python/acc-py-devtools/docs/stable/>`_.
+.. note:: Remember that the Acc-Py documentation (on
+    `Confluence <https://wikis.cern.ch/display/ACCPY/Accelerating+Python+Home>`_ and on `
+    `ReadTheDocs <https://acc-py.web.cern.ch/gitlab/acc-co/devops/python/acc-py-devtools/docs/stable/>`_)
+    is the only official resource regarding Acc-Py features.
+    If you have any trouble, please refer to their documentation first to make sure this page is not outdated.
 
 .. note:: Acc-Py is accessible from all machines on the TN network. At the time of writing (May 2020) it is not
     accessible from GPN, but this issue is currently being fixed and a future release will probably be accessible
     from the outside as well **(PLEASE UPDATE THIS SECTION)**.
+
 
 .. index:: Acc-Py Features
 .. _acc-py_features:
