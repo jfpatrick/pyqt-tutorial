@@ -43,28 +43,27 @@ widgets like lists and tables.
 To get started, please see its `definition <https://doc.qt.io/qt-5/model-view-programming.html>`_  on the official
 Qt Documentation, and the official `tutorial on the topic <https://doc.qt.io/qt-5/modelview.html>`_.
 
+.. sidebar:: The ModelView Pattern
+
+    .. image:: static/modelview.png
+
 Here is a short abstract from the definition page linked above, with a diagram from the same page:
 
-    Model-View-Controller (MVC) is a design pattern originating from Smalltalk that is often used when building
-    user interfaces. In *Design Patterns*, Gamma et al. write:
+    *Model-View-Controller (MVC) is a design pattern originating from Smalltalk that is often used when building*
+    *user interfaces. In* Design Patterns*, Gamma et al. write:*
 
         MVC consists of three kinds of objects. The Model is the application object, the View is its screen
         presentation, and the Controller defines the way the user interface reacts to user input. Before MVC,
         user interface designs tended to lump these objects together.
         MVC decouples them to increase flexibility and reuse.
 
-    If the view and the controller objects are combined, the result is the **model/view architecture**.
-    This still separates the way that data is stored from the way that it is presented to the user,
-    but provides a simpler framework based on the same principles. [...]
+    *If the view and the controller objects are combined, the result is the* **model/view architecture**.
+    *This still separates the way that data is stored from the way that it is presented to the user,*
+    *but provides a simpler framework based on the same principles. [...]*
 
-    To allow flexible handling of user input, we introduce
-    the concept of the **delegate**. The advantage of having a delegate in this framework is that it allows
-    the way items of data are rendered and edited to be customized.
-
-.. raw:: html
-
-         <img width="300px" src="_static/modelview.png" />
-
+    *To allow flexible handling of user input, we introduce*
+    *the concept of the* **delegate**. *The advantage of having a delegate in this framework is that it allows*
+    *the way items of data are rendered and edited to be customized.*
 
 
 .. index:: .gitignore
