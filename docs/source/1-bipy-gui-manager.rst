@@ -5,9 +5,7 @@
 Setup New Project
 =================
 
-In BE/BI we agreed on a common project structure that every PyQt5 project should follow.
-
-You can have such structure setup for you using the
+New PyQt Expert GUIs in BI should be build according to a predefined structure, which you can setup by using the
 `BI Python Expert GUI Manager <https://gitlab.cern.ch/bisw-python/bipy-gui-manager>`_
 
 
@@ -19,8 +17,7 @@ BI Python Expert GUI Manager (bipy-gui-manager)
 ===============================================
 
 `bipy-gui-manager` is a small Python utility to create a project template (think of it as a Java archetype)
-for an Expert GUI PyQt5 application.
-It's specifically tuned for BI Expert GUIs.
+for an Expert GUI PyQt5 application. It's specifically tuned for BI Expert GUIs.
 
 How do I use it?
 ================
@@ -39,7 +36,7 @@ frame with a dummy application in the center, like this:
 
 .. raw:: html
 
-         <img width="300px" src="../_static/application-template.gif" />
+         <img width="300px" src="_static/application-template.gif" />
 
 or a smaller window with an error. In the latter case, please report the error
 to the maintainers.
@@ -57,22 +54,22 @@ If you plan to use this tool again in the future, you can make ``bipy-gui-manage
 having to type the full path. To do so, use one of the following strategies:
 
     * **Alias it**
-        This method will not modify your ``PATH`` and won't create symlinks, but requires you to edit your
-        ``~/.bashrc``. Add the following line to your ``~/.bashrc``::
+      This method will not modify your ``PATH`` and won't create symlinks, but requires you to edit your
+      ``~/.bashrc``. Add the following line to your ``~/.bashrc``::
 
             alias bipy-gui-manager="/user/bdisoft/development/python/gui/bipy-gui-manager"
 
 
     * **Add it to PATH under ~/.local/bin**
-        This method assumes that ``~/.local/bin`` is already in your ``PATH``, or that you can add it yourself.
-        It will create a symlink to ``bipy-gui-manager`` under ``~/.local/bin``. Simply type::
+      This method assumes that ``~/.local/bin`` is already in your ``PATH``, or that you can add it yourself.
+      It will create a symlink to ``bipy-gui-manager`` under ``~/.local/bin``. Simply type::
 
             ln -s /user/bdisoft/development/python/gui/bipy-gui-manager ~/.local/bin/bipy-gui-manager
 
     * **Add it to PATH under '/usr/local/bin'**
-        This method assumes that ``/usr/local/bin`` is already in your ``PATH``, which is true for most users, and
-        that you can perform operations as ``sudo``. It will create a symlink to ``bipy-gui-manager`` under
-        ``/usr/local/bin``. Simply type::
+      This method assumes that ``/usr/local/bin`` is already in your ``PATH``, which is true for most users, and
+      that you can perform operations as ``sudo``. It will create a symlink to ``bipy-gui-manager`` under
+      ``/usr/local/bin``. Simply type::
 
             sudo ln -s /user/bdisoft/development/python/gui/bipy-gui-manager /usr/local/bin/bipy-gui-manager
 

@@ -5,11 +5,16 @@
 Development Tools
 =================
 
+In this section we cover the most relevant development tools for PyQt Expert GUIs: **PyCharm** and **Qt Designer**.
+
 .. index:: PyCharm
 .. _pycharm:
 
 PyCharm
 =======
+
+PyCharm is the recommended IDE for developing Python applications. If you're new to it, you can find some tutorials
+below.
 
 The Acc-Py team offers also a shared PyCharm instance to ease the development on TN machines.
 Such instance is located under::
@@ -40,9 +45,27 @@ Remember that adding a path after the command makes PyCharm load that folder as 
 
     (The `&` detaches the process from the console).
 
-.. note:: PyCharm is not mandatory to develop Python application. If you're comfortable with other editors (VSCode,
+.. note:: Although recommended, PyCharm is not mandatory. If you're comfortable with other editors (VSCode,
     Eclipse, Emacs, ...) feel free to use them.
 
+.. index:: PyCharm Tutorials
+.. _pycharm_tutorials:
+
+PyCharm Tutorials
+-----------------
+
+Please email the maintainers of this tutorial with any other good PyCharm tutorial you find on the Web, and it will be
+added to the list.
+
+Video tutorials
+~~~~~~~~~~~~~~~
+
+ * Official JetBrains tour of PyCharm features: https://www.youtube.com/playlist?list=PLQ176FUIyIUZ1mwB-uImQE-gmkwzjNLjP
+
+Web Pages
+~~~~~~~~~
+
+ * Official JetBrains Getting Started page: https://www.jetbrains.com/help/pycharm/quick-start-guide.html
 
 
 .. index:: Qt Designer
@@ -70,6 +93,32 @@ Refer to your library's documentation to know which paths to add to this variabl
 .. note:: If you have trouble with a library, you can check the
     `official Qt documentation <https://doc.qt.io/qtcreator/adding-plugins.html#locating-qt-designer-plugins>`_
     for hints.
+
+.. index:: Qt Designer Tutorials
+.. _qtdesigner_tutorials
+
+Qt Designer Tutorials
+---------------------
+
+Video Tutorials
+~~~~~~~~~~~~~~~
+
+ * Tech With Tim's video on Qt Designer: https://www.youtube.com/watch?v=FVpho_UiDAY
+   Part of a larger collection of videos on PyQt in general.
+
+ * Guyon Morée videos on Qt Designer: although made with PyQt4, the Qt Designer related part is still valuable.
+
+    - Part 1 https://www.youtube.com/watch?v=LYF0spYkXUs
+    - Part 2 https://www.youtube.com/watch?v=JOuCuLHmk3o
+
+Web Pages
+~~~~~~~~~
+
+ * Official Qt Guide to Qt Designer: https://doc.qt.io/qt-5/qtdesigner-manual.html
+
+ * Relentless Coding's blog post about Qt Designer:
+   https://relentlesscoding.com/2017/08/25/tutorial-rapid-gui-development-with-qt-designer-and-pyqt/#our-goal
+
 
 .. index:: Development Tools FAQ
 .. _tools_faq:
