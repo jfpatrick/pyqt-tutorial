@@ -45,12 +45,6 @@ Qt Documentation, and the official `tutorial on the topic <https://doc.qt.io/qt-
 
 Here is a short abstract from the definition page linked above, with a diagram from the same page:
 
-..  figure:: images/modelview.png
-    :figwidth: 30%
-    :align: left
-
-|
-
     Model-View-Controller (MVC) is a design pattern originating from Smalltalk that is often used when building
     user interfaces. In *Design Patterns*, Gamma et al. write:
 
@@ -66,6 +60,11 @@ Here is a short abstract from the definition page linked above, with a diagram f
     To allow flexible handling of user input, we introduce
     the concept of the **delegate**. The advantage of having a delegate in this framework is that it allows
     the way items of data are rendered and edited to be customized.
+
+.. raw:: html
+
+         <img width="300px" src="_static/modelview.png" />
+
 
 
 .. index:: .gitignore
