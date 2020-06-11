@@ -36,7 +36,7 @@ frame with a dummy application in the center, like this:
 
 .. raw:: html
 
-         <img width="300px" src="_static/application-template.gif" />
+         <img src="_static/application-template.gif" />
 
 or a smaller window with an error. In the latter case, please report the error
 to the maintainers.
