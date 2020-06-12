@@ -2,19 +2,14 @@ from PyQt5.QtCore import pyqtSlot
 from PyQt5.QtWidgets import QWidget, QPushButton, QLineEdit, QLabel
 
 # Import the code generated from the view.ui file
-from demo.example_1_simple_form.resources.generated.ui_view import Ui_Form
+from demo.example_1_simple_form.widgets.resources import Ui_Form
 
 
 class MainWidget(QWidget, Ui_Form):
     """
-        This is the main class defining your GUI. In an MVP perspective,
-        this is a Presenter, so a component acting as a proxy between Model
-        and View.
+        This is the main class defining your GUI, also called the View.
 
-        The Model will connect to the control systems or any other source of data.
-        The View is the code generated from your *.ui files.
-
-        Signals and slots are usually connected in this class, in the init.
+        Signals and slots are usually connected in this class.
         The model will usually emit signal which are catch either directly
         by the View, or by this class, which translates them into operations
         on the View.

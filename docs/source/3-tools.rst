@@ -6,6 +6,7 @@ Development Tools
 =================
 
 In this section we cover the most relevant development tools for PyQt Expert GUIs: **PyCharm** and **Qt Designer**.
+In addition we also describe briefly how to create a Continuous Integration pipeline with **GitLab CI**.
 
 .. index:: PyCharm
 .. _pycharm:
@@ -130,6 +131,50 @@ Web Pages
 
  * Relentless Coding's blog post about Qt Designer:
    https://relentlesscoding.com/2017/08/25/tutorial-rapid-gui-development-with-qt-designer-and-pyqt/#our-goal
+
+
+
+.. index:: Continuous Integration
+.. index:: GitLab CI
+.. _gitlab_ci:
+
+Continuous Integration (CI)
+============================
+
+GitLab CI is a powerful tool to ensure the code you publish on GitLab works as expected.
+It's a pipeline that runs a number of operations on your code, namely running tests in an isolated container,
+do linting, producing coverage reports, and many more.
+
+It is mostly setup already by the Acc-Py team, and some extra customizations are added by ``bipy-gui-manager``.
+To learn more about the nature of such modifications, check out the `.gitlab-ci.yml` file description
+`in the relevant page <2-project-structure.html#gitlab-ci-yml>`_. See also the
+`testing section <7-testing.html#testing>`_ for troubleshooting tests that run locally but fail on GitLab.
+
+Tips and Tricks
+---------------
+
+.. index:: Add coverage badge to your repo
+.. _add_coverage_badge:
+
+Add coverage badge
+~~~~~~~~~~~~~~~~~~~
+In GitLab's side bar, press ``Settings > General > Badges``. The fill the fields as follows::
+
+    Name: coverage
+    Link: https://gitlab.cern.ch/<user or group>/<my-project>/pipelines
+    Badge image URL: https://gitlab.cern.ch/<user or group>/<my-project>/badges/master/coverage.svg
+
+The next time a pipeline runs on master, the number should be updated.
+
+
+.. index:: Make screenshots during the tests
+.. _test_screenshots:
+
+Make screenshot during the tests
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+*TODO Check Acc-Py documentation*
+
+
 
 
 .. index:: Development Tools FAQ

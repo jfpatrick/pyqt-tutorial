@@ -62,8 +62,8 @@ definition of your GUI, in the same folder where you are running the command.
 Writing Resource files (``.qrc``)
 ---------------------------------
 If you're not using Qt Designer, please refer to `this document <https://doc.qt.io/qt-5/resources.html>`_
-to learn more about how to write manually a resource file.
-
+to learn more about how to write manually a resource file. Otherwise, see the instructions on how to create resource
+files at this `page <6-gui-design-guideline.html#qrc_files>`_
 
 
 .. index:: Manual compilation of ``.ui`` and ``.qrc`` files
@@ -80,6 +80,7 @@ and then recompile the ``.ui`` files with the ``--from-imports`` flag::
 
     pyuic5 --from-imports my_interface.ui -o my_interface_ui.py
 
+There is apparently no way to do this operation in bulk, so if you have more files, they have to be compiled one by one.
 
 
 .. index:: Use ComRAD as a debug tool

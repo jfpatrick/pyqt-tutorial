@@ -219,62 +219,22 @@ The tests hang forever while trying to start
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 It might be trying to communicate with the control system. This error is likely to happen in GitLab CI
 because its runners are *not* TN-trusted, so it will fail.
+
 Verify which part of your application is trying to contact the control system and mock it in a meaningful way.
-See the above paragraph on testing control system APIs.
+See the `above paragraph <7-testing.html#mocking>`_ on testing control system APIs.
 
 .. index:: "Failed to connect to all InCA servers"
 .. _failed_to_connect:
 
-The pipeline fails with an error saying "Failed to connect to all InCA servers"
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+The tests fail with "Failed to connect to all InCA servers"
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 Full error is::
 
     jpype._jclass.org.springframework.remoting.RemoteAccessException:
     org.springframework.remoting.RemoteAccessException: Failed to connect to all InCA servers
 
 Same as above: your app is probably trying to contact the control system. Mock the relative function/object.
-See the above paragraph on testing control system APIs.
-
-
-.. index:: Continuous Integration
-.. index:: GitLab CI
-.. _gitlab_ci:
-
-Continuous Integration (CI)
-============================
-
-GitLab CI is a powerful tool to ensure the code you publish on GitLab works as expected.
-It's a pipeline that runs a number of operations on your code, namely running tests in an isolated container,
-do linting, producing coverage reports, and many more.
-
-It is mostly setup already by the Acc-Py team, and some extra customizations are added by ``bipy-gui-manager``.
-To learn more about the nature of such modifications, check out the `.gitlab-ci.yml` file description
-`in the relevant page <2-project-structure.html#gitlab-ci-yml>`_.
-
-Tips and Tricks
----------------
-
-.. index:: Add coverage badge to your repo
-.. _add_coverage_badge:
-
-Add coverage badge
-~~~~~~~~~~~~~~~~~~~
-In GitLab's side bar, press ``Settings > General > Badges``. The fill the fields as follows::
-
-    Name: coverage
-    Link: https://gitlab.cern.ch/<user or group>/<my_app>/pipelines
-    Badge image URL: https://gitlab.cern.ch/<user or group>/<my_app>/badges/master/coverage.svg
-
-The next time a pipeline runs on master, the number should be updated.
-
-
-.. index:: Make screenshots during the tests
-.. _test_screenshots:
-
-Make screenshot during the tests
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-*TODO Check Acc-Py documentation*
-
+See the `above paragraph <7-testing.html#mocking>`_ on testing control system APIs.
 
 
 

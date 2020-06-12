@@ -118,6 +118,7 @@ The one provided by ``bipy-gui-manager`` differs a lot from the default version 
    `<https://acc-py.web.cern.ch/gitlab/[bisw-python_or_your_username]/[project_name]>`_
 
 You can  modify it to add more tasks, deploy automatically, do linting, or anything else. For more information, check
+the relevant paragraph in the `development tools page <3-tools.html#gitlab-ci>`_, the
 `Acc-Py documentation <https://wikis.cern.ch/display/ACCPY/GUI+Testing>`_ or check out
 `GitLab CI documentation <https://docs.gitlab.com/ee/ci/#getting-started>`_.
 

@@ -114,19 +114,19 @@ code before being able to release. Such process is also semi-automated by the co
 
 It will generate (in the current folder) a package template consisting of number of files:
 
-    * an empty ``__init__.py``,
-    * a basic, semi-complete ``setup.py`` (check
-      `this SO thread <https://stackoverflow.com/questions/1471994/what-is-setup-py>`_
-      to learn more about ``setup.py``),
-    * a ``README.md``,
-    * a ``test/`` folder with an example test inside.
+* an empty ``__init__.py``,
+* a basic, semi-complete ``setup.py`` (check
+  `this SO thread <https://stackoverflow.com/questions/1471994/what-is-setup-py>`_
+  to learn more about ``setup.py``),
+* a ``README.md``,
+* a ``test/`` folder with an example test inside.
 
 Once done, the user only has to edit the ``setup.py`` files adding its project dependencies and a few other information
 (like their own name and email as authors). After that, the project can be released by typing::
 
 	acc-py devrelease
 
-.. warning:: this command succeeds only if you **upgraded the version number** into ``setup.py`` since the last time
+.. warning:: This command succeeds only if you **upgraded the version number** into ``setup.py`` since the last time
         you issued it.
 
 .. index:: Other Features of Acc-Py
@@ -137,19 +137,19 @@ Other features
 
 Acc-Py can do a lot more. Notable features are:
 
-    * *Code Linting*. Typing ``acc-py check`` runs a few linters against your code and provides you with a code quality
-      report. See the `dedicated section on code linting <7-testing#linting>`_.
+* **Code Linting**. Typing ``acc-py check`` runs a few linters against your code and provides you with a code quality
+  report. See the `dedicated section on code linting <7-testing#linting>`_.
 
-    * *GitLab CI setup*. Typing ``acc-py init-ci`` creates a standard GitLab CI configuration file that takes care of
-      setting up an automated testing pipeline. In short, it will tell GitLab to run all your tests every time you
-      upload new code and inform you whether any of those tests failed. It will also devrelease your project every time
-      you create a new tag on GitLab.
-      See the `description of GitLab CI config file <2-project-structure#gitlab-ci-yml>`_.
+* **GitLab CI setup**. Typing ``acc-py init-ci`` creates a standard GitLab CI configuration file that takes care of
+  setting up an automated testing pipeline. In short, it will tell GitLab to run all your tests every time you
+  upload new code and inform you whether any of those tests failed. It will also devrelease your project every time
+  you create a new tag on GitLab.
+  See the `description of GitLab CI config file <2-project-structure#gitlab-ci-yml>`_.
 
-    * *Automatic Documentation*. Typing ``acc-py init-docs`` creates a basic Sphinx setup that autogenerates an API
-      description based on your code and your in-code comments. Such documentation will be visible directly at
-      `this link <https://acc-py.web.cern.ch>`_.
-      See the `description of the docu/ folder <4-project-structure#docs_folder>`_.
+* **Automatic Documentation**. Typing ``acc-py init-docs`` creates a basic Sphinx setup that autogenerates an API
+  description based on your code and your in-code comments. Such documentation will be visible directly at
+  `this link <https://acc-py.web.cern.ch>`_.
+  See the `description of the docu/ folder <4-project-structure#docs_folder>`_.
 
 More features are currently planned for release but not available yet. For an overview of all the available command,
 type::

@@ -23,16 +23,15 @@ If in doubt, use the Qt Designer.
 Design with Qt Designer (using ``.ui`` files)
 =============================================
 The Qt Designer version shipped with Acc-Py is basically identical to any vanilla Qt Designer, so any good
-`tutorial <https://relentlesscoding.com/2017/08/25/tutorial-rapid-gui-development-with-qt-designer-and-pyqt/#installation>`_
-on the Internet should be good to help you get started.
+`tutorial <3-tools.html#qtdesigner_tutorials>`_ on the Internet should be good to help you get started.
 
 Once you finished your design, you will end up with one or more XML ``.ui`` files.
 These files cannot be loaded directly in a PyQt application (unlike QML files), but have to be compiled.
 
-.. warning:: QML files are **not recommended** and **not supported** by Acc-Py's team or by BI, due to its
+.. warning:: QML files are **not recommended** and **not supported** by Acc-Py's team or by BI, due to their
     remarkably poor plotting performance and their need for JavaScript.
 
-The compilation can be done automatically, but also manually. if you are using the boilerplate code from
+The compilation can be done automatically, but also manually. if you are using the template from
 ``bipy-gui-manager``, the automatic compilation is already setup for you. If you want to know the details of how
 it works, or you need to compile manually for any reason, check `this page <90-advanced-xml.html>`_.
 
@@ -44,8 +43,7 @@ it works, or you need to compile manually for any reason, check `this page <90-a
 Using the ``.ui`` files in code
 ===============================
 Once you created your interface, you can load it into your application.
-
-The loading is done into the Presenter, that is, into any file in the ``widgets`` folder::
+The loading is done into the View, that is, into classes from the ``widgets`` folder::
 
     import sys
     from PyQt5 import QtCore, QtGui, QtWidgets
@@ -80,8 +78,8 @@ The loading is done into the Presenter, that is, into any file in the ``widgets`
 
 Design in code
 ==============
-If you have very specific use cases, or your application is made mostly of reusable widgets that don't come from
-``accwidgets`` (thus not available in Qt Designer), you might want to build up you interface directly in code.
+If you have very specific use cases, or your application is made mostly of reusable widgets that are
+not available in Qt Designer, you might want to build up you interface directly in code.
 From this regard, there are no limitations in what you can do: just follow some good tutorial on how to deal with
 ``QMainWindow`` and Qt's layouts before jumping in. In this case, however, we recommend caution, as GUIs developed
 in code are inherently harder to maintain.
