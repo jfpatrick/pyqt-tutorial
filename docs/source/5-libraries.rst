@@ -10,8 +10,8 @@ Libraries
 
 GUI Libraries
 =============
-The Acc-Py team provides and maintain a lot of Python libraries. Here is a non-exhaustive list of the most
-important ones related to PyQt5 (May 2020):
+The Acc-Py team provides and maintain a lot of useful Python libraries for CERN.
+Here is a non-exhaustive list of the most important ones related to PyQt5 (May 2020):
 
 .. index:: ComRAD
 .. _comrad:
@@ -31,10 +31,6 @@ Please refer to the
 `ComRAD documentation <https://acc-py.web.cern.ch/gitlab/acc-co/accsoft/gui/rad/accsoft-gui-rad-comrad/docs/stable/>`_
 to learn more about this tool.
 
-.. danger:: ** PLEASE UPDATE THIS SECTION ** -
-    ComRAD also includes a set of reusable widgets that are accessible from its own Qt Designer instance.
-    Such widgets are currently ComRAD specific, but they will eventually be merged with ``accwidgets``, to ease the
-    transition effort from one tool to the other.
 
 .. index:: accwidgets
 .. _accwidgets:

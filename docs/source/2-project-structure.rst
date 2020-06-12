@@ -30,7 +30,7 @@ The template provides:
    `below <2-project-structure.html#gitlab-ci-yml>`_),
 
  * A small ``activate.sh`` activation script to activate both your virtualenv and Acc-Py,
-   sets up some env vars for Qt Designer, and puts a shared PyCharm instance on your PATH
+   sets up some env vars for Qt Designer, and puts a shared PyCharm instance on your ``PATH``
    (see `below <2-project-structure.html#activate.sh>`_).
 
 We are going to cover each of these files one by one.
@@ -257,12 +257,12 @@ with your code. When importing from a Python script, this folder's name is the r
 .. note:: The content of this file is strictly related with the content of ``<project_name>/resources``,
     so you might want to read again this paragraph after that.
 
-Usually, ``__init__.py`` files are empty. If you're unsure why, check out the
-`Python documentation <https://docs.python.org/3/tutorial/modules.html#packages>`_ first.
+Usually, ``__init__.py`` files are empty (if you're unsure why, check out the
+`Python documentation <https://docs.python.org/3/tutorial/modules.html#packages>`_ first).
 However this specific ``__init__.py`` file contains three lines of code that do not need to be modified,
 but are explained here for completeness.
 
-This file contains one line of code that invokes ``pyqt5ac``, a small tool that performs the
+The file invokes ``pyqt5ac``, a small tool that performs the
 automatic recompilation of Qt Designer files after they are edited. See
 `its project page <https://github.com/addisonElliott/pyqt5ac>`_ and, if you're interested, the
 `relevant section <90-advanced-xml.html#pyqt5ac_ui>`_ later on in the guide.
