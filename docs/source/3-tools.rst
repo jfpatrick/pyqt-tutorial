@@ -138,8 +138,8 @@ Web Pages
 .. index:: GitLab CI
 .. _gitlab_ci:
 
-Continuous Integration (CI)
-============================
+GitLab CI
+=========
 
 GitLab CI is a powerful tool to ensure the code you publish on GitLab works as expected.
 It's a pipeline that runs a number of operations on your code, namely running tests in an isolated container,

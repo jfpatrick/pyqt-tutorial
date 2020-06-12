@@ -156,7 +156,7 @@ the control system.
 
 If you are using this setup for tests, remember to put all the setup code in a ``pytest``'s fixture, so that the simulation
 environment is setup from scratch for every test. See the `testing page <7-testing.html>`_
- for an example of how to properly do it.
+for an example of how to properly do it.
 
 .. index:: Troubleshooting ``papc``
 .. _papc_troubleshooting:
@@ -171,7 +171,7 @@ decorator to make absolutely sure this is always done.
 
 The tests seems to get slower and slower after the first 5-6 tests
 ------------------------------------------------------------------
-First, make sure the last tests are slower even if you randomize the order of execution with `--random-order`.
+First, make sure the last tests are slower even if you randomize the order of execution with ``--random-order``.
 This flag might cause your tests to break if they are not isolated properly, i.e. they influence each other.
 If your test cannot be run in random order, please review them and make them independent.
 
