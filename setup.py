@@ -18,6 +18,7 @@ REQUIREMENTS: dict = {
     'core': [
         "pyqt5",
         "pyqt5ac @ git+https://:@gitlab.cern.ch:8443/szanzott/pyqt5ac.git",  # To automate the compilation of .ui and .qrc files
+        "accwidgets",
         "pyjapc",
         "papc",  # For sandbox mode and tests
     ],

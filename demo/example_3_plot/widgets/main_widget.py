@@ -2,7 +2,6 @@ from typing import Callable
 import logging
 
 from PyQt5.QtWidgets import QWidget, QSpinBox
-import pyqtgraph as pg  # For typing
 from accwidgets.graph import TimeSpan, ScrollingPlotWidget
 
 # Import the models
@@ -55,7 +54,7 @@ class MainWidget(QWidget, Ui_Form):
         logging.debug("This message won't be visible, because the default log level is INFO")
         logging.info("This is a message from the application.")
 
-    def _setup_plot(self, plot_widget: pg.PlotWidget, parameter: str, selector: str) -> None:
+    def _setup_plot(self, plot_widget: 'PlotWidget', parameter: str, selector: str) -> None:
         """
         Sets up the plots by connecting the widgets on the View to their relative Models.
         :param plot_widget: the widget selected from the View
