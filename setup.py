@@ -18,12 +18,6 @@ REQUIREMENTS: dict = {
     'core': [
         "pyqt5",
         "pyqt5ac @ git+https://:@gitlab.cern.ch:8443/szanzott/pyqt5ac.git",  # To automate the compilation of .ui and .qrc files
-        "pyqtgraph",
-        "be-bi-application-frame",
-        "comrad",  # FIXME Provides the CLogDisplay, remove in favor of the real AppFrame or accwidgets'version when out
-        "accwidgets",  # For the plots
-        "pyjapc==2.1.2",  # FIXME Has to go after comrad to pick the right version?
-        "importlib-metadata==1.0.0",  # FIXME Due to comrad I suppose?
     ],
     'test': [
         "pytest",

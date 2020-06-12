@@ -38,13 +38,16 @@ Table of Contents
 =================
 .. toctree::
 
+    self
     1-bipy-gui-manager
     2-project-structure
     3-tools
     5-libraries
     6-gui-design-guidelines
     7-testing
+
     80-accpy
+    81-detailed-project-structure
     89-papc
     90-advanced-xml
 
@@ -68,7 +71,6 @@ Web Tutorials
 Covers Qt Designer and more complex widgets like ComboBoxes and Tables.
 A recommended resource for getting started quickly.
 
-|
 
 **LearnPyQt**: https://www.learnpyqt.com/ Longer, more descriptive PyQt5 tutorial with videos and example apps.
 Note that part of the tutorial require you to login and/or buy the course,
@@ -88,8 +90,6 @@ Some examples of free content from this course:
 
 It also offers a few small apps that can be used as examples: https://github.com/learnpyqt/15-minute-apps
 
-|
-
 
 **fman's PyQt5 tutorial**: https://build-system.fman.io/pyqt5-tutorial. This is more of a reference page than a
 tutorial. Useful to pinpoint all the crucial topics you have to be aware of to develop PyQt apps.
@@ -97,20 +97,17 @@ It also provides a repository with a number of example applications: https://git
 
 Note: does not cover Qt Designer.
 
-|
 
 **RealPython's PyQt5 tutorial**: https://realpython.com/python-pyqt-gui-calculator/ Another good tutorial that
 guides you though the process of building a calculator application. Although it mentions Qt Designer, it does not
 uses it, nor it explains how it works.
 
-|
 
 **ZetCodes's PyQt5 Tutorial**: http://zetcode.com/gui/pyqt5/ Old-fashioned website providing a few hands-on examples
 of PyQt5 applications. Does not cover Qt Designer and produces all the interfaces in code, which is not recommended.
 However it can be a useful reference on some less-known topics.
 As a plus, it offers also a `Python tutorial <http://zetcode.com/lang/python/>`_ for the very beginners.
 
-|
 
 **Data Flair's PyQt5 Tutorial**: https://data-flair.training/blogs/python-pyqt5-tutorial/ Another quick tutorial
 that covers the basics in a series of very small example applications. Does not cover Qt Designer.
@@ -129,7 +126,6 @@ Books (Available at the CERN Online Library)
 **Qt5 Python GUI Programming Cookbook** by B.M. Harwani:
 https://learning.oreilly.com/library/view/qt5-python-gui/9781788831000/
 
-|
 
 **Mastering GUI Programming with Python** by A. D. Moore: https://cds.cern.ch/record/2685778?ln=en
 The most important chapters
@@ -152,7 +148,6 @@ Reference Documentation (Advanced users)
 **Riverbank's PyQt5 Reference Guide**: https://www.riverbankcomputing.com/static/Docs/PyQt5/
 Cover in extreme detail the inner workings of PyQt5 and all the technical details. Might be useful for debugging.
 
-|
 
 **Qt5 Documentation**: https://doc.qt.io/qt-5/classes.html https://doc.qt.io/qt-5/qtmodules.html
 PyQt API are in most cases an exact clone of Qt5 API. Therefore Qt5 Docs are officially the reference
