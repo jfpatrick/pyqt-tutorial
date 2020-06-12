@@ -414,7 +414,7 @@ for a more detailed look at this folder and the code contained in it.
 .. _papc_setup:
 
 <project_name>/models/papc_setup/
-=================================
+---------------------------------
 This folder contains a barebone ``papc`` setup to sandbox your application.
 
 ``papc`` is a library that can trick your application into believing it's connecting to the control system, while
@@ -430,7 +430,7 @@ This also allows control system apps to run in a sandbox also on non-TN machines
 .. _tests_folder:
 
 tests/
-======
+------
 This folder contains the automated tests for your app. It already contains some basic tests to ensure your setup is
 correct, and they will be run on GitLab CI every time you push code to your repository.
 
@@ -456,7 +456,7 @@ Learn more about testing in the `dedicated testing section <7-testing.html>`_ of
 .. _docs_folder:
 
 docs/
-=====
+-----
 This folder is a slight modification of the default one generated with ``acc-py init-docs``. It contains all that's
 needed to have an empty documentation page on the `Acc-Py ReadTheDocs server <https://acc-py.web.cern.ch/>`_. Such
 page is configured to include a description of your API based on the comments you place in your code.
