@@ -38,7 +38,7 @@ Table of Contents
 =================
 .. toctree::
 
-    self
+    index
     1-bipy-gui-manager
     2-project-structure
     3-tools

@@ -15,7 +15,7 @@ It is meant to help PyQt beginners find their way through the template.
 
 .. toctree::
 
-    self
+    81-detailed-project-structure
 
 Prerequisites
 =============
@@ -53,8 +53,8 @@ there is one single entry point, which points to the ``main.py`` file.
 
 Let's have a look at what it contains.
 
-main.py: Open the window
-========================
+main.py: Start the application
+==============================
 The entry point specifies that the function to be called is the ``main()``, so let's have a look at what it does.
 
 Create the application
@@ -74,7 +74,9 @@ like the following::
         app = QApplication()
         return
 
-would do nothing at all. In order to have a window we have to instantiate a visible element, so either a
+would do nothing at all.
+
+In order to have a window we have to instantiate a visible element, so either a
 `QWidget <https://doc.qt.io/qt-5/qwidget.html#details>`_, or a
 `QMainWindow <https://doc.qt.io/qt-5/qmainwindow.html#details>`_, etc.
 In this case, we are instantiating an `ApplicationFrame <https://gitlab.cern.ch/bisw-python/be-bi-application-frame>`_
@@ -93,12 +95,12 @@ However, note that code like this::
         window = ApplicationFrame()
         return
 
-will still not work. ApplicationFrame is a graphical element, but one more step is missing which we're going to see
+still doesn't work. ApplicationFrame *is* a graphical element, but one more step is missing which we're going to see
 at the end of this file.
 
 Instantiate the actual GUI
 --------------------------
-The following lines are::
+The code proceed with these lines::
 
     # Instantiate your GUI (here the MainWidget class)
     main_widget = MainWidget(parent=window)
@@ -106,8 +108,8 @@ The following lines are::
     # Add the main widget to the window
     window.setMainWidget(main_widget)
 
-As the comment states, this line is finally generating your GUI. This implies that your GUI is defined into the
-``MainWidget`` class, which we will cover in a moment.
+As the comment states, here we are generating the actual GUI. This implies that your GUI is defined into the
+``MainWidget`` class, which we will cover right after this file.
 
 In the second line, ``setMainWidget()`` is a method exposed by ApplicationFrame to load the GUI into its central area.
 
@@ -225,8 +227,8 @@ This is unfortunately necessary in PyQt, as applications that entered the event 
 might just stay around as zombies indefinitely. Note that in the case of the dialog we didn't need this hack, because
 the application never entered the main event loop, but used its own.
 
-Recap
------
+Summary
+-------
 The essence of the ``main.py`` file could be packed in these three lines of code::
 
     def main():
@@ -243,8 +245,207 @@ If you try this, you will get an empty window as a result. By adding one line::
         window.show()
 
 you will get your GUI displayed in the above mentioned window. All the rest of the code does either error recovery or
-other cosmetic operations on the interface, which are way less critical.
+other cosmetic operations on the interface, which are less critical.
 
 So make sure you understand well at least these four lines before proceeding.
+
+
+main_widget.py: Build your GUI's View
+=====================================
+As stated in the import statements in ``main.py``, the MainWidget class is defined into the ``main_widget.py`` file.
+Let's have a look at its content.
+
+Parent classes of a Qt View
+---------------------------
+To begin with, let's highlight the fact that MainWidget inherits from two classes::
+
+    class MainWidget(QTabWidget, Ui_TabWidget):
+
+`QTabWidget <https://doc.qt.io/qt-5/qtabwidget.html#details>`_ is a standard Qt widget for a tabbed container.
+``Ui_TabWidget`` instead is imported from the ``generated/`` folder: this means that is the result of the compilation
+of a ``.ui`` file.
+
+.. note:: See `this section <https://acc-py.web.cern.ch/gitlab/bisw-python/pyqt-tutorial/docs/stable/2-project-structure.html#project-name-widgets-resources>`_
+    to know more about how .ui files are automatically compiled into generated Python code
+    every time the application is started.
+
+A quick peek into ``widget/resources/generated/ui_main_widget.py`` clarifies that it is a plain Python object, with
+no further parents::
+
+    class Ui_TabWidget(object):
+
+This helps greatly to prevent the
+`diamond problem of multiple inheritance <https://en.wikipedia.org/wiki/Multiple_inheritance#The_diamond_problem>`_.
+
+To summarize: **Ui_TabWidget is not a QObject**. It *contains* QObjects, but is not a QObject itself.
+On the contrary, QTabWidget *is* a QObject subclass, and is the one that makes MainWidget a QObject as well.
+This information can help you debug all those cases in which MainWidget might fail to instantiate.
+
+Let's move on the the ``__init__()`` method.
+
+Initializing a View
+-------------------
+Unsurprisingly, the first operation done in the constructor is to call the ``super`` method, passing the ``parent``
+parameter::
+
+    def __init__(self, parent=None):
+        super(MainWidget, self).__init__(parent)
+
+This is necessary, as the parent parameter is needed by the parent QObject class to get deleted with
+the window it belongs to. Failing to pass the ``parent`` to the superclass is equivalent to not setting it at all,
+causing the same set of problems highlighted above in the ``main()`` function.
+
+After that, we see another very important call::
+
+        # Setup itself as the view
+        self.setupUi(self)
+
+``setupUi()`` is one of the only two methods inherited by the generated class ``Ui_TabWidget``. Another quick peek
+into its source code should clarify the purpose of this method: instantiating all the graphical elements, widgets,
+layouts, etc... of the GUI, in order to replicate exactly the interface designed in Qt Designer.
+
+After this call, the entire GUI is set up. All the object names defined in the .ui files are now available as attributes
+of ``self`` and can be manipulated freely. However, heavy manipulation of such objects, especially to change their
+default appearance, is discouraged: please use Qt Designer for this purpose.
+
+So, if not for manipulation, why are the objects all available as attributes? You will see the reason in a few
+paragraphs.
+
+Instantiate and wire the Model
+------------------------------
+In Qt ModelView paradigm, Views are usually responsible of instantiating their models and connect to them in the
+constructor. In fact, the next line of the ``__init__()`` function is::
+
+    # Instantiate the model
+    self.model = SpinBoxModel()
+
+We will have a better look at the content of ``SpinBoxModel`` later. However, we can already tell from the name that
+it's a Model class.
+
+Model classes are an interface between the Qt-based View objects and the backend system they need to interact with.
+For example, when they receive a new value from the backend, they transform it into a Qt signal that can be understood
+by, for example, a QLabel or a ListView.
+
+In this case, the ``SpinBoxModel`` is the class that makes the QSpinBox able to set the value to the test device.
+Let's see hos this is actually done in the following lines.
+
+First of all, one straightforward line of code reads the Model and sets the initial value of the QSpinBox
+ (``self.frequency_spinbox``)::
+
+    # Set the spinbox's initial value
+    self.frequency_spinbox.setValue(self.model.get_frequency())
+
+And then, the real connection::
+
+    # Connect the spinbox to the control system
+    self.frequency_spinbox.valueChanged.connect(self.model.set_frequency)
+
+This syntax is part of `Qt Signals and Slots architecture <https://doc.qt.io/qt-5/signalsandslots.html>`_,
+another cornerstone of the framework. Let's break it down.
+
+The core element in this call is the ``.connect()`` method. ``.connect()`` is used to connect one Qt Signal to a
+Qt Slot, as ``signal.connect(slot)``. Therefore we can infer that ``valueChanged`` must be a signal and that
+``set_frequency`` is a slot. In addition, the signal's signature must match the slot's signature, i.e. if the
+signal carries one ``int``, the slot must ask only for one single ``int`` as input.
+
+How can we verify this?
+
+Find signals
+~~~~~~~~~~~~
+To check if ``valueChanged`` is actually a signal with the expected signature, there are two strategies,
+depending on the object the signal belongs to:
+
+* If the object emitting the signal is a C++ Qt object, check its Qt documentation. Into each object's page there is
+  a section dedicated to the signals it emits, but don't forget to check the signals emitted by their superclasses
+  (like QWidget or QObject). A full lists of all the available members, including the ones from superclasses,
+  is also available in the page.
+
+* If the object emitting the signal is a PyQt QObject subclass, check into the source for the definition of this signal.
+  In PyQt every QObject subclass can define new Signals in this way::
+
+    from PyQt5.QtCore import QObject, pyqtSignal
+
+    class MyPyQtObject(QObject):
+        an_empty_signal = pyqtSignal()
+        a_signal_with_a_value = pyqtSignal(float)
+
+
+As you can see in both cases, signals can carry values of a specific type, in this case ``float``. Checkout
+`PyQt's Documentation on the topic <https://www.riverbankcomputing.com/static/Docs/PyQt5/signals_slots.html>`_ for
+more detailed information about this topic.
+
+In this case, ``frequency_spinbox`` is a native QSpinBox Qt Widget, so we can see its signals in the Qt
+`QSpinBox documentation <https://doc.qt.io/qt-5/qspinbox.html#signals>`_. As you can see, ``valueChanged`` is listed
+and carries an ``int``, which according to the
+`signal's documentation <https://doc.qt.io/qt-5/qspinbox.html#valueChanged>`_, represents the content of the
+spinbox that was just set.
+
+We will later see an example of a signal emitted by a PyQt object.
+
+Find slots
+~~~~~~~~~~
+To check if ``set_frequency`` is actually a slot with the expected signature, the procedure is very similar to the
+signals one:
+
+* If the object exposing the slot is a C++ Qt object, check its Qt documentation. Into each object's page there is
+  a section dedicated to the slots it exposes, but don't forget to check the slots exposed by their superclasses
+  (like QWidget or QObject). A full list of all the available members, including the ones from superclasses,
+  is also available in the page.
+
+* If the object exposing the slot is a PyQt QObject subclass, check into the source for the definition of this slot.
+  In PyQt every QObject subclass can define new Slots in this way::
+
+    from PyQt5.QtCore import QObject, pyqtSlot
+
+    class MyPyQtObject(QObject):
+
+        @pyqtSlot()
+        def slot_with_no_parameters(self):
+            pass
+
+        @pyqtSlot(int)
+        def slot_with_a_parameter(self, my_value: int):
+            pass
+
+As you can see in both cases, slots can receive values of a specific type, in this case ``int``. Note that the
+decorator's declared types will make Python cast whatever value is received into that type, or throw an exception.
+For example, if a slot requesting an ``int`` is connected to a signal emitting a ``float``, the mismatch might crash
+the application or cause unexpected behavior.
+
+Checkout
+`PyQt's Documentation on the topic <https://www.riverbankcomputing.com/static/Docs/PyQt5/signals_slots.html>`_ for
+more detailed information about this topic.
+
+In this case, ``get_frequency`` is a function exposed by SpinBoxModel, which is a PyQt QObject subclass and can
+therefore define its own slots. In addition, we can see it defines a function which is decorated as ``pyqtSlot``
+and has a signature that matches::
+
+    @pyqtSlot(int)
+    def set_frequency(self, value: int) -> None:
+        ...
+
+The big picture
+~~~~~~~~~~~~~~~
+Once we verified that ``valueChanged`` is indeed a signal that matches the slot ``set_frequency``, let's see what the
+``.connect()`` statement is there for.
+
+The QSpinBox's ``valueChanged`` signal is emitted immediately after the value into the spinbox has changed: so,
+as you type, is fired at each keystroke. ``valueChanged`` is emitted with an ``int`` value as a payload, and it goes
+into the inner workings of Qt's Meta-Object System to be dispatched to all listeners.
+Here, Qt figures out whether anyone is listening to this signal and finds that the ``set_frequency`` slot is connected.
+So it calls the slot, passing the payload ``int`` as a parameter.
+
+This all happens in an asynchronous matter. For more details on the Qt Meta-Object System, check out the
+`C++ documentation <https://doc.qt.io/qt-5/metaobjects.html>`_ and its
+`support in PyQt <https://www.riverbankcomputing.com/static/Docs/PyQt5/metaobjects.html>`_.
+
+Plotting
+~~~~~~~~
+The following method call sets up the plot in the main window. Setting up the plot is in principle the same as for the
+QSpinBox: loading initial values and the calling some ``.connect()``s. However, we will now skip over this part and
+revisit it in a later paragraph.
+
+
+
 
 
