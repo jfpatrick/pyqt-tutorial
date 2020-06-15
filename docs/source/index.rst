@@ -64,6 +64,13 @@ External Resources
 Here is a list of some good tutorials on PyQt that can help you get started. If you know any other, please send the
 link to Sara Zanzottera or Steen Jensen and it will be added to the list.
 
+.. warning:: Pay attention not to focus on tutorials that cover only the QtQuick (also called QML) technique of
+    developing PyQt GUIs. We do not support QML in any way, due to its remarkably poor plotting performance.
+
+    For the same reason, pay attention to tutorials that use Qt Creator (the flagship Qt IDE for QML development).
+    Such IDE does embed a Qt Designer for backward compatibility, but the look of it is quite different, so avoid
+    them if possible or be aware of the mismatch.
+
 Web Tutorials
 -------------
 
@@ -119,6 +126,12 @@ Video Tutorials
 Covers mostly the very basics, and although Windows specific, it contains some very valuable explanations.
 It has a companion website with the code, that you can use to follow through:
 https://techwithtim.net/tutorials/pyqt5-tutorial/basic-gui-application/
+
+CERN Udemy subscription
+~~~~~~~~~~~~~~~~~~~~~~~
+
+.. warning:: At the time of writing, there are no courses in the CERN subscription to Udemy that covers Qt Widgets,
+    only QML courses (which we are not interested in).
 
 Books (Available at the CERN Online Library)
 --------------------------------------------

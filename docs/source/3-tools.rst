@@ -146,7 +146,7 @@ It's a pipeline that runs a number of operations on your code, namely running te
 do linting, producing coverage reports, and many more.
 
 It is mostly setup already by the Acc-Py team, and some extra customizations are added by ``bipy-gui-manager``.
-To learn more about the nature of such modifications, check out the `.gitlab-ci.yml` file description
+To learn more about the nature of such modifications, check out the ``.gitlab-ci.yml`` file description
 `in the relevant page <2-project-structure.html#gitlab-ci-yml>`_. See also the
 `testing section <7-testing.html#testing>`_ for troubleshooting tests that run locally but fail on GitLab.
 
