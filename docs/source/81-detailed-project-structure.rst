@@ -158,9 +158,9 @@ Manage an exception
 At the end of this block, there is an interesting ``except`` clause.
 Quite a lot is going on in there, so let's read it line by line.
 
-At first, ``window`` is replaced by a ``QWidget``:
+At first, ``window`` is replaced by a ``QWidget``::
 
-        window = QWidget()
+    window = QWidget()
 
 in fact the exception might have been thrown during the instantiation of ApplicationFrame,
 so we have to replace it with a fallback object like QWidget, which is extremely unlikely to fail.
@@ -285,15 +285,15 @@ Let's move on the the ``__init__()`` method.
 
 Initializing a View
 -------------------
-Unsurprisingly, the first operation done in the constructor is to call the ``super`` method, passing the ``parent``
-parameter::
+Unsurprisingly, the first operation done in the constructor of MainWidget is to call the ``super`` method, passing
+the ``parent`` parameter::
 
     def __init__(self, parent=None):
         super(MainWidget, self).__init__(parent)
 
-This is necessary, as the parent parameter is needed by the parent QObject class to get deleted with
+This is necessary, as the ``parent`` parameter is needed by the parent QObject class to get deleted with
 the window it belongs to. Failing to pass the ``parent`` to the superclass is equivalent to not setting it at all,
-causing the same set of problems highlighted above in the ``main()`` function.
+causing the same set of problems `highlighted above <81-detailed-project-structure.html#>`_ in the ``main()`` function.
 
 After that, we see another very important call::
 
@@ -308,12 +308,12 @@ After this call, the entire GUI is set up. All the object names defined in the .
 of ``self`` and can be manipulated freely. However, heavy manipulation of such objects, especially to change their
 default appearance, is discouraged: please use Qt Designer for this purpose.
 
-So, if not for manipulation, why are the objects all available as attributes? You will see the reason in a few
-paragraphs.
+So, if not for manipulation, why are the objects all available as attributes? You will see the reason in the next
+paragraph.
 
 Instantiate and wire the Model
 ------------------------------
-In Qt ModelView paradigm, Views are usually responsible of instantiating their models and connect to them in the
+In Qt's ModelView paradigm, Views are usually responsible of instantiating their models and connect to them in the
 constructor. In fact, the next line of the ``__init__()`` function is::
 
     # Instantiate the model
@@ -327,10 +327,10 @@ For example, when they receive a new value from the backend, they transform it i
 by, for example, a QLabel or a ListView.
 
 In this case, the ``SpinBoxModel`` is the class that makes the QSpinBox able to set the value to the test device.
-Let's see hos this is actually done in the following lines.
+Let's see how this is actually done in the following lines.
 
-First of all, one straightforward line of code reads the Model and sets the initial value of the QSpinBox
- (``self.frequency_spinbox``)::
+First of all, we see one straightforward line of code that reads the Model and sets the initial value of the QSpinBox
+(called ``self.frequency_spinbox``)::
 
     # Set the spinbox's initial value
     self.frequency_spinbox.setValue(self.model.get_frequency())
@@ -344,9 +344,24 @@ This syntax is part of `Qt Signals and Slots architecture <https://doc.qt.io/qt-
 another cornerstone of the framework. Let's break it down.
 
 The core element in this call is the ``.connect()`` method. ``.connect()`` is used to connect one Qt Signal to a
-Qt Slot, as ``signal.connect(slot)``. Therefore we can infer that ``valueChanged`` must be a signal and that
-``set_frequency`` is a slot. In addition, the signal's signature must match the slot's signature, i.e. if the
-signal carries one ``int``, the slot must ask only for one single ``int`` as input.
+Qt Slot, as ``signal.connect(slot)``.
+
+Signals can be imagined as sources of messages that are sent out from an object as a reaction to an event,
+and might or might not carry extra information with them as a payload. For example, a lot of QWidgets expose the
+``clicked()`` signal, which is emitted when they are clicked upon. Others expose the ``valueChanged(string)`` signal,
+that carries with them the new value just set into them. And so on.
+
+Slots can be imagined as observers of messages, and they trigger some action as a result of the reception of a message.
+For example, many writeable QWidgets expose the slot ``clear()`` that empties their editable area. Others expose the
+``setValue(string)`` slot, which will set a specific value into their editable area. The difference between slots and
+regular function calls is that slots can be called by Qt itself when the right signal is received, and do not require a
+direct call to be performed in the application code.
+
+In addition, the signal's signature must match the slot's signature, i.e. if the signal carries one ``int``,
+the slot must require only one single ``int`` as input.
+
+This said, we can infer that ``valueChanged`` must be a signal, emitted when the QSpinBox content is edited, and that
+``set_frequency`` is a slot, probably setting the value of the QSpinBox signal to the control system.
 
 How can we verify this?
 
@@ -372,7 +387,7 @@ depending on the object the signal belongs to:
 
 As you can see in both cases, signals can carry values of a specific type, in this case ``float``. Checkout
 `PyQt's Documentation on the topic <https://www.riverbankcomputing.com/static/Docs/PyQt5/signals_slots.html>`_ for
-more detailed information about this topic.
+more details.
 
 In this case, ``frequency_spinbox`` is a native QSpinBox Qt Widget, so we can see its signals in the Qt
 `QSpinBox documentation <https://doc.qt.io/qt-5/qspinbox.html#signals>`_. As you can see, ``valueChanged`` is listed
@@ -414,10 +429,10 @@ the application or cause unexpected behavior.
 
 Checkout
 `PyQt's Documentation on the topic <https://www.riverbankcomputing.com/static/Docs/PyQt5/signals_slots.html>`_ for
-more detailed information about this topic.
+more details.
 
-In this case, ``get_frequency`` is a function exposed by SpinBoxModel, which is a PyQt QObject subclass and can
-therefore define its own slots. In addition, we can see it defines a function which is decorated as ``pyqtSlot``
+In this case, ``get_frequency`` is a function exposed by SpinBoxModel, which is a PyQt QObject subclass and
+therefore can define its own slots. In addition, we can see it defines a function which is decorated as ``pyqtSlot``
 and has a signature that matches::
 
     @pyqtSlot(int)
@@ -442,9 +457,19 @@ This all happens in an asynchronous matter. For more details on the Qt Meta-Obje
 Plotting
 ~~~~~~~~
 The following method call sets up the plot in the main window. Setting up the plot is in principle the same as for the
-QSpinBox: loading initial values and the calling some ``.connect()``s. However, we will now skip over this part and
-revisit it in a later paragraph.
+QSpinBox: loading initial values and the calling ``.connect()`` a few times. However, we will now skip over this part
+and revisit it in a later paragraph.
 
+
+models.py: Interface to the control system
+==========================================
+Let's finally have a better look at the Models itself now.
+
+They are located in ``my-project/my_project/models/models.py``, which as we can see contains three classes:
+SpinBoxModel, DeviceTimingSource and SinglePointSource. The last two are related to the plotting, which we will
+cover better in a dedicated section, while you should already be somewhat familiar with SpinBoxModel.
+
+.. note:: Please ignore the large comment in the import statements for now. We will talk about papc as well later on.
 
 
 
