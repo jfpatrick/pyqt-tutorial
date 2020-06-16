@@ -1,9 +1,9 @@
 .. index:: Detailed Project Structure
 .. _detailed_project_structure:
 
-=======================
-Explanation of the code
-=======================
+=========================
+Template's Code Explained
+=========================
 
 .. warning:: Work In progress
 
@@ -493,10 +493,10 @@ This all happens in an asynchronous matter. For more details on the Qt Meta-Obje
 .. _models.py-detailed:
 models.py: Interface to the control system
 ==========================================
-Let's finally have a better look at the Model itself now.
+Let's finally have a better look at the Model now.
 
-Models are located in ``my-project/my_project/models/models.py``, which as we can see contains three classes:
-SpinBoxModel, DeviceTimingSource and SinglePointSource. The last two are related to the plotting, which we will
+Models are located in ``my-project/my_project/models/models.py``, which as we can see contains two classes:
+SpinBoxModel and SinglePointSource. The last one is related to the plotting, which we will
 cover better in a dedicated section, while you should already be somewhat familiar with SpinBoxModel.
 
 .. note:: Please ignore the large comment in the import statements for now.
@@ -545,7 +545,135 @@ The method itself is also nothing more than a setter, wrapping the PyJAPC specif
 However, this method is a PyQt Slot as well: this means that can be used in a ``connect()`` statement and is
 run automatically as soon as its matching signals are emitted.
 
+
 .. index:: Plots with accwidgets (detailed explanation)
 .. _plotting-detailed:
 Plots with accwidgets
 =====================
+The setup required to make a plot working is not any different, in principle, by setting up any other Qt widget.
+However, due to the complexity of the widget itself, it involves a few more parts, that we are going to review
+in parallel.
+
+The methods involved in the plot setup are:
+
+* A few lines of MainWidget ``__init__()``
+
+* The DeviceTimingSource and SinglePointSource classes in ``models.py``
+
+.. index:: Plots Views (detailed explanation)
+.. _plotting-view-detailed:
+Plot View
+---------
+Let's start from the MainWidget. After the QSpinBox setup, we immediately find the plot's Model initialization
+(which we will analize in detail in the next paragraph)::
+
+    # Create the data source model for the plot
+    data_source = SinglePointSource(parameter_name="BISWRef1/Acquisition#angle", selector="")
+
+And then, a less obvious call::
+
+    # Add it as a curve to the plot
+    plot_widget.addCurve(data_source=data_source)
+
+This line highlights one important principle of accwidget's plot widgets: they don't have one model per plot, but
+one model per *curve*. This allows for a much large flexibility in complex plots.
+
+A curious reader can also follow the trail of ``addCurve`` and dig into its code looking for the ``connect`` statement
+that, according to Qt's architecture, must exist at some point deep in the library. And indeed after a number of
+calls, we eventually land to ``venv/lib/python3.6/site-packages/accwidgets/graph/datamodel/itemdatamodel.py``,
+function ``_connect_to_data_source``::
+
+    def _connect_to_data_source(self) -> None:
+        """
+        Build the connection between the data model and the update source by wiring
+        all update signals to the fitting handler slots in both ways.
+        """
+        self._data_source.sig_new_data.connect(self._handle_data_update_signal)
+        self.sig_data_model_edited.connect(self._data_source.handle_data_model_edit)
+
+One can also check out where ``sig_data_model_edited`` and ``handle_data_model_edit`` are defined, but in order to use
+the library, it is not necessary. it might however be useful for debugging.
+
+.. index:: Plot Models (detailed description)
+.. _plotting-models-detailed:
+Plot Model
+----------
+The plot is now setup. To complete the picture, let's see what SinglePointSource does.
+
+To begin with, SinglePointSource is a subclass of UpdateSource::
+
+    class SinglePointSource(UpdateSource):
+        ...
+
+From the import statements we learn that UpdateSource is a class from accwidgets.graph. By checking the
+`accwidgets documentation <https://acc-py.web.cern.ch/gitlab/acc-co/accsoft/gui/accsoft-gui-pyqt-widgets/docs/stable/graph/sphinx/accwidgets.graph.datamodel.html?highlight=updatesource#accwidgets.graph.datamodel.connection.UpdateSource>`_
+we can verify that UpdateSource is in turn a subclass of QObject (so it's a valid Model class) and that is
+the base class for every model that wants to communicate with a Plot widget.
+
+In the ``__init__()`` method, we find no surprises::
+
+    def __init__(self, parameter_name, selector):
+        super().__init__()
+        # Create the PyJAPC connector
+        self.japc = pyjapc.PyJapc()
+        # Use the given selector
+        self.japc.setSelector(timingSelector=selector)
+        # Subscribe to the requested Device/Property#field
+        self.japc.subscribeParam(parameter_name, self._create_new_value)
+        # Start receiving data
+        self.japc.startSubscriptions()
+
+In short, it initializes the connection to the control system (again with PyJAPC) and start a subscription to the
+supplied field.
+
+The only interesting part is the callback passed to ``self.japc.subscribeParam()``, a function
+called ``self._create_new_value``, which is also the only other method in this class. Its content, however, is very
+concise::
+
+    def _create_new_value(self, name: str, value: float) -> None:
+        new_data = PointData(
+            x=datetime.now().timestamp(),
+            y=float(math.sin(value/10))
+        )
+        self.sig_new_data[PointData].emit(new_data)
+
+First of all, let's clarify that PyJAPC supplies two arguments to the callback of the subscriptions: the field's fully
+qualified name, and the value received through the subscription.
+
+This ``value`` is then passed to the construction of a PointData instance. PointData comes from accwidgets.graph as
+well, and according to `its docs <https://acc-py.web.cern.ch/gitlab/acc-co/accsoft/gui/accsoft-gui-pyqt-widgets/docs/stable/graph/sphinx/accwidgets.graph.datamodel.html?highlight=pointdata#accwidgets.graph.datamodel.datastructures.PointData>`_
+we learn that is in turn a subclass of an entity representing a point in a curve.
+
+Indeed, the sin of ``value`` is scaled and set as the PointData's vertical axis, while the current timestamp is used as
+the horizontal axis coordinate. This allows the field, which is a purely increasing value, to become a sinusoid,
+but has no other purpose.
+
+But the last line is the really critical one::
+
+    self.sig_new_data[PointData].emit(new_data)
+
+We can check, as explained before, that ``sig_new_data`` is a signal
+(`here <https://acc-py.web.cern.ch/gitlab/acc-co/accsoft/gui/accsoft-gui-pyqt-widgets/docs/stable/graph/sphinx/accwidgets.graph.datamodel.html?highlight=sig_new_data#accwidgets.graph.datamodel.connection.UpdateSource.sig_new_data>`_
+the docs), which is passed the PointData class in brackets. This is because ``sig_new_data`` is of type
+``PyQt_PyObject``, which makes this signal able to carry any QObject. Such QObject type, however, must be specified
+at runtime, hence the syntax.
+
+Then there is an ``.emit()`` statement. This is a method of Signals that means, in short, that a signal carrying
+a payload of ``new_data`` is emitted. This call will trigger all the Slots connected to this signal without the
+SinglePointSource class being aware of them. And we know that, somewhere inside accwidgets, this signal is connected
+to some slot in the ScrollingPlotWidget class, that will render the new point, closing the circle.
+
+.. _summary-detailed:
+Summary
+=======
+The demo contains much more code than what has been explained here, but this is the very core of the application
+and the part that is more critical to understand in order to successfully develop PyQt apps.
+
+If you are interested in the content of the ``tests/`` folder, you should read through the
+`Testing page <7-testing.html>`_. It does not provide a line-by-line explanation of the code, but it should be enough to
+get you started.
+
+If you are interested in the content of the ``papc-setup/`` folder, head over to the `papc page <89-papc.html>`_.
+
+If you believe this page is out-of-date, or it contains some mistakes, please contact Sara Zanzottera or Steen Jensen
+from BE/BI/SW with your notes.
