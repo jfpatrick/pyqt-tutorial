@@ -1,5 +1,5 @@
 .. index:: Detailed Project Structure
-.. _detailed_project_structure
+.. _detailed_project_structure:
 
 =======================
 Explanation of the code
@@ -27,6 +27,8 @@ Also make sure you followed the instructions at the end of the installation proc
 * Type ``source activate.sh``
 * Open the project in PyCharm by typing ``pycharm.sh . &``
 
+.. index:: setup.py (detailed explanation)
+.. _setup.py-detailed:
 
 setup.py: Find the entry point of an app
 ========================================
@@ -53,10 +55,15 @@ there is one single entry point, which points to the ``main.py`` file.
 
 Let's have a look at what it contains.
 
+.. index:: main.py (detailed explanation)
+.. _main.py-detailed:
+
 main.py: Start the application
 ==============================
 The entry point specifies that the function to be called is the ``main()``, so let's have a look at what it does.
 
+.. index:: main.py: Create the application (detailed explanation)
+.. _main.py-app-creation-detailed:
 Create the application
 ----------------------
 In the first two lines, we see the code instantiates a ``QApplication`` and an ``ApplicationFrame``::
@@ -98,6 +105,8 @@ However, note that code like this::
 still doesn't work. ApplicationFrame *is* a graphical element, but one more step is missing which we're going to see
 at the end of this file.
 
+.. index:: main.py: GUI instantiation (detailed explanation)
+.. _main.py-gui-instantiation-detailed:
 Instantiate the actual GUI
 --------------------------
 The code proceed with these lines::
@@ -125,6 +134,8 @@ However, it is very fragile and can cause very obscure ``SEGFAULT``s and core du
 gets in the way, which in Qt happens almost in every application. To be safe, is always recommended to set the
 parent meaningfully.
 
+.. index:: main.py: Window setup (detailed explanation)
+.. _main.py-window-setup-detailed:
 Setup the window
 ----------------
 After instantiating the GUI, the code proceeds to set a few window parameters.
@@ -153,6 +164,8 @@ And the last sets the window title, using the content of the ``APPLICATION_NAME`
     # Set the window title
     window.setWindowTitle(APPLICATION_NAME)
 
+.. index:: main.py: Managing startup exceptions (detailed explanation)
+.. _main.py-exceptions-detailed:
 Manage an exception
 -------------------
 At the end of this block, there is an interesting ``except`` clause.
@@ -206,6 +219,8 @@ so pay attention to it.
 
 .. note:: You can test this behavior by adding a ``raise ValueError("Hello!")`` in the body of the ``try`` statement.
 
+.. index:: main.py: Launching the application (detailed explanation)
+.. _main.py-launch-detailed:
 Start the application
 ---------------------
 Now that everything is ready to go, we can finally launch the application::
@@ -227,6 +242,8 @@ This is unfortunately necessary in PyQt, as applications that entered the event 
 might just stay around as zombies indefinitely. Note that in the case of the dialog we didn't need this hack, because
 the application never entered the main event loop, but used its own.
 
+.. index:: main.py: Summary (detailed explanation)
+.. _main.py-summary-detailed:
 Summary
 -------
 The essence of the ``main.py`` file could be packed in these three lines of code::
@@ -249,12 +266,15 @@ other cosmetic operations on the interface, which are less critical.
 
 So make sure you understand well at least these four lines before proceeding.
 
-
+.. index:: main_widget.py (detailed explanation)
+.. _main_widget.py-detailed:
 main_widget.py: Build your GUI's View
 =====================================
 As stated in the import statements in ``main.py``, the MainWidget class is defined into the ``main_widget.py`` file.
 Let's have a look at its content.
 
+.. index:: main_widget.py: Parent classes (detailed explanation)
+.. _main_widget.py-parents-detailed:
 Parent classes of a Qt View
 ---------------------------
 To begin with, let's highlight the fact that MainWidget inherits from two classes::
@@ -283,6 +303,8 @@ This information can help you debug all those cases in which MainWidget might fa
 
 Let's move on the the ``__init__()`` method.
 
+.. index:: main_widget.py: View initialization (detailed explanation)
+.. _main_widget.py-view-init-detailed:
 Initializing a View
 -------------------
 Unsurprisingly, the first operation done in the constructor of MainWidget is to call the ``super`` method, passing
@@ -293,7 +315,8 @@ the ``parent`` parameter::
 
 This is necessary, as the ``parent`` parameter is needed by the parent QObject class to get deleted with
 the window it belongs to. Failing to pass the ``parent`` to the superclass is equivalent to not setting it at all,
-causing the same set of problems `highlighted above <81-detailed-project-structure.html#>`_ in the ``main()`` function.
+causing the same set of problems
+`highlighted above <81-detailed-project-structure.html#main.py-gui-instantiation-detailed>`_ in the ``main()`` function.
 
 After that, we see another very important call::
 
@@ -311,6 +334,8 @@ default appearance, is discouraged: please use Qt Designer for this purpose.
 So, if not for manipulation, why are the objects all available as attributes? You will see the reason in the next
 paragraph.
 
+.. index:: main_widget.py: Wiring the Model (detailed explanation)
+.. _main_widget.py-model-detailed:
 Instantiate and wire the Model
 ------------------------------
 In Qt's ModelView paradigm, Views are usually responsible of instantiating their models and connect to them in the
@@ -365,6 +390,8 @@ This said, we can infer that ``valueChanged`` must be a signal, emitted when the
 
 How can we verify this?
 
+.. index:: main_widget.py: Find signals (detailed explanation)
+.. _main_widget.py-signals-detailed:
 Find signals
 ~~~~~~~~~~~~
 To check if ``valueChanged`` is actually a signal with the expected signature, there are two strategies,
@@ -397,6 +424,8 @@ spinbox that was just set.
 
 We will later see an example of a signal emitted by a PyQt object.
 
+.. index:: main_widget.py: Find slots (detailed explanation)
+.. _main_widget.py-slots-detailed:
 Find slots
 ~~~~~~~~~~
 To check if ``set_frequency`` is actually a slot with the expected signature, the procedure is very similar to the
@@ -439,8 +468,10 @@ and has a signature that matches::
     def set_frequency(self, value: int) -> None:
         ...
 
-The big picture
-~~~~~~~~~~~~~~~
+.. index:: main_widget.py: Summary of connect statememts (detailed explanation)
+.. _main_widget.py-connect-summary-detailed:
+Reviewing connect()
+~~~~~~~~~~~~~~~~~~~
 Once we verified that ``valueChanged`` is indeed a signal that matches the slot ``set_frequency``, let's see what the
 ``.connect()`` statement is there for.
 
@@ -454,23 +485,67 @@ This all happens in an asynchronous matter. For more details on the Qt Meta-Obje
 `C++ documentation <https://doc.qt.io/qt-5/metaobjects.html>`_ and its
 `support in PyQt <https://www.riverbankcomputing.com/static/Docs/PyQt5/metaobjects.html>`_.
 
-Plotting
-~~~~~~~~
-The following method call sets up the plot in the main window. Setting up the plot is in principle the same as for the
-QSpinBox: loading initial values and the calling ``.connect()`` a few times. However, we will now skip over this part
-and revisit it in a later paragraph.
+.. note:: The following method call sets up the plot in the main window. Setting up the plot is in principle
+    the same as for the QSpinBox: loading initial values and the calling ``.connect()`` a few times. However,
+    we will now skip over this part and revisit it in a later paragraph.
 
-
+.. index:: models.py (detailed explanation)
+.. _models.py-detailed:
 models.py: Interface to the control system
 ==========================================
-Let's finally have a better look at the Models itself now.
+Let's finally have a better look at the Model itself now.
 
-They are located in ``my-project/my_project/models/models.py``, which as we can see contains three classes:
+Models are located in ``my-project/my_project/models/models.py``, which as we can see contains three classes:
 SpinBoxModel, DeviceTimingSource and SinglePointSource. The last two are related to the plotting, which we will
 cover better in a dedicated section, while you should already be somewhat familiar with SpinBoxModel.
 
-.. note:: Please ignore the large comment in the import statements for now. We will talk about papc as well later on.
+.. note:: Please ignore the large comment in the import statements for now.
+    Or, if you are interested, head to the `papc section <89-papc.html>`_ to learn more.
 
+First of all, let's note again that SpinBoxModel inherits from QObject::
 
+    class SpinBoxModel(QObject):
+        ...
 
+This is necessary for an object to be able to expose slots or emit signals. Forgetting this import will make
+the code break as soon as the first ``.connect()`` tries to address a "slot" from this class.
 
+Let's move on to the ``__init__()``::
+
+    def __init__(self):
+        super(QObject, self).__init__()
+        # Create the PyJAPC connector
+        self.japc = pyjapc.PyJapc()
+        # Use the empty selector
+        self.japc.setSelector("")
+
+This few lines of code should come to no surprise to most readers. In short, ``super()`` is called to initialize
+QObject. Then, a ``PyJapc`` instance is created and, in the following line, the empty selector is given to it.
+
+The content of this method is supposed to initialize the connection to the control system, in this case to PyJAPC.
+Such initialization has nothing that is Qt-specific and you should refer to your library's documentation to
+understand better how to initialize the connection.
+
+The rest of the class contains two methods. The first is ``get_frequency()``, which you might remember we already
+met in MainWidget's initialization::
+
+    def get_frequency(self) -> float:
+        return self.japc.getParam("BISWRef1/Settings#frequency")
+
+As you can see, it is nothing more than a simple getter that translates the PyJAPC GET operation into a more
+system-agnostic call. Note that this function is not a Qt entity in any way: is simply a Python method.
+
+The situation is slightly different for the second method, ``set_frequency()``::
+
+    @pyqtSlot(int)
+    def set_frequency(self, value: int) -> None:
+        self.japc.setParam("BISWRef1/Settings#frequency", value)
+
+The method itself is also nothing more than a setter, wrapping the PyJAPC specific syntax into an agnostic one.
+However, this method is a PyQt Slot as well: this means that can be used in a ``connect()`` statement and is
+run automatically as soon as its matching signals are emitted.
+
+.. index:: Plots with accwidgets (detailed explanation)
+.. _plotting-detailed:
+Plots with accwidgets
+=====================
