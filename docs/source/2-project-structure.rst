@@ -33,8 +33,8 @@ The template provides:
    sets up some env vars for Qt Designer, and puts a shared PyCharm instance on your ``PATH``
    (see `below <2-project-structure.html#activate.sh>`_).
 
-We are going to cover each of these files one by one. If you are interested in an in-depth explanation of the
-content of the main one, check out the `Explanation of the code <81-detailed-project-structure.html>`_.
+We are going to cover each of these files one by one. If you are interested in an in-depth explanation of the code,
+check out the `Explanation of the code <81-detailed-project-structure.html>`_.
 
 
 .. index:: ModelView Architecture
