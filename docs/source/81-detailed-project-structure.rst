@@ -1,11 +1,9 @@
-.. index:: Detailed Project Structure
+.. index:: Template Code Explained
 .. _detailed_project_structure:
 
-=========================
-Template's Code Explained
-=========================
-
-.. warning:: Work In progress
+=======================
+Template Code Explained
+=======================
 
 In this section we are going to describe in much higher detail what is the role of the most important files
 in the template provided by ``bipy-gui-manager``, and the meaning of the code they include.
